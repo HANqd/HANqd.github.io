@@ -15,14 +15,20 @@
 
 
 
+<meta name="description" content="Python笔记——数据类型（字符串）1.1 Python的简单数据类型####1.1.1 字符串 ####  字符串主要用于存储和表示文本。   Python中的字符串通常由“ ‘ ”、双引号“ “” ”、三个单引号或三个双引号包围的一串字符组成。    注意：单引号和双引号都是英文字符中的符号。 三种表示方法的区别和联系： 单引号字符串与双引号字符串本质上是相同的。但是单引号字符串里边不允许再">
 <meta property="og:type" content="article">
-<meta property="og:title" content="你好，hexo">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/15/你好，hexo/index.html">
+<meta property="og:title" content="HANqd&#39;s BLOG">
+<meta property="og:url" content="https://hanqd.github.io/2019/03/17/Python数据类型（字符串）/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
+<meta property="og:description" content="Python笔记——数据类型（字符串）1.1 Python的简单数据类型####1.1.1 字符串 ####  字符串主要用于存储和表示文本。   Python中的字符串通常由“ ‘ ”、双引号“ “” ”、三个单引号或三个双引号包围的一串字符组成。    注意：单引号和双引号都是英文字符中的符号。 三种表示方法的区别和联系： 单引号字符串与双引号字符串本质上是相同的。但是单引号字符串里边不允许再">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-15T08:45:25.929Z">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/1.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/2.PNG">
+<meta property="og:updated_time" content="2019-03-17T14:33:22.915Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你好，hexo">
+<meta name="twitter:title" content="HANqd&#39;s BLOG">
+<meta name="twitter:description" content="Python笔记——数据类型（字符串）1.1 Python的简单数据类型####1.1.1 字符串 ####  字符串主要用于存储和表示文本。   Python中的字符串通常由“ ‘ ”、双引号“ “” ”、三个单引号或三个双引号包围的一串字符组成。    注意：单引号和双引号都是英文字符中的符号。 三种表示方法的区别和联系： 单引号字符串与双引号字符串本质上是相同的。但是单引号字符串里边不允许再">
+<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/1.PNG">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -54,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>你好，hexo | HANqd&#39;s BLOG</title>
+<title>HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -264,11 +270,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-你好，hexo" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Python数据类型（字符串）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/15/你好，hexo/" class="article-date">
-      <time datetime="2019-03-15T08:45:25.000Z" itemprop="datePublished">2019-03-15</time>
+      <a href="/2019/03/17/Python数据类型（字符串）/" class="article-date">
+      <time datetime="2019-03-17T14:32:02.464Z" itemprop="datePublished">2019-03-17</time>
 </a>
 
 
@@ -279,28 +285,59 @@
       <input type="hidden" class="isFancy">
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      你好，hexo
-    </h1>
-  
-
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-
-        
-        <div class="clearfix"></div>
-      </div>
-      
-    
     <div class="article-entry" itemprop="articleBody">
       
           
-        
+        <h2 id="Python笔记——数据类型（字符串）"><a href="#Python笔记——数据类型（字符串）" class="headerlink" title="Python笔记——数据类型（字符串）"></a>Python笔记——数据类型（字符串）</h2><h3 id="1-1-Python的简单数据类型"><a href="#1-1-Python的简单数据类型" class="headerlink" title="1.1 Python的简单数据类型"></a>1.1 Python的简单数据类型</h3><p>####1.1.1 字符串 ####</p>
+<blockquote>
+<p>字符串主要用于存储和表示文本。</p>
+</blockquote>
+<blockquote>
+<p>Python中的字符串通常由“ ‘ ”、双引号“ “” ”、三个单引号或三个双引号包围的一串字符组成。</p>
+</blockquote>
+<p>  <strong>注意：单引号和双引号都是英文字符中的符号。</strong></p>
+<p>三种表示方法的区别和联系：</p>
+<p>单引号字符串与双引号字符串本质上是相同的。但是单引号字符串里边不允许再出现单引号，例如：’aa’ss’cc’，这种是错误的，但是可以使用转义字符来输出’：’aaa”ss”aa’，这样正确，同理，双引号字符串也是，双引号里不能再出现双引号，但可以用转义字符。</p>
+<p><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/1.PNG" alt="输入字符串实例"></p>
+<p>三引号字符串可以由多行组成，单引号或双引号不行，当需要使用大段多行的字符串行就使用它。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">This is a function.</span></span><br><span class="line"><span class="string">Return a tuple.</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>1. 转义字符串</strong></p>
+<ul>
+<li>\n      换行符</li>
+<li>\t      制表符（Tab）</li>
+<li>\r      回车（Enter）</li>
+<li>\      “\”字符</li>
+<li>\’      单引号字符串中的单引号</li>
+<li>\”      双引号里的双引号</li>
+</ul>
+<p><strong>2.字符串运算</strong><br>“+”：连接字符串<br>乘号   ：单字符串的多次连接<br>‘aaa’+’bbb’  ——&gt;’aaabbb’<br>“python”*3 ——&gt;python python python</p>
+<p><strong>3.字符串处理函数</strong><br>常见的字符串函数</p>
+<ul>
+<li>string.capitalize()  将字符串的第一个字母大写</li>
+<li>string.count()    获得字符串中某一子字符串的数目</li>
+<li>string.find()   获得字符串中某一子字符串的起始位置，无则返回-1</li>
+<li>string.isalnum()  检测字符串是仅包含0-9A-Za-z</li>
+<li>string.isalpha()   检测字符串是仅包含A-Za-z</li>
+<li>string.isdigit()   检测字符串是仅包含数字</li>
+<li>string.islower()   检测字符串是否均为小写字母</li>
+<li>string.isspace()   检测字符串中所有字符是否均为空白字符</li>
+<li>string.istitle()   检测字符串中的单词是否为首字母大写</li>
+<li>string.isupper()   检测字符串是否均为大写字母</li>
+<li>string.join()      连接字符串</li>
+<li>string.lower()     将字符串全部转换为小写</li>
+<li>string.split()     分割字符串</li>
+<li>string.swapcase()   将字符串中大写字母转换为小写，小写字母转换为大写</li>
+<li>string.title()      将字符串中的单词首字母大写</li>
+<li>string.upper()      将字符串中的全部字母转换为大写</li>
+<li>len(string)       获取字符串长度</li>
+</ul>
+<p><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/2.PNG" alt="字符处理函数实例" title="字符处理函数实例"></p>
+<p>其中<strong>split()函数</strong>返回以指定的字符将字符串分割成为列表形式并返回，但并不改变原字符串，原型如下：<br>split([sep[,maxsplit]])</p>
+<ul>
+<li>sep：可选参数，指定分割的字符，默认为空格</li>
+<li>maxsplit：可选参数，分割次数</li>
+</ul>
+<p>join()函数将原字符串插入参数字符串中的每两个字符之间。如果参数字符串中只有一个字符，那么返回参数字符串。同样，join()并不改变原字符串，只是返回一个新的字符串。</p>
+
       
     </div>
     
@@ -308,13 +345,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/15/你好，hexo/">你好，hexo</a></p>
+        <p><span>本文标题:</span><a href="/2019/03/17/Python数据类型（字符串）/"></a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-15, 16:45:25</p>
-        <p><span>最后更新:</span>2019-03-15, 16:45:25</p>
+        <p><span>发布时间:</span>2019-03-17, 22:32:02</p>
+        <p><span>最后更新:</span>2019-03-17, 22:33:22</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/15/你好，hexo/" title="你好，hexo">https://hanqd.github.io/2019/03/15/你好，hexo/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/15/你好，hexo/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/17/Python数据类型（字符串）/" title>https://hanqd.github.io/2019/03/17/Python数据类型（字符串）/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/17/Python数据类型（字符串）/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -326,16 +363,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/17/Python数据类型（字符串）/">
-                    
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/15/hello-world/">
-                    Hello World
+                <a href="/2019/03/15/你好，hexo/">
+                    你好，hexo
                 </a>
             </div>
         
@@ -347,7 +378,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python笔记——数据类型（字符串）"><span class="toc-number">1.</span> <span class="toc-text">Python笔记——数据类型（字符串）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Python的简单数据类型"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Python的简单数据类型</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -383,7 +414,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"你好，hexo　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -399,7 +430,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/15/你好，hexo/" data-title="你好，hexo" data-url="https://hanqd.github.io/2019/03/15/你好，hexo/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/17/Python数据类型（字符串）/" data-title data-url="https://hanqd.github.io/2019/03/17/Python数据类型（字符串）/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -422,15 +453,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/17/Python数据类型（字符串）/" title="上一篇: ">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/15/hello-world/" title="下一篇: Hello World">
+            <a href="/2019/03/15/你好，hexo/" title="下一篇: 你好，hexo">
                 <i class="fa fa-angle-right"></i>
             </a>
         
