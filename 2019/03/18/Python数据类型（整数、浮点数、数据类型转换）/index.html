@@ -15,19 +15,19 @@
 
 
 
-<meta name="description" content="&amp;emsp; 今天安装了pycharm,界面很好看，是一款好用的编译器。 继续学习Python！">
+<meta name="description" content="今天安装了pycharm,界面很好看，是一款好用的编译器。继续学习Python！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python笔记——数据类型（整数、浮点数、数据类型转换）">
 <meta property="og:url" content="https://hanqd.github.io/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="&amp;emsp; 今天安装了pycharm,界面很好看，是一款好用的编译器。 继续学习Python！">
+<meta property="og:description" content="今天安装了pycharm,界面很好看，是一款好用的编译器。继续学习Python！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/3.PNG">
 <meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/4.PNG">
-<meta property="og:updated_time" content="2019-03-18T08:38:50.721Z">
+<meta property="og:updated_time" content="2019-03-18T08:45:33.865Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python笔记——数据类型（整数、浮点数、数据类型转换）">
-<meta name="twitter:description" content="&amp;emsp; 今天安装了pycharm,界面很好看，是一款好用的编译器。 继续学习Python！">
+<meta name="twitter:description" content="今天安装了pycharm,界面很好看，是一款好用的编译器。继续学习Python！">
 <meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/3.PNG">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -306,37 +306,31 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>&emsp; 今天安装了pycharm,界面很好看，是一款好用的编译器。</p>
-<p><center>继续学习Python！<center><br><a id="more"></a></center></center></p>
+        <p>今天安装了pycharm,界面很好看，是一款好用的编译器。<br>继续学习Python！<br><a id="more"></a></p>
 <h2 id="整数（int）"><a href="#整数（int）" class="headerlink" title="整数（int）"></a>整数（int）</h2><p>&emsp; 整数包括正整数、负整数和零。Python中的整数范围是很大的。Python中整数还可以以几种不同的进制进行书写。0+“进制标志”+数字代表不同进制的数，进制标志有以下几种：</p>
 <ul>
 <li>0o[0O]数字       表示八进制整数（例如：0o24/0O24）</li>
 <li>0x[0X]数字       表示十六进制整数（例如：0x3F/0X3F）</li>
-<li>0b[0B]数字       表示二进制整数（例如：0b101/0B101）</li>
-</ul>
-<p><br>不带进制标志的为十进制数。<br><br>&emsp; <strong>注意：每种进制开头数字都是0；八进制的数字0后是小写字母o或大写字母O；但十进制不得以数字0开头书写；每种进制书写时数码不得超过进制规定的数码范围。</strong></p>
-<p><center>整数运算符</center><br>| 运算符  | 描述  |<br>| :————: | :————: |<br>|  ** | 乘方运算符  |<br>|  * | 乘法运算符  |<br>|  / |除法运算符   |<br>|  // |整除运算符   |<br>| %  |取余运算符   |<br>|  + | 加法运算符  |<br>| -  |减法运算符   |<br>|  | |  位或 |<br>| ^  |位异或   |<br>| &amp;  |位与   |<br>|  &lt;&lt; | 左移运算  |<br>|  &gt;&gt; | 右移运算  |<br><br>“//”运算符就是取商而丢弃余数，比如14//4=3<br><br>|、^、&amp;、&lt;&lt;、&gt;&gt;运算符都是位运算符，要依据二进制形式进行运算。<br>运算符优先级从高到低排列如下：</p>
-<ul>
+<li>0b[0B]数字       表示二进制整数（例如：0b101/0B101）<br>不带进制标志的为十进制数。<br>&emsp; <strong>注意：每种进制开头数字都是0；八进制的数字0后是小写字母o或大写字母O；但十进制不得以数字0开头书写；每种进制书写时数码不得超过进制规定的数码范围。</strong><br>整数运算符<br>| 运算符  | 描述  |<br>| :————: | :————: |<br>|  ** | 乘方运算符  |<br>|  * | 乘法运算符  |<br>|  / |除法运算符   |<br>|  // |整除运算符   |<br>| %  |取余运算符   |<br>|  + | 加法运算符  |<br>| -  |减法运算符   |<br>|  | |  位或 |<br>| ^  |位异或   |<br>| &amp;  |位与   |<br>|  &lt;&lt; | 左移运算  |<br>|  &gt;&gt; | 右移运算  |<br><br>“//”运算符就是取商而丢弃余数，比如14//4=3<br><br>|、^、&amp;、&lt;&lt;、&gt;&gt;运算符都是位运算符，要依据二进制形式进行运算。<br>运算符优先级从高到低排列如下：</li>
 <li>**</li>
 <li>*、/、%</li>
 <li>+、-</li>
 <li>|、^、&amp;、&lt;&lt;、&gt;&gt;</li>
 </ul>
 <p>在同一个式子中，可以使用括号来修改运算符的优先级，即括号具有最高优先级。不必强记运算符的优先级，在没有把握的情况下可以运用括号。<br><strong>注意：“/”运算符的运算结果为浮点数，即时是两个整数相除。</strong></p>
-<p>##浮点数（float）##<br>浮点数就是常用的带小数的数，当然整数部分也可以为零。浮点数的书写除了一般形式（如3.14）外，还有以下几种表示方法：</p>
+<h2 id="浮点数（float）"><a href="#浮点数（float）" class="headerlink" title="浮点数（float）"></a>浮点数（float）</h2><p>浮点数就是常用的带小数的数，当然整数部分也可以为零。浮点数的书写除了一般形式（如3.14）外，还有以下几种表示方法：</p>
 <ul>
 <li>19.     小数部分为零，可以不写；</li>
 <li>.098    整数部分为零，可以不写；</li>
 <li>-2e3    科学计数法，表示-2*10^3</li>
 </ul>
-<p>##类型转换##<br>Python中常用的数据类型的相互转换，所使用函数如下：</p>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>Python中常用的数据类型的相互转换，所使用函数如下：</p>
 <ul>
 <li>str(object=’’)       可以将整数和浮点数转换为字符串，默认建立空字符串</li>
 <li>int(x,base=10)       将数字字符串或数值转换为整数（base表示进制）</li>
 <li>float(x)             将字符串或数值转换为浮点数</li>
 </ul>
-<p>此外：str()可以创建一个空字符串，int()也可以建立一个默认值为0的整数，float()可以建立一个默认值为0.0的浮点数。</p>
-<p>【实例】<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/3.PNG" alt><br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/4.PNG" alt><br>注意：将字符串形式的数值转换为整数时，其中只能包含数字。<br>input()函数接受键盘输入时，无论输入的是整数、浮点数还是字符串，Python得到的都是字符串，那么当需要整数或浮点数时都要进行类型转换。</p>
+<p>此外：str()可以创建一个空字符串，int()也可以建立一个默认值为0的整数，float()可以建立一个默认值为0.0的浮点数。<br>【实例】<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/3.PNG" alt><br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/4.PNG" alt><br>注意：将字符串形式的数值转换为整数时，其中只能包含数字。<br>input()函数接受键盘输入时，无论输入的是整数、浮点数还是字符串，Python得到的都是字符串，那么当需要整数或浮点数时都要进行类型转换。</p>
 
       
     </div>
@@ -348,7 +342,7 @@
         <p><span>本文标题:</span><a href="/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/">Python笔记——数据类型（整数、浮点数、数据类型转换）</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
         <p><span>发布时间:</span>2019-03-18, 16:38:50</p>
-        <p><span>最后更新:</span>2019-03-18, 16:38:50</p>
+        <p><span>最后更新:</span>2019-03-18, 16:45:33</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/" title="Python笔记——数据类型（整数、浮点数、数据类型转换）">https://hanqd.github.io/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/</a>
             <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -378,7 +372,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#整数（int）"><span class="toc-number">1.</span> <span class="toc-text">整数（int）</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#整数（int）"><span class="toc-number">1.</span> <span class="toc-text">整数（int）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浮点数（float）"><span class="toc-number">2.</span> <span class="toc-text">浮点数（float）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型转换"><span class="toc-number">3.</span> <span class="toc-text">类型转换</span></a></li></ol>
         
     </div>
     <style>
