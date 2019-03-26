@@ -24,7 +24,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/5.PNG">
 <meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/6.PNG">
-<meta property="og:updated_time" content="2019-03-26T12:41:02.883Z">
+<meta property="og:updated_time" content="2019-03-26T12:45:33.555Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web calculator">
 <meta name="twitter:description" content="Calculator题目描述">
@@ -319,7 +319,8 @@
 <li>让服务器知道获取算式和提交结果的是一个人？</li>
 </ol>
 <h3 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h3><ul>
-<li>问题1：需要爬取网页信息，用正则表达式。（导入re模块）<br>Python通过re模块提供对正则表达式的支持。使用re的一般步骤是先将正则表达式的字符串形式编译为Pattern实例，然后使用Pattern实例处理文本并获得匹配结果（一个Match实例），最后使用Match实例获得信息，进行其他的操作。</li>
+<li><p>问题1：需要爬取网页信息，用正则表达式。（导入re模块）<br>Python通过re模块提供对正则表达式的支持。使用re的一般步骤是先将正则表达式的字符串形式编译为Pattern实例，然后使用Pattern实例处理文本并获得匹配结果（一个Match实例），最后使用Match实例获得信息，进行其他的操作。</p>
+</li>
 <li><p>问题2：requests里的get<br>传递 URL 参数<br>你也许经常想为 URL 的查询字符串(query string)传递某种数据。如果是手工构建 URL，那么数据会以键/值对的形式置于 URL 中，跟在一个问号的后面。例如， httpbin.org/get?key=val。 Requests 允许你使用 params 关键字参数，以一个字符串字典来提供这些参数。举例来说，如果你想传递 key1=value1 和 key2=value2 到 httpbin.org/get ，那么可以使用如下代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload = &#123;<span class="string">'key1'</span>: <span class="string">'value1'</span>, <span class="string">'key2'</span>: <span class="string">'value2'</span>&#125;</span><br><span class="line">r = requests.get(<span class="string">"http://httpbin.org/get"</span>, params=payload)</span><br></pre></td></tr></table></figure>
 </li>
@@ -339,7 +340,7 @@
         <p><span>本文标题:</span><a href="/2019/03/26/Web calculate/">Web calculator</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
         <p><span>发布时间:</span>2019-03-26, 20:39:08</p>
-        <p><span>最后更新:</span>2019-03-26, 20:41:02</p>
+        <p><span>最后更新:</span>2019-03-26, 20:45:33</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/03/26/Web calculate/" title="Web calculator">https://hanqd.github.io/2019/03/26/Web calculate/</a>
             <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/26/Web calculate/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
