@@ -15,14 +15,17 @@
 
 
 
+<meta name="description" content="1003 我要通过“答案正确”是自动判题系统给出的最令人欢喜的回复。本题属于 PAT 的“答案正确”大派送 —— 只要读入的字符串满足下列条件，系统就输出“答案正确”，否则输出“答案错误”。得到“答案正确”的条件是：  字符串中必须仅有 P、 A、 T这三种字符，不可以包含其它字符； 任意形如 xPATx 的字符串都可以获得“答案正确”，其中 x 或者是空字符串，或者是仅由字母 A 组成的字符串；">
 <meta property="og:type" content="article">
-<meta property="og:title" content="你好，hexo">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/15/你好，hexo/index.html">
+<meta property="og:title" content="HANqd&#39;s BLOG">
+<meta property="og:url" content="https://hanqd.github.io/2019/03/26/每日一题1003/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
+<meta property="og:description" content="1003 我要通过“答案正确”是自动判题系统给出的最令人欢喜的回复。本题属于 PAT 的“答案正确”大派送 —— 只要读入的字符串满足下列条件，系统就输出“答案正确”，否则输出“答案错误”。得到“答案正确”的条件是：  字符串中必须仅有 P、 A、 T这三种字符，不可以包含其它字符； 任意形如 xPATx 的字符串都可以获得“答案正确”，其中 x 或者是空字符串，或者是仅由字母 A 组成的字符串；">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-15T08:45:25.929Z">
+<meta property="og:updated_time" content="2019-03-26T03:21:40.378Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你好，hexo">
+<meta name="twitter:title" content="HANqd&#39;s BLOG">
+<meta name="twitter:description" content="1003 我要通过“答案正确”是自动判题系统给出的最令人欢喜的回复。本题属于 PAT 的“答案正确”大派送 —— 只要读入的字符串满足下列条件，系统就输出“答案正确”，否则输出“答案错误”。得到“答案正确”的条件是：  字符串中必须仅有 P、 A、 T这三种字符，不可以包含其它字符； 任意形如 xPATx 的字符串都可以获得“答案正确”，其中 x 或者是空字符串，或者是仅由字母 A 组成的字符串；">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -54,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>你好，hexo | HANqd&#39;s BLOG</title>
+<title>HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -264,11 +267,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-你好，hexo" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-每日一题1003" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/15/你好，hexo/" class="article-date">
-      <time datetime="2019-03-15T08:45:25.000Z" itemprop="datePublished">2019-03-15</time>
+      <a href="/2019/03/26/每日一题1003/" class="article-date">
+      <time datetime="2019-03-26T03:17:36.805Z" itemprop="datePublished">2019-03-26</time>
 </a>
 
 
@@ -279,28 +282,79 @@
       <input type="hidden" class="isFancy">
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      你好，hexo
-    </h1>
-  
-
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-
-        
-        <div class="clearfix"></div>
-      </div>
-      
-    
     <div class="article-entry" itemprop="articleBody">
       
           
-        
+        <h2 id="1003-我要通过"><a href="#1003-我要通过" class="headerlink" title="1003 我要通过"></a>1003 我要通过</h2><p>“答案正确”是自动判题系统给出的最令人欢喜的回复。本题属于 PAT 的“答案正确”大派送 —— 只要读入的字符串满足下列条件，系统就输出“答案正确”，否则输出“答案错误”。<br>得到“答案正确”的条件是：</p>
+<ol>
+<li>字符串中必须仅有 P、 A、 T这三种字符，不可以包含其它字符；</li>
+<li>任意形如 xPATx 的字符串都可以获得“答案正确”，其中 x 或者是空字符串，或者是仅由字母 A 组成的字符串；</li>
+<li>如果 aPbTc 是正确的，那么 aPbATca 也是正确的，其中 a、 b、 c 均或者是空字符串，或者是仅由字母 A 组成的字符串。<br>现在就请你为 PAT 写一个自动裁判程序，判定哪些字符串是可以获得“答案正确”的。<h2 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h2>每个测试输入包含 1 个测试用例。第 1 行给出一个正整数 n (&lt;10)，是需要检测的字符串个数。接下来每个字符串占一行，字符串长度不超过 100，且不包含空格。<h2 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h2>每个字符串的检测结果占一行，如果该字符串可以获得“答案正确”，则输出 YES，否则输出 NO。<h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2></li>
+</ol>
+<ul>
+<li>条件1：字符串仅有P、A、T这三个字符，包括其他字符则答案错误；</li>
+<li>条件2：xPATx形式的字符串正确，其中x为空字符串或者A，例如：PAT、APATA、AAPATAA，要求P左边的A的个数和T右边的个数一样，并且P和T仅有一个；</li>
+<li>条件3：aPbTc是正确的，则aPbATca也是正确的，其中a,b,c为空字符串或者A，例如：APATA、APAATAA、AAPATAA、AAPAATAAAA<br>根据P左边，T右边和P、T中间的A的个数来看，可找到规律，即left*mid=right,即答案正确。<h2 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h2>  #include <iostream><br>  #include &lt;string.h&gt;<br>  using namespace std;<br>  int main()<br>  {<pre><code>int n;
+cin&gt;&gt;n;
+string a;
+int len=0;   
+for(int i=0;i&lt;n;i++)
+{
+    cin&gt;&gt;a;
+    //p是P的个数，t是T的个数，left是P左边A的个数，mid,right分别是对应位置A的个数
+    int p=0,t=0,left=0,mid=0,right=0; 
+    len=a.length();
+    for(int j=0;j&lt;len;j++)
+    {
+        //字符串为A，并且前面没出现过P和T，P左边A的个数
+        if(a[j]==&apos;A&apos;&amp;&amp;p==0&amp;&amp;t==0)
+        {
+            left++;
+            continue;
+        }
+        //P的个数
+        if(a[j]==&apos;P&apos;)
+        {
+            p++;
+            continue;
+        }
+        //中间A的个数，前面出现了P且个数为1，前面不能出现T
+        if(a[j]==&apos;A&apos;&amp;&amp;p==1&amp;&amp;t==0)
+        {
+            mid++;
+            continue;
+        }
+        //T的个数，并且前边P和T中间出现了A，防止出现PT情况
+        if(a[j]==&apos;T&apos;&amp;&amp;mid&gt;=1)
+        {
+            t++;
+            continue;
+        }
+        //右边A的个数，前边出现了P和T，个数为1
+        if(a[j]==&apos;A&apos;&amp;&amp;p==1&amp;&amp;t==1)
+        {
+            right++;
+            continue;
+        }
+        else
+        {
+            break;
+        }
+    }
+    //判断条件：P和T的个数为1，A的个数：左边乘中间等于右边，输出YES
+    if(p==1&amp;&amp;t==1&amp;&amp;(left*mid==right))
+    {
+        cout&lt;&lt;&quot;YES&quot;&lt;&lt;endl;
+    }
+    else
+    {
+        cout&lt;&lt;&quot;NO&quot;&lt;&lt;endl;
+    }
+}
+return 0;
+</code></pre>  }</iostream></li>
+</ul>
+
       
     </div>
     
@@ -308,13 +362,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/15/你好，hexo/">你好，hexo</a></p>
+        <p><span>本文标题:</span><a href="/2019/03/26/每日一题1003/"></a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-15, 16:45:25</p>
-        <p><span>最后更新:</span>2019-03-15, 16:45:25</p>
+        <p><span>发布时间:</span>2019-03-26, 11:17:36</p>
+        <p><span>最后更新:</span>2019-03-26, 11:21:40</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/15/你好，hexo/" title="你好，hexo">https://hanqd.github.io/2019/03/15/你好，hexo/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/15/你好，hexo/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/26/每日一题1003/" title>https://hanqd.github.io/2019/03/26/每日一题1003/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/26/每日一题1003/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -326,16 +380,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/17/Python数据类型（字符串）/">
-                    Python笔记——数据类型（字符串）
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/15/hello-world/">
-                    Hello World
+                <a href="/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/">
+                    Python笔记——数据类型（整数、浮点数、数据类型转换）
                 </a>
             </div>
         
@@ -347,7 +395,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1003-我要通过"><span class="toc-number">1.</span> <span class="toc-text">1003 我要通过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输入格式："><span class="toc-number">2.</span> <span class="toc-text">输入格式：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出格式："><span class="toc-number">3.</span> <span class="toc-text">输出格式：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目分析"><span class="toc-number">4.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-代码"><span class="toc-number">5.</span> <span class="toc-text">C++代码</span></a></li></ol>
         
     </div>
     <style>
@@ -383,7 +431,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"你好，hexo　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -399,7 +447,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/15/你好，hexo/" data-title="你好，hexo" data-url="https://hanqd.github.io/2019/03/15/你好，hexo/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/26/每日一题1003/" data-title data-url="https://hanqd.github.io/2019/03/26/每日一题1003/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -422,15 +470,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/17/Python数据类型（字符串）/" title="上一篇: Python笔记——数据类型（字符串）">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/15/hello-world/" title="下一篇: Hello World">
+            <a href="/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/" title="下一篇: Python笔记——数据类型（整数、浮点数、数据类型转换）">
                 <i class="fa fa-angle-right"></i>
             </a>
         
