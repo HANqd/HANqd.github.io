@@ -15,22 +15,17 @@
 
 
 
-<meta name="description" content="题目Reverse sign in题目描述题目中只给了一个rev1文件，其他的没有了。">
+<meta name="description" content="1005 继续(3n+1)猜想题目描述卡拉兹(Callatz)猜想已经在1001中给出了描述。在这个题目里，情况稍微有些复杂。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CTF逆向reverse：Reverse sign in">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/28/reverse1/index.html">
+<meta property="og:title" content="每日一题 1005">
+<meta property="og:url" content="https://hanqd.github.io/2019/03/28/每日一题1005/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="题目Reverse sign in题目描述题目中只给了一个rev1文件，其他的没有了。">
+<meta property="og:description" content="1005 继续(3n+1)猜想题目描述卡拉兹(Callatz)猜想已经在1001中给出了描述。在这个题目里，情况稍微有些复杂。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/7.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/8.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/9.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/10.PNG">
-<meta property="og:updated_time" content="2019-03-28T02:57:29.140Z">
+<meta property="og:updated_time" content="2019-03-28T07:29:30.716Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CTF逆向reverse：Reverse sign in">
-<meta name="twitter:description" content="题目Reverse sign in题目描述题目中只给了一个rev1文件，其他的没有了。">
-<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/7.PNG">
+<meta name="twitter:title" content="每日一题 1005">
+<meta name="twitter:description" content="1005 继续(3n+1)猜想题目描述卡拉兹(Callatz)猜想已经在1001中给出了描述。在这个题目里，情况稍微有些复杂。">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -62,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>CTF逆向reverse：Reverse sign in | HANqd&#39;s BLOG</title>
+<title>每日一题 1005 | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -272,11 +267,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-reverse1" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-每日一题1005" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/28/reverse1/" class="article-date">
-      <time datetime="2019-03-28T02:52:16.969Z" itemprop="datePublished">2019-03-28</time>
+      <a href="/2019/03/28/每日一题1005/" class="article-date">
+      <time datetime="2019-03-28T07:28:08.741Z" itemprop="datePublished">2019-03-28</time>
 </a>
 
 
@@ -291,7 +286,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      CTF逆向reverse：Reverse sign in
+      每日一题 1005
     </h1>
   
 
@@ -308,20 +303,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="题目Reverse-sign-in"><a href="#题目Reverse-sign-in" class="headerlink" title="题目Reverse sign in"></a>题目Reverse sign in</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>题目中只给了一个rev1文件，其他的没有了。<br><a id="more"></a></p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ol>
-<li>知道是个逆向题目，所以直接用ida打开该文件，Fn+F5反编译为c伪代码，得到如下图，知道flag就在sub_400686函数中。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/7.PNG" alt></li>
-<li>查看sub_400686函数伪代码，如下<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/8.PNG" alt></li>
-<li>找到byte_400818数据，即为数组中的32个值<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/9.PNG" alt></li>
-<li>(char)(*(_BYTE *)(i + a1)<br>在C语言中，内存地址也是用整数int表示（32bit）。因此，(BYTE *)(i+a1) 表示把整数(i+a1)强制转换为BYTE型数值的<strong>地址</strong>。<ul>
-<li>char *(i+a1) 即i+a1指向一个字符串常量</li>
-<li>^是在程序中是异或运算符号，即长度为32的数组与i进行异或运算</li>
-</ul>
-</li>
-</ol>
-<h3 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int b[]=&#123;0x66,0x6D, 0x63, 0x64, 0x7F, 0x3C, 0x36, 0x72, 0x57, 0x42, 0x64,</span><br><span class="line">	0x3B, 0x7B, 0x52, 0x7C, 0x3C, 0x66, 0x54, 0x60,0x60, 0x27,</span><br><span class="line">	0x4A, 0x49, 0x7F, 0x71, 0x58, 0x52, 0x72, 0x7D, 0x75, 0x2A, 0x62&#125;;</span><br><span class="line">	char a[33];</span><br><span class="line">	for(int i=0;i&lt;=31;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		a[i]= b[i]^i;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int j=0;j&lt;=31;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[j];</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/10.PNG" alt><br>得到flag，注意：最后那个是两个_，输入时只输了一个，试了两遍！！！要细心啊~~~</p>
-
+        <h2 id="1005-继续-3n-1-猜想"><a href="#1005-继续-3n-1-猜想" class="headerlink" title="1005 继续(3n+1)猜想"></a>1005 继续(3n+1)猜想</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>卡拉兹(Callatz)猜想已经在1001中给出了描述。在这个题目里，情况稍微有些复杂。<br><a id="more"></a><br>当我们验证卡拉兹猜想的时候，为了避免重复计算，可以记录下递推过程中遇到的每一个数。例如对 n=3 进行验证的时候，我们需要计算 3、5、8、4、2、1，则当我们对 n=5、8、4、2 进行验证的时候，就可以直接判定卡拉兹猜想的真伪，而不需要重复计算，因为这 4 个数已经在验证3的时候遇到过了，我们称 5、8、4、2 是被 3“覆盖”的数。我们称一个数列中的某个数 n 为“关键数”，如果 n 不能被数列中的其他数字所覆盖。</p>
+<p>现在给定一系列待验证的数字，我们只需要验证其中的几个关键数，就可以不必再重复验证余下的数字。你的任务就是找出这些关键数字，并按从大到小的顺序输出它们。</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>每个测试输入包含 1 个测试用例，第 1 行给出一个正整数 K (&lt;100)，第 2 行给出 K 个互不相同的待验证的正整数 n (1&lt;n≤100)的值，数字间用空格隔开。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>每个测试用例的输出占一行，按从大到小的顺序输出关键数字。数字间用 1 个空格隔开，但一行中最后一个数字后没有空格。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p><strong>输入样例：</strong><br>6<br>3 5 6 7 8 11<br><strong>输出样例：</strong><br>7 6<br>根据输入和输出样例，可以看出，在验证3时，需要计算5、8、4、2，那么这四个数被3覆盖了，就不是关键数。6需要计算11，那么11不是关键数，6没有被输入的数覆盖，所以6是关键数。这道题就是输出在输入的数的计算过程中没有出现过的数。<br>思路：把输入的值当做数组下标，这个以输入值作为下标的数组记录这个值出现的次数，在计算过程中没出现过，数组值设为1，出现过，数组值设为2。</p>
+<h3 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	int a[n];</span><br><span class="line">	int xiabiao[101]=&#123;0&#125;;</span><br><span class="line">	int keynum[100001]=&#123;0&#125;;</span><br><span class="line">	int count=0,temp;</span><br><span class="line">	//输入n个数</span><br><span class="line">	for(int i=0;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=0;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int m=a[i];  //下标=数组值</span><br><span class="line">		if(xiabiao[m]==2)</span><br><span class="line">		&#123;</span><br><span class="line">			continue;//数组值出现过，即被某个数所覆盖</span><br><span class="line">		&#125;</span><br><span class="line">		else xiabiao[m]=1;//没出现过的置1</span><br><span class="line">		while(m!=1)</span><br><span class="line">		&#123;</span><br><span class="line">			if(m%2==0) </span><br><span class="line">			&#123;</span><br><span class="line">				m=m/2;</span><br><span class="line">				xiabiao[m]=2;</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				m=(m*3+1)/2;</span><br><span class="line">				xiabiao[m]=2;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	//把xiabiao[]数组中值为1的存入另一个数组keynum[]，即所求的关键数</span><br><span class="line">	for(int i=0;i&lt;101;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(xiabiao[i]==1) </span><br><span class="line">		&#123;</span><br><span class="line">			keynum[count]=i;</span><br><span class="line">			count++;	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	//对关键字排序，降序</span><br><span class="line">	for(int i=0;i&lt;count;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		for(int j=i+1;j&lt;count;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			if(keynum[i]&lt;keynum[j])</span><br><span class="line">			&#123;</span><br><span class="line">				temp=keynum[i];</span><br><span class="line">				keynum[i]=keynum[j];</span><br><span class="line">				keynum[j]=temp;</span><br><span class="line">			&#125;	</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for(int k=0;k&lt;count-1;k++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;keynum[k]&lt;&lt;&quot; &quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;keynum[count-1];</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -329,13 +316,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/28/reverse1/">CTF逆向reverse：Reverse sign in</a></p>
+        <p><span>本文标题:</span><a href="/2019/03/28/每日一题1005/">每日一题 1005</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-28, 10:52:16</p>
-        <p><span>最后更新:</span>2019-03-28, 10:57:29</p>
+        <p><span>发布时间:</span>2019-03-28, 15:28:08</p>
+        <p><span>最后更新:</span>2019-03-28, 15:29:30</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/28/reverse1/" title="CTF逆向reverse：Reverse sign in">https://hanqd.github.io/2019/03/28/reverse1/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/28/reverse1/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/28/每日一题1005/" title="每日一题 1005">https://hanqd.github.io/2019/03/28/每日一题1005/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/28/每日一题1005/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -347,16 +334,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/28/每日一题1005/">
-                    每日一题 1005
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/27/每日一题1004/">
-                    每日一题 1004
+                <a href="/2019/03/28/reverse1/">
+                    CTF逆向reverse：Reverse sign in
                 </a>
             </div>
         
@@ -368,7 +349,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目Reverse-sign-in"><span class="toc-number">1.</span> <span class="toc-text">题目Reverse sign in</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.2.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-代码"><span class="toc-number">1.3.</span> <span class="toc-text">C++代码</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1005-继续-3n-1-猜想"><span class="toc-number">1.</span> <span class="toc-text">1005 继续(3n+1)猜想</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式"><span class="toc-number">1.2.</span> <span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式"><span class="toc-number">1.3.</span> <span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.4.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-代码"><span class="toc-number">1.5.</span> <span class="toc-text">C++代码</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -404,7 +385,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"CTF逆向reverse：Reverse sign in　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"每日一题 1005　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -420,7 +401,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/28/reverse1/" data-title="CTF逆向reverse：Reverse sign in" data-url="https://hanqd.github.io/2019/03/28/reverse1/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/28/每日一题1005/" data-title="每日一题 1005" data-url="https://hanqd.github.io/2019/03/28/每日一题1005/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -443,15 +424,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/28/每日一题1005/" title="上一篇: 每日一题 1005">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/27/每日一题1004/" title="下一篇: 每日一题 1004">
+            <a href="/2019/03/28/reverse1/" title="下一篇: CTF逆向reverse：Reverse sign in">
                 <i class="fa fa-angle-right"></i>
             </a>
         
