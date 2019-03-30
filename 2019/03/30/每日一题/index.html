@@ -15,20 +15,17 @@
 
 
 
-<meta name="description" content="Calculator题目描述">
+<meta name="description" content="Another 01Game题目描述题目给了一个txt文件，里边只有01串。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Web calculator">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/26/Web calculate/index.html">
+<meta property="og:title" content="每日一题 1007+Misc Another 01Game">
+<meta property="og:url" content="https://hanqd.github.io/2019/03/30/每日一题/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="Calculator题目描述">
+<meta property="og:description" content="Another 01Game题目描述题目给了一个txt文件，里边只有01串。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/5.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/6.PNG">
-<meta property="og:updated_time" content="2019-03-26T12:45:33.555Z">
+<meta property="og:updated_time" content="2019-03-30T13:55:49.572Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Web calculator">
-<meta name="twitter:description" content="Calculator题目描述">
-<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/5.PNG">
+<meta name="twitter:title" content="每日一题 1007+Misc Another 01Game">
+<meta name="twitter:description" content="Another 01Game题目描述题目给了一个txt文件，里边只有01串。">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -60,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Web calculator | HANqd&#39;s BLOG</title>
+<title>每日一题 1007+Misc Another 01Game | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -270,11 +267,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-Web calculate" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-每日一题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/26/Web calculate/" class="article-date">
-      <time datetime="2019-03-26T12:39:08.259Z" itemprop="datePublished">2019-03-26</time>
+      <a href="/2019/03/30/每日一题/" class="article-date">
+      <time datetime="2019-03-30T13:53:16.208Z" itemprop="datePublished">2019-03-30</time>
 </a>
 
 
@@ -289,7 +286,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Web calculator
+      每日一题 1007+Misc Another 01Game
     </h1>
   
 
@@ -306,29 +303,15 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="Calculator"><a href="#Calculator" class="headerlink" title="Calculator"></a>Calculator</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><a id="more"></a>
-<p><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/5.PNG" alt><br>打开链接，网页如下<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/6.PNG" alt></p>
-<h3 id="做题准备"><a href="#做题准备" class="headerlink" title="做题准备"></a>做题准备</h3><ol>
-<li>安装requests库<br>网址：<a href="http://cn.python-requests.org/zh_CN/latest/user/install.html#install" target="_blank" rel="noopener">http://cn.pythonrequests.org/zh_CN/latest/user/install.html#install</a><br>我是Windows系统，选择安装的压缩包，解压缩后，把整个文件夹复制到Python的Lib目录下即可。</li>
-<li>requests库的使用 <a href="http://cn.python-requests.org/zh_CN/latest/user/quickstart.html#url" target="_blank" rel="noopener">http://cn.python-requests.org/zh_CN/latest/user/quickstart.html#url</a></li>
-</ol>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>要用1.5s计算出结果，并且每次刷新calculator，算数表达式都会变，那么按照平常的计算方式肯定是行不通的，根据题目提示，可以用requests库来解决，要解决的问题：</p>
-<ol>
-<li>怎样从服务器那获得算术表达式，计算出结果？</li>
-<li>怎样把计算出的结果提交给服务器？</li>
-<li>让服务器知道获取算式和提交结果的是一个人？</li>
-</ol>
-<h3 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h3><ul>
-<li><p>问题1：需要爬取网页信息，用正则表达式。（导入re模块）<br>Python通过re模块提供对正则表达式的支持。使用re的一般步骤是先将正则表达式的字符串形式编译为Pattern实例，然后使用Pattern实例处理文本并获得匹配结果（一个Match实例），最后使用Match实例获得信息，进行其他的操作。</p>
-</li>
-<li><p>问题2：requests里的get<br>传递 URL 参数<br>你也许经常想为 URL 的查询字符串(query string)传递某种数据。如果是手工构建 URL，那么数据会以键/值对的形式置于 URL 中，跟在一个问号的后面。例如， httpbin.org/get?key=val。 Requests 允许你使用 params 关键字参数，以一个字符串字典来提供这些参数。举例来说，如果你想传递 key1=value1 和 key2=value2 到 httpbin.org/get ，那么可以使用如下代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload = &#123;<span class="string">'key1'</span>: <span class="string">'value1'</span>, <span class="string">'key2'</span>: <span class="string">'value2'</span>&#125;</span><br><span class="line">r = requests.get(<span class="string">"http://httpbin.org/get"</span>, params=payload)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>问题3：使用session会话<br>session是一次浏览器和服务器的会话对象，session也是缓存，是内容，是块数据。<br>因为我们访问网页使用的HTTP协议是无状态的，没有任何关系，快速的。所以我们如果想要关联客户的信息就需要一种办法能够把客户的信息联系在一起，这个方法就是cookie。但是cookie是把信息储存在用户本地，它在一个域名下是全局的。不安全又很容易的被修改。所以<strong>session就出现了，它储存在服务器上，通过它关联同一个用户的信息，这样用户在访问不同的页面的时候我们就知道对方是同一个人，而不需要每次无状态的访问都需要用户登录/关联了。</strong></p>
-</li>
-</ul>
-<h3 id="脚本代码"><a href="#脚本代码" class="headerlink" title="脚本代码"></a>脚本代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">s = requests.Session()</span><br><span class="line">t = s.get(<span class="string">'http://123.207.149.64:23331/calculator/'</span>)</span><br><span class="line">print(t.text)</span><br><span class="line">value = re.compile(<span class="string">r'&lt;form action="" method="GET"&gt;&lt;span id="exp"&gt;(.*?)&lt;/span&gt;'</span>)</span><br><span class="line">n = re.findall(value, t.text, re.S | re.M)</span><br><span class="line">print(<span class="string">'result:\n\n%s=%d\n'</span> % (n, eval(n)))</span><br><span class="line">ans = eval(n)</span><br><span class="line">f = t.get(<span class="string">'http://123.207.149.64:23331/calculator/'</span>, params=&#123;<span class="string">'answer'</span>: ans&#125;)</span><br><span class="line">print(f.text)</span><br></pre></td></tr></table></figure>
-<p>结果运行时出现错误：AttributeError: module ‘requests’ has no attribute ‘session’，查了安装的requests库，里边有session模块，但就是运行说没有！！查了好多原因，也重装了requests，还是不行，做这个题用了太长时间了，今天脑子被他弄得晕晕的，决定明天在弄。</p>
+        <h2 id="Another-01Game"><a href="#Another-01Game" class="headerlink" title="Another 01Game"></a>Another 01Game</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>题目给了一个txt文件，里边只有01串。<br><a id="more"></a></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>题目给了思路：<br>0和1的数量很关键，首先统计0和1的数量：<br>1369.0/7 = 195.57142857142858<br>1369.0/8 = 171.125<br>1369.0 ** 0.5 = 37.0<br>1369不是7和8的倍数，说明很可能和ASCII没关系。1369 是 37 的平方，说明可以由0和1正好组成一个正方形（二维码，QR code）。<br>可以使用Python、MATLAB 等编程生成图片。扫描得到 另一个01字符串。<br>统计字符串长度，可以当作 ASCII 编程解出 flag。</p>
+<h3 id="解题脚本"><a href="#解题脚本" class="headerlink" title="解题脚本"></a>解题脚本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">import</span> qrcode</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">qr = qrcode.QRCode(</span><br><span class="line">	version = <span class="number">7</span>,</span><br><span class="line">	error_correction=qrcode.constants.ERROR_CORRECT_L,</span><br><span class="line">	box_size=<span class="number">10</span>,</span><br><span class="line">	border=<span class="number">4</span></span><br><span class="line">)</span><br><span class="line">qr.add_data(<span class="string">'''0000000111011101100011011111010000000011111011011101</span></span><br><span class="line"><span class="string">11100110010010101111100100010101101110110100010101010100010</span></span><br><span class="line"><span class="string">01000101101100110011010010100101000100100010110110011010001</span></span><br><span class="line"><span class="string">01010001010001001111101110001000011001010111101111100000000</span></span><br><span class="line"><span class="string">10101010101010101010101000000011111111011011101010110000001</span></span><br><span class="line"><span class="string">11111111000100000111011101010101010100011101100011011101000</span></span><br><span class="line"><span class="string">10001010010100101010101011111001110010000110111000011110100</span></span><br><span class="line"><span class="string">11110001101110001011010100101110110100111010010110110010110</span></span><br><span class="line"><span class="string">01101101101000100100101001001100101011101010101010101111110</span></span><br><span class="line"><span class="string">00000110111100001100111101000101001101110101110101110001010</span></span><br><span class="line"><span class="string">00101001001111001010101110001010111110100100110100011110100</span></span><br><span class="line"><span class="string">01001101010100100110010101100001000001000101100101010101110</span></span><br><span class="line"><span class="string">10100101110101000100101110101010111010100000100000011001101</span></span><br><span class="line"><span class="string">01010001111101001010010101100110010101010111010010010010001</span></span><br><span class="line"><span class="string">00101011011110101001110110010010011000101100111010000111101</span></span><br><span class="line"><span class="string">01110001011100000011110111010110001011111000010110001101110</span></span><br><span class="line"><span class="string">00100100101011110110100000111110011100100010011011010000110</span></span><br><span class="line"><span class="string">10110010110110100010000110010110011000000101110001101100010</span></span><br><span class="line"><span class="string">11001010100000100011111111000011001010110011000111001010000</span></span><br><span class="line"><span class="string">00010011101110110111000101010100001111101010011100110101011</span></span><br><span class="line"><span class="string">01011100010010001010011011100110011111000000010101000101100</span></span><br><span class="line"><span class="string">00011000011101010001000100010001010000010101001010101101000</span></span><br><span class="line"><span class="string">00100111110100110000010110001110100010011000000010010110010</span></span><br><span class="line"><span class="string">0011011011001010110'''</span>)</span><br><span class="line">qr.make(fit=<span class="literal">True</span>)</span><br><span class="line">img = qr.make_image()</span><br><span class="line">img.save(<span class="string">"test.png"</span>)</span><br></pre></td></tr></table></figure>
+<p>扫码还是得到01字符串，有189个01，根据题目提示，每7个一组，前面加0，用ASCLL码解码即可。<br><strong>注意：flag中0和O的输入！！！</strong></p>
+<h2 id="1007-素数对猜想"><a href="#1007-素数对猜想" class="headerlink" title="1007 素数对猜想"></a>1007 素数对猜想</h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>让我们定义dn为：dn=pn+1−pn，其中pi是第i个素数。显然有d1=1，且对于n&gt;1有dn是偶数。“素数对猜想”认为“存在无穷多对相邻且差为2的素数”。<br>现给定任意正整数N(&lt;10^5)，请计算不超过N的满足猜想的素数对的个数。</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>输入在一行给出正整数N。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>在一行中输出不超过N的满足猜想的素数对的个数。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>算法很简单，就是先判断是否是素数，在相邻的两个数相减，为2则个数加1.</p>
+<h3 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	int count=0;</span><br><span class="line">	int a=2,b=3;</span><br><span class="line">	for(int i=5;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">	    bool t=true;</span><br><span class="line">		for(int j=2;j&lt;=sqrt(i);j++)</span><br><span class="line">		&#123;</span><br><span class="line">			if(i%j==0)</span><br><span class="line">			&#123;</span><br><span class="line">				t=false;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if(t)</span><br><span class="line">		&#123;</span><br><span class="line">			a=b;</span><br><span class="line">			b=i;</span><br><span class="line">			if((b-a)==2) count++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;count&lt;&lt;endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -337,13 +320,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/26/Web calculate/">Web calculator</a></p>
+        <p><span>本文标题:</span><a href="/2019/03/30/每日一题/">每日一题 1007+Misc Another 01Game</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-26, 20:39:08</p>
-        <p><span>最后更新:</span>2019-03-26, 20:45:33</p>
+        <p><span>发布时间:</span>2019-03-30, 21:53:16</p>
+        <p><span>最后更新:</span>2019-03-30, 21:55:49</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/26/Web calculate/" title="Web calculator">https://hanqd.github.io/2019/03/26/Web calculate/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/26/Web calculate/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/30/每日一题/" title="每日一题 1007+Misc Another 01Game">https://hanqd.github.io/2019/03/30/每日一题/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/30/每日一题/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -355,16 +338,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/27/每日一题1004/">
-                    每日一题 1004
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/26/每日一题1003/">
-                    每日一题 1003
+                <a href="/2019/03/29/每日一题1006/">
+                    每日一题 1006
                 </a>
             </div>
         
@@ -376,7 +353,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Calculator"><span class="toc-number">1.</span> <span class="toc-text">Calculator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#做题准备"><span class="toc-number">1.2.</span> <span class="toc-text">做题准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.3.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题步骤"><span class="toc-number">1.4.</span> <span class="toc-text">解题步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#脚本代码"><span class="toc-number">1.5.</span> <span class="toc-text">脚本代码</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Another-01Game"><span class="toc-number">1.</span> <span class="toc-text">Another 01Game</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路"><span class="toc-number">1.2.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题脚本"><span class="toc-number">1.3.</span> <span class="toc-text">解题脚本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1007-素数对猜想"><span class="toc-number">2.</span> <span class="toc-text">1007 素数对猜想</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述-1"><span class="toc-number">2.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式"><span class="toc-number">2.2.</span> <span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式"><span class="toc-number">2.3.</span> <span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">2.4.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-代码"><span class="toc-number">2.5.</span> <span class="toc-text">C++代码</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -412,7 +389,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Web calculator　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"每日一题 1007+Misc Another 01Game　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -428,7 +405,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/26/Web calculate/" data-title="Web calculator" data-url="https://hanqd.github.io/2019/03/26/Web calculate/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/30/每日一题/" data-title="每日一题 1007+Misc Another 01Game" data-url="https://hanqd.github.io/2019/03/30/每日一题/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -451,15 +428,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/27/每日一题1004/" title="上一篇: 每日一题 1004">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/26/每日一题1003/" title="下一篇: 每日一题 1003">
+            <a href="/2019/03/29/每日一题1006/" title="下一篇: 每日一题 1006">
                 <i class="fa fa-angle-right"></i>
             </a>
         
