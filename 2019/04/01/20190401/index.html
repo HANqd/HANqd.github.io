@@ -15,17 +15,17 @@
 
 
 
-<meta name="description" content="Another 01Game题目描述题目给了一个txt文件，里边只有01串。">
+<meta name="description" content="1009 说反话题目描述给定一句英语，要求你编写程序，将句中所有单词的顺序颠倒输出。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日一题 1007+Misc Another 01Game">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/30/每日一题/index.html">
+<meta property="og:title" content="每日一题 1009+vector容器">
+<meta property="og:url" content="https://hanqd.github.io/2019/04/01/20190401/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="Another 01Game题目描述题目给了一个txt文件，里边只有01串。">
+<meta property="og:description" content="1009 说反话题目描述给定一句英语，要求你编写程序，将句中所有单词的顺序颠倒输出。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-30T13:55:49.572Z">
+<meta property="og:updated_time" content="2019-04-01T09:35:48.721Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每日一题 1007+Misc Another 01Game">
-<meta name="twitter:description" content="Another 01Game题目描述题目给了一个txt文件，里边只有01串。">
+<meta name="twitter:title" content="每日一题 1009+vector容器">
+<meta name="twitter:description" content="1009 说反话题目描述给定一句英语，要求你编写程序，将句中所有单词的顺序颠倒输出。">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>每日一题 1007+Misc Another 01Game | HANqd&#39;s BLOG</title>
+<title>每日一题 1009+vector容器 | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -267,11 +267,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-每日一题" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20190401" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/30/每日一题/" class="article-date">
-      <time datetime="2019-03-30T13:53:16.208Z" itemprop="datePublished">2019-03-30</time>
+      <a href="/2019/04/01/20190401/" class="article-date">
+      <time datetime="2019-04-01T09:34:28.033Z" itemprop="datePublished">2019-04-01</time>
 </a>
 
 
@@ -286,7 +286,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      每日一题 1007+Misc Another 01Game
+      每日一题 1009+vector容器
     </h1>
   
 
@@ -303,15 +303,55 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="Another-01Game"><a href="#Another-01Game" class="headerlink" title="Another 01Game"></a>Another 01Game</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>题目给了一个txt文件，里边只有01串。<br><a id="more"></a></p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>题目给了思路：<br>0和1的数量很关键，首先统计0和1的数量：<br>1369.0/7 = 195.57142857142858<br>1369.0/8 = 171.125<br>1369.0 ** 0.5 = 37.0<br>1369不是7和8的倍数，说明很可能和ASCII没关系。1369 是 37 的平方，说明可以由0和1正好组成一个正方形（二维码，QR code）。<br>可以使用Python、MATLAB 等编程生成图片。扫描得到 另一个01字符串。<br>统计字符串长度，可以当作 ASCII 编程解出 flag。</p>
-<h3 id="解题脚本"><a href="#解题脚本" class="headerlink" title="解题脚本"></a>解题脚本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">import</span> qrcode</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">qr = qrcode.QRCode(</span><br><span class="line">	version = <span class="number">7</span>,</span><br><span class="line">	error_correction=qrcode.constants.ERROR_CORRECT_L,</span><br><span class="line">	box_size=<span class="number">10</span>,</span><br><span class="line">	border=<span class="number">4</span></span><br><span class="line">)</span><br><span class="line">qr.add_data(<span class="string">'''0000000111011101100011011111010000000011111011011101</span></span><br><span class="line"><span class="string">11100110010010101111100100010101101110110100010101010100010</span></span><br><span class="line"><span class="string">01000101101100110011010010100101000100100010110110011010001</span></span><br><span class="line"><span class="string">01010001010001001111101110001000011001010111101111100000000</span></span><br><span class="line"><span class="string">10101010101010101010101000000011111111011011101010110000001</span></span><br><span class="line"><span class="string">11111111000100000111011101010101010100011101100011011101000</span></span><br><span class="line"><span class="string">10001010010100101010101011111001110010000110111000011110100</span></span><br><span class="line"><span class="string">11110001101110001011010100101110110100111010010110110010110</span></span><br><span class="line"><span class="string">01101101101000100100101001001100101011101010101010101111110</span></span><br><span class="line"><span class="string">00000110111100001100111101000101001101110101110101110001010</span></span><br><span class="line"><span class="string">00101001001111001010101110001010111110100100110100011110100</span></span><br><span class="line"><span class="string">01001101010100100110010101100001000001000101100101010101110</span></span><br><span class="line"><span class="string">10100101110101000100101110101010111010100000100000011001101</span></span><br><span class="line"><span class="string">01010001111101001010010101100110010101010111010010010010001</span></span><br><span class="line"><span class="string">00101011011110101001110110010010011000101100111010000111101</span></span><br><span class="line"><span class="string">01110001011100000011110111010110001011111000010110001101110</span></span><br><span class="line"><span class="string">00100100101011110110100000111110011100100010011011010000110</span></span><br><span class="line"><span class="string">10110010110110100010000110010110011000000101110001101100010</span></span><br><span class="line"><span class="string">11001010100000100011111111000011001010110011000111001010000</span></span><br><span class="line"><span class="string">00010011101110110111000101010100001111101010011100110101011</span></span><br><span class="line"><span class="string">01011100010010001010011011100110011111000000010101000101100</span></span><br><span class="line"><span class="string">00011000011101010001000100010001010000010101001010101101000</span></span><br><span class="line"><span class="string">00100111110100110000010110001110100010011000000010010110010</span></span><br><span class="line"><span class="string">0011011011001010110'''</span>)</span><br><span class="line">qr.make(fit=<span class="literal">True</span>)</span><br><span class="line">img = qr.make_image()</span><br><span class="line">img.save(<span class="string">"test.png"</span>)</span><br></pre></td></tr></table></figure>
-<p>扫码还是得到01字符串，有189个01，根据题目提示，每7个一组，前面加0，用ASCLL码解码即可。<br><strong>注意：flag中0和O的输入！！！</strong></p>
-<h2 id="1007-素数对猜想"><a href="#1007-素数对猜想" class="headerlink" title="1007 素数对猜想"></a>1007 素数对猜想</h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>让我们定义dn为：dn=pn+1−pn，其中pi是第i个素数。显然有d1=1，且对于n&gt;1有dn是偶数。“素数对猜想”认为“存在无穷多对相邻且差为2的素数”。<br>现给定任意正整数N(&lt;10^5)，请计算不超过N的满足猜想的素数对的个数。</p>
-<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>输入在一行给出正整数N。</p>
-<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>在一行中输出不超过N的满足猜想的素数对的个数。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>算法很简单，就是先判断是否是素数，在相邻的两个数相减，为2则个数加1.</p>
-<h3 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	int count=0;</span><br><span class="line">	int a=2,b=3;</span><br><span class="line">	for(int i=5;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">	    bool t=true;</span><br><span class="line">		for(int j=2;j&lt;=sqrt(i);j++)</span><br><span class="line">		&#123;</span><br><span class="line">			if(i%j==0)</span><br><span class="line">			&#123;</span><br><span class="line">				t=false;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if(t)</span><br><span class="line">		&#123;</span><br><span class="line">			a=b;</span><br><span class="line">			b=i;</span><br><span class="line">			if((b-a)==2) count++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;count&lt;&lt;endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="1009-说反话"><a href="#1009-说反话" class="headerlink" title="1009 说反话"></a>1009 说反话</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一句英语，要求你编写程序，将句中所有单词的顺序颠倒输出。<br><a id="more"></a></p>
+<h3 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h3><p>测试输入包含一个测试用例，在一行内给出总长度不超过 80 的字符串。字符串由若干单词和若干空格组成，其中单词是由英文字母（大小写有区分）组成的字符串，单词之间用 1 个空格分开，输入保证句子末尾没有多余的空格。</p>
+<h3 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h3><p>每个测试用例的输出占一行，输出倒序后的句子。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>输入样例：<br>Hello World Here I Come<br>输出样例：<br>Come I Here World Hello<br>由样例，可以想到用栈来解决，符合栈的先进后出的特点，还可以用vactor容器解决。</p>
+<h3 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h3><p>方法一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;stack&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	char c;</span><br><span class="line">	stack&lt;string&gt; s;  //声明一个string类型的栈变量s </span><br><span class="line">	string str;</span><br><span class="line">	while(cin&gt;&gt;str)</span><br><span class="line">	&#123;</span><br><span class="line">		s.push(str);//str入栈 </span><br><span class="line">		if((c=getchar())==&apos;\n&apos;) break;//c接收入栈的单个字符，判断是否输入完毕 </span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;s.top();//输出栈顶元素 </span><br><span class="line">	s.pop();//栈顶元素出栈 </span><br><span class="line">	while(!s.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;&quot; &quot;&lt;&lt;s.top();//循环输出栈顶元素 </span><br><span class="line">		s.pop();//栈顶元素出栈 </span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>getchar()函数作用：<br>getchar()是到缓冲区读取第一个字符<br>首先,从键盘输入许多字符,最后回车后,所有字符包括回车放到缓冲区<br>这时才开始循环执行getchar(),读入一个字符判断是否回车,不是就继续读,是回车就退出循环(之所以说是顺序接受一行字符,是因为它取的始终是缓冲区中第一个字符,每取一个缓冲区的字符少一个,也就是顺序读取了)</p>
+<p>方法二：vactor<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main ()</span><br><span class="line">&#123;</span><br><span class="line">	char c;</span><br><span class="line">	vector&lt;string&gt; v;//相当于string v[]，数组长度不定 </span><br><span class="line">	string str;</span><br><span class="line">	while(cin&gt;&gt;str)</span><br><span class="line">	&#123;</span><br><span class="line">		v.insert(v.begin(),str);//向容器v中存入str字符串 </span><br><span class="line">		if((c=getchar())==&apos;\n&apos;) break;</span><br><span class="line">	&#125;</span><br><span class="line">	vector&lt;string&gt;::iterator i=v.begin(),end=v.end();//i指向v的首地址，区间是到最后一个元素 </span><br><span class="line">	for(int j=v.size();j&gt;0;j--)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;*i;//输出i指针指向的内容</span><br><span class="line">		if(j!=1)</span><br><span class="line">		cout&lt;&lt;&quot; &quot;;</span><br><span class="line">		i++;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="vector-向量"><a href="#vector-向量" class="headerlink" title="vector(向量)"></a>vector(向量)</h3><p>C++中的一种数据结构,确切的说是一个类.它相当于一个动态的数组,当程序员无法知道自己需要的数组的规模多大时,用其来解决问题可以达到最大节约空间的目的.</p>
+<p>用法:</p>
+<ol>
+<li>文件包含:<br>首先在程序开头处加上#include (vector)以包含所需要的类文件vector<br>还有一定要加上using namespace std;</li>
+<li>变量声明:<br>2.1 例:声明一个int向量以替代一维的数组:vector (int) a;(等于声明了一个int数组a[],大小没有指定,可以动态的向里面添加删除)。<br>2.2 例:用vector代替二维数组.其实只要声明一个一维数组向量即可,而一个数组的名字其实代表的是它的首地址,所以只要声明一个地址的向量即可,即:vector (int *) a.同理想用向量代替三维数组也是一样,vector (int**)a;再往上面依此类推.</li>
+<li>具体的用法以及函数调用:</li>
+</ol>
+<ul>
+<li>push_back   在数组的最后添加一个数据</li>
+<li>pop_back    去掉数组的最后一个数据 </li>
+<li>at                得到编号位置的数据</li>
+<li>begin           得到数组头的指针</li>
+<li>end             得到数组的最后一个单元+1的指针</li>
+<li>front        得到数组头的引用</li>
+<li>back            得到数组的最后一个单元的引用</li>
+<li>max_size     得到vector最大可以是多大</li>
+<li>capacity       当前vector分配的大小</li>
+<li>size           当前使用数据的大小</li>
+<li>resize         改变当前使用数据的大小，如果它比当前使用的大，者填充默认值</li>
+<li>reserve      改变当前vecotr所分配空间的大小</li>
+<li>erase         删除指针指向的数据项</li>
+<li>clear          清空当前的vector</li>
+<li>rend          将vector反转构的结束指针返回(其实就是原来的begin-1)</li>
+<li>empty        判断vector是否为空</li>
+<li>swap         与另一个vector交换数据</li>
+</ul>
+<p>详细的函数实现功能：其中vector<int> c.</int></p>
+<ul>
+<li>c.clear()         移除容器中所有数据。</li>
+<li>c.empty()         判断容器是否为空。</li>
+<li>c.erase(pos)        删除pos位置的数据</li>
+<li>c.erase(beg,end) 删除[beg,end)区间的数据</li>
+<li>c.front()         传回第一个数据。</li>
+<li>c.insert(pos,elem)  在pos位置插入一个elem拷贝</li>
+<li>c.pop_back()     删除最后一个数据。</li>
+<li>c.push_back(elem) 在尾部加入一个数据。</li>
+<li>c.resize(num)     重新设置该容器的大小</li>
+<li>c.size()         回容器中实际数据的个数。</li>
+<li>c.begin()           返回指向容器第一个元素的迭代器</li>
+<li>c.end()             返回指向容器最后一个元素的迭代器</li>
+</ul>
+<h3 id="iterator"><a href="#iterator" class="headerlink" title="iterator"></a>iterator</h3><p>iterator是C++标准库（STL）中的迭代器<br>可以把它理解成类似指针的东西~当然，只是用处差不多，使用方式和声明方式可是完全不同.</p>
 
       
     </div>
@@ -320,13 +360,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/30/每日一题/">每日一题 1007+Misc Another 01Game</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/01/20190401/">每日一题 1009+vector容器</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-30, 21:53:16</p>
-        <p><span>最后更新:</span>2019-03-30, 21:55:49</p>
+        <p><span>发布时间:</span>2019-04-01, 17:34:28</p>
+        <p><span>最后更新:</span>2019-04-01, 17:35:48</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/30/每日一题/" title="每日一题 1007+Misc Another 01Game">https://hanqd.github.io/2019/03/30/每日一题/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/30/每日一题/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/01/20190401/" title="每日一题 1009+vector容器">https://hanqd.github.io/2019/04/01/20190401/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/01/20190401/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -338,16 +378,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/31/每日一题1008/">
-                    每日一题 1008+pwn学习
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/29/每日一题1006/">
-                    每日一题 1006
+                <a href="/2019/03/31/每日一题1008/">
+                    每日一题 1008+pwn学习
                 </a>
             </div>
         
@@ -359,7 +393,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Another-01Game"><span class="toc-number">1.</span> <span class="toc-text">Another 01Game</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路"><span class="toc-number">1.2.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题脚本"><span class="toc-number">1.3.</span> <span class="toc-text">解题脚本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1007-素数对猜想"><span class="toc-number">2.</span> <span class="toc-text">1007 素数对猜想</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述-1"><span class="toc-number">2.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式"><span class="toc-number">2.2.</span> <span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式"><span class="toc-number">2.3.</span> <span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">2.4.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-代码"><span class="toc-number">2.5.</span> <span class="toc-text">C++代码</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1009-说反话"><span class="toc-number">1.</span> <span class="toc-text">1009 说反话</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式："><span class="toc-number">1.2.</span> <span class="toc-text">输入格式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式："><span class="toc-number">1.3.</span> <span class="toc-text">输出格式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.4.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-代码"><span class="toc-number">1.5.</span> <span class="toc-text">C++代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vector-向量"><span class="toc-number">1.6.</span> <span class="toc-text">vector(向量)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iterator"><span class="toc-number">1.7.</span> <span class="toc-text">iterator</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -395,7 +429,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"每日一题 1007+Misc Another 01Game　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"每日一题 1009+vector容器　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -411,7 +445,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/30/每日一题/" data-title="每日一题 1007+Misc Another 01Game" data-url="https://hanqd.github.io/2019/03/30/每日一题/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/01/20190401/" data-title="每日一题 1009+vector容器" data-url="https://hanqd.github.io/2019/04/01/20190401/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -434,15 +468,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/31/每日一题1008/" title="上一篇: 每日一题 1008+pwn学习">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/29/每日一题1006/" title="下一篇: 每日一题 1006">
+            <a href="/2019/03/31/每日一题1008/" title="下一篇: 每日一题 1008+pwn学习">
                 <i class="fa fa-angle-right"></i>
             </a>
         
