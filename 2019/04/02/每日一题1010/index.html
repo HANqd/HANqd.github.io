@@ -15,17 +15,17 @@
 
 
 
-<meta name="description" content="1006 换个格式输出整数题目描述让我们用字母 B 来表示“百”、字母 S 表示“十”，用 12…n 来表示不为零的个位数字 n（&amp;lt;10），换个格式来输出任一个不超过 3 位的正整数。例如 234 应该被输出为 BBSSS1234，因为它有 2 个“百”、3 个“十”、以及个位的 4。">
+<meta name="description" content="1010 一元多项式求导题目描述设计函数求一元多项式的导数。（注：x^n（n为整数）的一阶导数为nx^n−1 。）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日一题 1006">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/29/每日一题1006/index.html">
+<meta property="og:title" content="每日一题 1010">
+<meta property="og:url" content="https://hanqd.github.io/2019/04/02/每日一题1010/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="1006 换个格式输出整数题目描述让我们用字母 B 来表示“百”、字母 S 表示“十”，用 12…n 来表示不为零的个位数字 n（&amp;lt;10），换个格式来输出任一个不超过 3 位的正整数。例如 234 应该被输出为 BBSSS1234，因为它有 2 个“百”、3 个“十”、以及个位的 4。">
+<meta property="og:description" content="1010 一元多项式求导题目描述设计函数求一元多项式的导数。（注：x^n（n为整数）的一阶导数为nx^n−1 。）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-29T02:37:13.602Z">
+<meta property="og:updated_time" content="2019-04-02T13:35:25.877Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每日一题 1006">
-<meta name="twitter:description" content="1006 换个格式输出整数题目描述让我们用字母 B 来表示“百”、字母 S 表示“十”，用 12…n 来表示不为零的个位数字 n（&amp;lt;10），换个格式来输出任一个不超过 3 位的正整数。例如 234 应该被输出为 BBSSS1234，因为它有 2 个“百”、3 个“十”、以及个位的 4。">
+<meta name="twitter:title" content="每日一题 1010">
+<meta name="twitter:description" content="1010 一元多项式求导题目描述设计函数求一元多项式的导数。（注：x^n（n为整数）的一阶导数为nx^n−1 。）">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>每日一题 1006 | HANqd&#39;s BLOG</title>
+<title>每日一题 1010 | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -267,11 +267,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-每日一题1006" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-每日一题1010" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/29/每日一题1006/" class="article-date">
-      <time datetime="2019-03-29T02:35:28.127Z" itemprop="datePublished">2019-03-29</time>
+      <a href="/2019/04/02/每日一题1010/" class="article-date">
+      <time datetime="2019-04-02T13:34:31.137Z" itemprop="datePublished">2019-04-02</time>
 </a>
 
 
@@ -286,7 +286,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      每日一题 1006
+      每日一题 1010
     </h1>
   
 
@@ -303,11 +303,11 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="1006-换个格式输出整数"><a href="#1006-换个格式输出整数" class="headerlink" title="1006 换个格式输出整数"></a>1006 换个格式输出整数</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>让我们用字母 B 来表示“百”、字母 S 表示“十”，用 12…n 来表示不为零的个位数字 n（&lt;10），换个格式来输出任一个不超过 3 位的正整数。例如 234 应该被输出为 BBSSS1234，因为它有 2 个“百”、3 个“十”、以及个位的 4。<br><a id="more"></a></p>
-<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>每个测试输入包含 1 个测试用例，给出正整数 n（&lt;1000）。</p>
-<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>每个测试用例的输出占一行，用规定的格式输出 n。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>这是一道水题，分别用三个变量记录个、十、百位的数字，再分别输出即可。</p>
-<h3 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">int</span> b,s,g;</span><br><span class="line">	b=n/<span class="number">100</span>;</span><br><span class="line">	s=(n/<span class="number">10</span>)%<span class="number">10</span>;</span><br><span class="line">	g=n%<span class="number">10</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;b;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"B"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"S"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=g;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="1010-一元多项式求导"><a href="#1010-一元多项式求导" class="headerlink" title="1010 一元多项式求导"></a>1010 一元多项式求导</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>设计函数求一元多项式的导数。（注：x^n（n为整数）的一阶导数为nx^n−1 。）<br><a id="more"></a></p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式:"></a>输入格式:</h3><p>以指数递降方式输入多项式非零项系数和指数（绝对值均为不超过 1000 的整数）。数字间以空格分隔。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式:"></a>输出格式:</h3><p>以与输入相同的格式输出导数多项式非零项的系数和指数。数字间以空格分隔，但结尾不能有多余空格。注意“零多项式”的指数和系数都是 0，但是表示为 0 0。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>可以一组一组的输出，系数和指数分组输出。注意输出格式，结尾不能有多余的空格，可以先输出一组，在输出其他。</p>
+<h3 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int m,n;</span><br><span class="line">	int flag=1;</span><br><span class="line">	while(cin&gt;&gt;m&gt;&gt;n)</span><br><span class="line">	&#123;</span><br><span class="line">		if(n&gt;0)</span><br><span class="line">		&#123;</span><br><span class="line">			if(flag==1)</span><br><span class="line">			&#123;</span><br><span class="line">				cout&lt;&lt;m*n&lt;&lt;&quot; &quot;&lt;&lt;n-1;</span><br><span class="line">				flag=0;</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				cout&lt;&lt;&quot; &quot;&lt;&lt;m*n&lt;&lt;&quot; &quot;&lt;&lt;n-1;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	if(flag==1) cout&lt;&lt;&quot;0 0&quot;;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -315,13 +315,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/29/每日一题1006/">每日一题 1006</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/02/每日一题1010/">每日一题 1010</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-29, 10:35:28</p>
-        <p><span>最后更新:</span>2019-03-29, 10:37:13</p>
+        <p><span>发布时间:</span>2019-04-02, 21:34:31</p>
+        <p><span>最后更新:</span>2019-04-02, 21:35:25</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/29/每日一题1006/" title="每日一题 1006">https://hanqd.github.io/2019/03/29/每日一题1006/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/29/每日一题1006/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/02/每日一题1010/" title="每日一题 1010">https://hanqd.github.io/2019/04/02/每日一题1010/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/02/每日一题1010/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -333,16 +333,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/30/每日一题/">
-                    每日一题 1007+Misc Another 01Game
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/28/Misc Forensics2/">
-                    Misc：Forensics2（流量分析题）
+                <a href="/2019/04/02/20190402/">
+                    pwn-栈溢出（1）
                 </a>
             </div>
         
@@ -354,7 +348,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1006-换个格式输出整数"><span class="toc-number">1.</span> <span class="toc-text">1006 换个格式输出整数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式"><span class="toc-number">1.2.</span> <span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式"><span class="toc-number">1.3.</span> <span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.4.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-代码"><span class="toc-number">1.5.</span> <span class="toc-text">C++代码</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1010-一元多项式求导"><span class="toc-number">1.</span> <span class="toc-text">1010 一元多项式求导</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式"><span class="toc-number">1.2.</span> <span class="toc-text">输入格式:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式"><span class="toc-number">1.3.</span> <span class="toc-text">输出格式:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.4.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-代码"><span class="toc-number">1.5.</span> <span class="toc-text">C++代码</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -390,7 +384,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"每日一题 1006　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"每日一题 1010　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -406,7 +400,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/29/每日一题1006/" data-title="每日一题 1006" data-url="https://hanqd.github.io/2019/03/29/每日一题1006/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/02/每日一题1010/" data-title="每日一题 1010" data-url="https://hanqd.github.io/2019/04/02/每日一题1010/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -429,15 +423,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/30/每日一题/" title="上一篇: 每日一题 1007+Misc Another 01Game">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/28/Misc Forensics2/" title="下一篇: Misc：Forensics2（流量分析题）">
+            <a href="/2019/04/02/20190402/" title="下一篇: pwn-栈溢出（1）">
                 <i class="fa fa-angle-right"></i>
             </a>
         
