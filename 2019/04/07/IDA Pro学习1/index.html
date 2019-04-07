@@ -15,17 +15,18 @@
 
 
 
-<meta name="description" content="1008 数组元素循环右移问题题目描述一个数组A中存有N（&amp;gt;0）个整数，在不允许使用另外数组的前提下，将每个整数循环向右移">
+<meta name="description" content="反汇编简介反汇编理论编程语言分为好几代：  第一代语言：这些语言是最低级的语言，一般由0或1或某些简写编码（如十六进制码）组成。第一代语言称为机器语言，有时也叫做字节码，而机器语言程序常被称为二进制文件。 第二代语言：汇编语言。汇编语言会将具体的位模式或操作码，与短小且易于记忆的字符序列（即助记符）对应起来。 第三代语言：高级程序语言，即C、Java等。程序员通常使用编译器将程序转换成汇编语言，或">
+<meta name="keywords" content="IDA Pro学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日一题 1008+pwn学习">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/31/每日一题1008/index.html">
+<meta property="og:title" content="IDA Pro权威指南-第一章 反汇编简介">
+<meta property="og:url" content="https://hanqd.github.io/2019/04/07/IDA Pro学习1/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="1008 数组元素循环右移问题题目描述一个数组A中存有N（&amp;gt;0）个整数，在不允许使用另外数组的前提下，将每个整数循环向右移">
+<meta property="og:description" content="反汇编简介反汇编理论编程语言分为好几代：  第一代语言：这些语言是最低级的语言，一般由0或1或某些简写编码（如十六进制码）组成。第一代语言称为机器语言，有时也叫做字节码，而机器语言程序常被称为二进制文件。 第二代语言：汇编语言。汇编语言会将具体的位模式或操作码，与短小且易于记忆的字符序列（即助记符）对应起来。 第三代语言：高级程序语言，即C、Java等。程序员通常使用编译器将程序转换成汇编语言，或">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-31T13:03:40.801Z">
+<meta property="og:updated_time" content="2019-04-07T14:27:12.217Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每日一题 1008+pwn学习">
-<meta name="twitter:description" content="1008 数组元素循环右移问题题目描述一个数组A中存有N（&amp;gt;0）个整数，在不允许使用另外数组的前提下，将每个整数循环向右移">
+<meta name="twitter:title" content="IDA Pro权威指南-第一章 反汇编简介">
+<meta name="twitter:description" content="反汇编简介反汇编理论编程语言分为好几代：  第一代语言：这些语言是最低级的语言，一般由0或1或某些简写编码（如十六进制码）组成。第一代语言称为机器语言，有时也叫做字节码，而机器语言程序常被称为二进制文件。 第二代语言：汇编语言。汇编语言会将具体的位模式或操作码，与短小且易于记忆的字符序列（即助记符）对应起来。 第三代语言：高级程序语言，即C、Java等。程序员通常使用编译器将程序转换成汇编语言，或">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>每日一题 1008+pwn学习 | HANqd&#39;s BLOG</title>
+<title>IDA Pro权威指南-第一章 反汇编简介 | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -267,11 +268,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-每日一题1008" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-IDA Pro学习1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/31/每日一题1008/" class="article-date">
-      <time datetime="2019-03-31T13:02:45.449Z" itemprop="datePublished">2019-03-31</time>
+      <a href="/2019/04/07/IDA Pro学习1/" class="article-date">
+      <time datetime="2019-04-07T14:23:51.140Z" itemprop="datePublished">2019-04-07</time>
 </a>
 
 
@@ -286,7 +287,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      每日一题 1008+pwn学习
+      IDA Pro权威指南-第一章 反汇编简介
     </h1>
   
 
@@ -296,6 +297,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDA-Pro学习/">IDA Pro学习</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -303,13 +308,84 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="1008-数组元素循环右移问题"><a href="#1008-数组元素循环右移问题" class="headerlink" title="1008 数组元素循环右移问题"></a>1008 数组元素循环右移问题</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>一个数组A中存有N（&gt;0）个整数，在不允许使用另外数组的前提下，将每个整数循环向右移<br><a id="more"></a><br>M（≥0）个位置，即将A中的数据由（A0 A1⋯AN−1）变换为（AN−M ⋯AN−1 A0 A1 ⋯AN−M−1）（最后M个数循环移至最前面的M个位置）。如果需要考虑程序移动数据的次数尽量少，要如何设计移动的方法？</p>
-<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式:"></a>输入格式:</h3><p>每个输入包含一个测试用例，第1行输入N（1≤N≤100）和M（≥0）；第2行输入N个整数，之间用空格分隔。</p>
-<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式:"></a>输出格式:</h3><p>在一行中输出循环右移M位以后的整数序列，之间用空格分隔，序列结尾不能有多余空格。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>方法一：可以直接在输入时改变输入顺序<br>方法二：用数据结构中的链表中的reverse函数，进行反转<br><strong>注意：这里有m&gt;n的情况，需要对m进行处理，m=m%n，这样数组才不会出错。</strong></p>
-<h3 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h3><p>方法一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int a[101];</span><br><span class="line">	int n,m;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	if(m&gt;n)</span><br><span class="line">	&#123;</span><br><span class="line">		m=m%n;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=m;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=0;i&lt;m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=0;i&lt;n-1;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;a[n-1];</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>方法二：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int n,m;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	int *p=new int[n];//分配一块长度为n的内存，指针p指向这个数组的首址</span><br><span class="line">	for(int i=0;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;p[i];</span><br><span class="line">	&#125;</span><br><span class="line">	m=m%n;</span><br><span class="line">	reverse(p,p+n-m);//前n-m个数反转，由1 2 3 4-&gt;4 3 2 1</span><br><span class="line">	reverse(p+n-m,p+n);//后面的数反转，由5 6 -&gt;6 5</span><br><span class="line">	reverse(p,p+n);//n个数全反转 4 3 2 1 6 5 -&gt;5 6 1 2 3 4</span><br><span class="line">	for(int i=0;i&lt;n-1;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;p[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;p[n-1];</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="pwn学习"><a href="#pwn学习" class="headerlink" title="pwn学习"></a>pwn学习</h3><p>从网上找了CTF关于pwn的解题类型，看了一些大佬的博客，对Ubuntu配置pwn的环境，可是！！各种包都按不上，更新源也出错，找了好多大学的替换源，也还是出错。。。。。明天再弄！</p>
+        <h2 id="反汇编简介"><a href="#反汇编简介" class="headerlink" title="反汇编简介"></a>反汇编简介</h2><h3 id="反汇编理论"><a href="#反汇编理论" class="headerlink" title="反汇编理论"></a>反汇编理论</h3><p>编程语言分为好几代：</p>
+<ol>
+<li>第一代语言：这些语言是最低级的语言，一般由0或1或某些简写编码（如十六进制码）组成。第一代语言称为机器语言，有时也叫做字节码，而机器语言程序常被称为二进制文件。</li>
+<li>第二代语言：汇编语言。汇编语言会将具体的位模式或操作码，与短小且易于记忆的字符序列（即助记符）对应起来。</li>
+<li>第三代语言：高级程序语言，即C、Java等。程序员通常使用编译器将程序转换成汇编语言，或者直接转换为机器语言（或某种大致的等价形式，如字节码）。</li>
+</ol>
+<h3 id="何为反汇编"><a href="#何为反汇编" class="headerlink" title="何为反汇编"></a>何为反汇编</h3><p>程序员使用编译器、汇编器和链接器中的一个或几个创建可执行程序。由源代码（c语言程序）到汇编语言再到机器码的过程。为了回溯编程过程（或对程序进行逆向工程），我们使用各种工具来撤销汇编和编译过程，这些工具就叫做反汇编器和反编译器。反汇编器的输入的汇编语言，输出是汇编语言形式，反编译器是以汇编语言甚至机器语言为输入，其输出结果是高级语言。</p>
+<p>在竞争激烈的软件市场，“恢复源代码”的前景总是充满吸引力的。以下列举几个原因，说明反汇编困难重重：</p>
+<ol>
+<li>编译过程会造成损失。机器语言中没有变量或函数名，变量类型信息只有通过数据的用途来确定。</li>
+<li>编译属于多对多操作。源程序可以通过许多不同的方式转换成汇编语言，而机器语言也可以通过许多不同方式转换成源程序。</li>
+<li>反编译器非常依赖于语言和库。</li>
+<li>要想准确的反编译一个二进制文件，需要近乎完美的反汇编能力。</li>
+</ol>
+<h3 id="为何反汇编"><a href="#为何反汇编" class="headerlink" title="为何反汇编"></a>为何反汇编</h3><p>通常，使用反汇编工具是为了在没有源代码的情况下促进对程序的了解。需要进行反汇编的常见情况包括以下几种：</p>
+<ol>
+<li>分析恶意软件</li>
+<li>分析闭源软件的漏洞</li>
+<li>分析闭源软件的互操作性</li>
+<li>分析编译器生成的代码，以验证编译器的性能和准确性</li>
+<li>在调试时显示程序指令</li>
+</ol>
+<blockquote>
+<ol>
+<li>分析恶意软件<br>恶意软件的作者很少会提供他们“作品”的源代码，除非你对付的是一种基于脚本的蠕虫。由于缺乏源代码，要准确的了解恶意代码的运行机制，选择非常有限。动态分析和静态分析是分析恶意软件的两种主要技术。动态分析是指在严格控制的环境（沙盒）中执行恶意软件，并使用系统检测实用工具记录其所有行为。相反，静态分析则试图通过浏览程序代码来理解程序的行为。此时，要查看的就是对恶意软件进行反汇编之后的代码。</li>
+<li>漏洞分析<br>将整个安全审核过程划分为3个步骤：发现漏洞、分析漏洞、开发破解程序。第一个步骤是发现程序中潜在的可供利用的条件，一般情况下，可以通过模糊测试等动态技术来达到这一目的，也可通过静态分析来实现。编译器究竟如何分配程序变量，反汇编代码清单提供了详细的信息。另外，要了解编译器到底如何对全局声明或在函数中声明的所有变量进行排序，查看反汇编代码清单是唯一的办法。在开发破解程序时，了解变量之间的这些空间关系往往非常重要。</li>
+<li>软件互操作性<br>如果仅以二进制形式发布一个软件，竞争对手想要创建可以和它互操作的软件，或者为该软件提供插件，将会非常困难。针对某个仅有一种平台支持的硬件而发布的驱动程序代码，就是一个常见的例子。如果厂商暂时不支持，或者更糟糕的，拒绝支持在其他平台上使用它们的硬件，那么为了开发支持硬件的软件驱动程序，可能需要完成大量的逆向工作。在这些情况下，静态代码分析几乎是唯一的补救方法。</li>
+<li>编译器验证<br>由于编译器（或汇编器）的用途是生成机器语言，因此优秀的反汇编工具通常需要验证编译器是否符合设计规范。除准确性外，分析人员还可以从中寻找优化编译器输出的机会，查知编译器本身是否容易被攻破，以致于可以在生成的代码中插入后门，等等。</li>
+<li>显示调试信息<br>在调试器中生成代码清单，可能是反汇编器最常见的一种途径。在调试过程中，为了了解详细的环境和背景信息，最好是结合使用调试器和优秀的反汇编器。</li>
+</ol>
+</blockquote>
+<h3 id="如何反汇编"><a href="#如何反汇编" class="headerlink" title="如何反汇编"></a>如何反汇编</h3><p>以上已经知道了反汇编的目的，下面是介绍如何反汇编。<br>以反汇编器所面临的一个艰巨任务为例：对于一个100KB的文件，请区分其中的代码与数据，并把代码转换成汇编语言显示给用户，在整个过程中，不要遗漏任何信息。要求反汇编器定位函数，识别跳转表并确定局部变量，这进一步增加了反汇编器工作的难度。<br>为了满足所有要求，反汇编器必须从大量算法中选择一些适当的算法，来处理我们提供的文件。</p>
+<ol>
+<li>基本的反汇编算法<br>首先开发一个以机器语言为输入、以汇编语言为输出的简单算法。</li>
+</ol>
+<ul>
+<li><p>第一步。确定进行反汇编的代码区域。通常，指令与数据混杂在一起，区分它们就显得非常重要。以最常见的情形——反汇编可执行文件为例，该文件必须符合可执行文件的某种通用格式，如Windows所用的可移植可执行（PE）格式或许多UNIX系统常用的可执行和链接格式（ELF）。这些格式通常含有一种机制，用来确定文件中包含代码和代码入口点的部分的位置（通常变现为层级文件头的形式）。</p>
+</li>
+<li><p>第二步。知道指令的起始地址后，下一步就是读取该地址（或文件偏移量）所包含的值，并执行一次表查找，将二进制操作码的值与它的汇编语言助记符对应起来。</p>
+</li>
+<li><p>第三步。获取指令并解码任何所需的操作数后，需要对它的汇编语言等价形式进行格式化，并将其在反汇编代码中输出。</p>
+</li>
+<li><p>第四步。输出一条指令后，继续反汇编下一条指令，并重复上述过程，直到反汇编完文件中的所有指令。</p>
+</li>
+</ul>
+<p>有大量算法可以用于确定从何处开始反汇编、如何选择下一条反汇编的指令、如何区分代码与数据，以及如何确定何时完成对最后一条指令的反汇编。线性扫描和递归下降是两种最主要的反汇编算法。</p>
+<ol start="2">
+<li>线性扫描反汇编<br>线性扫描反汇编算法采用一种非常直接的方法来确定反汇编的指令的位置：一条指令结束、另一条指令开始的地方。确定起始位置的常用解决办法是，假设程序中标注为代码（通常由程序文件的头部指定）的节所包含的全部是机器语言指令。反汇编从一个代码段的第一个字节开始，以线性模式扫描整个代码段，逐条反汇编每条指令，直到完成整个代码段。这种算法并不会通过识别分支等非线性指令来了解程序的控制流。</li>
+</ol>
+<p>线性扫描算法的主要优点在于：它能够完全覆盖程序的所有代码段。主要缺点是：没有考虑到代码中可能混有数据。</p>
+<p>GNU调试器（gdb）、微软公司的WinDug调试器和objdump实用工具的反汇编引擎均采用线性扫描算法。</p>
+<ol start="3">
+<li>递归下降反汇编<br>递归下降采用另外一种不同的方法来定位指令。递归下降算法重视控制流的概念。控制流根据一条指令是否被另一条引用来决定是否对其进行反汇编。为了便于理解递归下降，根据指令对CPU指令指针的影响对他们进行分类。</li>
+</ol>
+<blockquote>
+<ol>
+<li>顺序流指令<br>顺序流指令将执行权传递给紧随其后的下一条指令。如add、mov、push和pop。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>条件分支指令<br>条件分支指令提供两条可能的执行路径。如果条件为真，则执行分支，并且必须修改指令指针，使其指向分支的目标。但是，如果条件为假，则继续以线性模式执行指令，并使用线性扫描方法反汇编下一条指令。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>无条件分支指令<br>无条件分支并不遵循线性流模式。与顺序流指令一样，执行权只能传递给一条指令，但那条指令不需要紧接在分支指令后面。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li>函数调用指令<br>函数调用指令的运行方式与无条件跳转指令非常相似，唯一不同在于，一旦函数完成，执行权将返回给紧跟在调用指令后面的指令。从被调用函数返回时，如果程序的运行出现异常，递归下降就有可能失败。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>5.返回指令<br>有时，递归下降算法访问了所有路径，而且，函数返回指令没有提供接下来要执行的指令的信息。这时，递归下降反汇编器会转而处理前面搁置在一旁的延迟反汇编地址列表。反汇编器从这个列表中取出一个地址，并从这个地址开始继续反汇编过程。</p>
+</blockquote>
+<p>递归下降算法的一个主要优点在于：它具有区分代码与数据的强大能力。主要缺点是：它无法处理间接代码路径，例如利用指针表来查找目标地址的跳转和调用。<br>IDA Pro 是一种典型的递归下降反汇编器。</p>
 
       
     </div>
@@ -318,13 +394,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/31/每日一题1008/">每日一题 1008+pwn学习</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/07/IDA Pro学习1/">IDA Pro权威指南-第一章 反汇编简介</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-31, 21:02:45</p>
-        <p><span>最后更新:</span>2019-03-31, 21:03:40</p>
+        <p><span>发布时间:</span>2019-04-07, 22:23:51</p>
+        <p><span>最后更新:</span>2019-04-07, 22:27:12</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/31/每日一题1008/" title="每日一题 1008+pwn学习">https://hanqd.github.io/2019/03/31/每日一题1008/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/31/每日一题1008/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/07/IDA Pro学习1/" title="IDA Pro权威指南-第一章 反汇编简介">https://hanqd.github.io/2019/04/07/IDA Pro学习1/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/07/IDA Pro学习1/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -336,16 +412,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/04/01/20190401/">
-                    每日一题 1009+vector容器
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/30/每日一题/">
-                    每日一题 1007+Misc Another 01Game
+                <a href="/2019/04/06/每日一题1014/">
+                    每日一题 1014
                 </a>
             </div>
         
@@ -357,7 +427,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1008-数组元素循环右移问题"><span class="toc-number">1.</span> <span class="toc-text">1008 数组元素循环右移问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式"><span class="toc-number">1.2.</span> <span class="toc-text">输入格式:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式"><span class="toc-number">1.3.</span> <span class="toc-text">输出格式:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.4.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-代码"><span class="toc-number">1.5.</span> <span class="toc-text">C++代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pwn学习"><span class="toc-number">1.6.</span> <span class="toc-text">pwn学习</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#反汇编简介"><span class="toc-number">1.</span> <span class="toc-text">反汇编简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#反汇编理论"><span class="toc-number">1.1.</span> <span class="toc-text">反汇编理论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#何为反汇编"><span class="toc-number">1.2.</span> <span class="toc-text">何为反汇编</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为何反汇编"><span class="toc-number">1.3.</span> <span class="toc-text">为何反汇编</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何反汇编"><span class="toc-number">1.4.</span> <span class="toc-text">如何反汇编</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -393,7 +463,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"每日一题 1008+pwn学习　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"IDA Pro权威指南-第一章 反汇编简介　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -409,7 +479,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/31/每日一题1008/" data-title="每日一题 1008+pwn学习" data-url="https://hanqd.github.io/2019/03/31/每日一题1008/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/07/IDA Pro学习1/" data-title="IDA Pro权威指南-第一章 反汇编简介" data-url="https://hanqd.github.io/2019/04/07/IDA Pro学习1/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -432,15 +502,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/04/01/20190401/" title="上一篇: 每日一题 1009+vector容器">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/30/每日一题/" title="下一篇: 每日一题 1007+Misc Another 01Game">
+            <a href="/2019/04/06/每日一题1014/" title="下一篇: 每日一题 1014">
                 <i class="fa fa-angle-right"></i>
             </a>
         
