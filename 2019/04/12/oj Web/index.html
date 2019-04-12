@@ -15,13 +15,13 @@
 
 
 
-<meta name="description" content="calculator再回顾学习今天看了有解出这个题的博客，发现他写的脚本简单，且易理解，向他学习！还有意识到自己Python知识功底太差，以后要多加学习。  在他的解题中，用到了字符串切分函数，具体找到一个博客仅供参考https://blog.csdn.net/qq_24407657/article/details/80265217  ，这个举的例子一看就懂怎么用。 Python的格式化输出 ht">
+<meta name="description" content="calculator再回顾学习今天看了有解出这个题的博客，发现他写的脚本简单，且易理解，向他学习！还有意识到自己Python知识功底太差，以后要多加学习。">
 <meta name="keywords" content="web">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Web calculator+Rapid Typing">
 <meta property="og:url" content="https://hanqd.github.io/2019/04/12/oj Web/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="calculator再回顾学习今天看了有解出这个题的博客，发现他写的脚本简单，且易理解，向他学习！还有意识到自己Python知识功底太差，以后要多加学习。  在他的解题中，用到了字符串切分函数，具体找到一个博客仅供参考https://blog.csdn.net/qq_24407657/article/details/80265217  ，这个举的例子一看就懂怎么用。 Python的格式化输出 ht">
+<meta property="og:description" content="calculator再回顾学习今天看了有解出这个题的博客，发现他写的脚本简单，且易理解，向他学习！还有意识到自己Python知识功底太差，以后要多加学习。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/50.PNG">
 <meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/51.PNG">
@@ -29,10 +29,10 @@
 <meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/53.PNG">
 <meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/54.PNG">
 <meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/55.PNG">
-<meta property="og:updated_time" content="2019-04-12T09:10:46.399Z">
+<meta property="og:updated_time" content="2019-04-12T09:20:59.310Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web calculator+Rapid Typing">
-<meta name="twitter:description" content="calculator再回顾学习今天看了有解出这个题的博客，发现他写的脚本简单，且易理解，向他学习！还有意识到自己Python知识功底太差，以后要多加学习。  在他的解题中，用到了字符串切分函数，具体找到一个博客仅供参考https://blog.csdn.net/qq_24407657/article/details/80265217  ，这个举的例子一看就懂怎么用。 Python的格式化输出 ht">
+<meta name="twitter:description" content="calculator再回顾学习今天看了有解出这个题的博客，发现他写的脚本简单，且易理解，向他学习！还有意识到自己Python知识功底太差，以后要多加学习。">
 <meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/50.PNG">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -315,7 +315,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="calculator再回顾"><a href="#calculator再回顾" class="headerlink" title="calculator再回顾"></a>calculator再回顾</h2><h3 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h3><p>今天看了有解出这个题的博客，发现他写的脚本简单，且易理解，向他学习！还有意识到自己Python知识功底太差，以后要多加学习。<br><!--moer--></p>
+        <h2 id="calculator再回顾"><a href="#calculator再回顾" class="headerlink" title="calculator再回顾"></a>calculator再回顾</h2><h3 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h3><p>今天看了有解出这个题的博客，发现他写的脚本简单，且易理解，向他学习！还有意识到自己Python知识功底太差，以后要多加学习。<br><a id="more"></a></p>
 <ul>
 <li>在他的解题中，用到了字符串切分函数，具体找到一个博客仅供参考<a href="https://blog.csdn.net/qq_24407657/article/details/80265217" target="_blank" rel="noopener">https://blog.csdn.net/qq_24407657/article/details/80265217</a>  ，这个举的例子一看就懂怎么用。</li>
 <li>Python的格式化输出 <a href="https://www.cnblogs.com/linguansheng/p/10184102.html" target="_blank" rel="noopener">https://www.cnblogs.com/linguansheng/p/10184102.html</a></li>
@@ -331,7 +331,7 @@
 <li>在页面上随便输入几个数字，得到提交答案的URL以及参数名称<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/51.PNG" alt></li>
 <li>审查代码，发现要计算的数在img标签中，而且发现里边有Base64<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/52.PNG" alt></li>
 <li>提交结果用GET方法，参数code在URL中，最后以text形式查看。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/53.PNG" alt></li>
-<li>第一次直接把提取出的<img>标签中的列表转换为字符串，然后解码，错误，发现要把base64后面的一长串字符串（这才是真正的base64编码后的内容）提取然后解码。<br>错误代码：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">soup = BeautifulSoup(htm.text,<span class="string">'lxml'</span>)</span><br><span class="line">a=soup.find_all(<span class="string">'img'</span>)</span><br><span class="line">print(a)</span><br><span class="line">equ = str(a)</span><br><span class="line">decod = base64.b64decode(equ)</span><br><span class="line">print(decod)</span><br></pre></td></tr></table></figure>
+<li>第一次直接把提取出的img标签中的列表转换为字符串，然后解码，错误，发现要把base64后面的一长串字符串（这才是真正的base64编码后的内容）提取然后解码。<br>错误代码：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">soup = BeautifulSoup(htm.text,<span class="string">'lxml'</span>)</span><br><span class="line">a=soup.find_all(<span class="string">'img'</span>)</span><br><span class="line">print(a)</span><br><span class="line">equ = str(a)</span><br><span class="line">decod = base64.b64decode(equ)</span><br><span class="line">print(decod)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>修改后代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">soup = BeautifulSoup(htm.text,<span class="string">'lxml'</span>)</span><br><span class="line"><span class="comment">#用逗号分隔字符串，取取第二块字符串（下标从0开始）</span></span><br><span class="line">a = soup.find(<span class="string">'img'</span>).get(<span class="string">'src'</span>).split(<span class="string">','</span>)[<span class="number">1</span>]</span><br><span class="line">print(a)</span><br><span class="line">equ = str(a)</span><br><span class="line">decod = base64.b64decode(equ)</span><br><span class="line">print(decod)</span><br></pre></td></tr></table></figure></p>
@@ -353,7 +353,7 @@
         <p><span>本文标题:</span><a href="/2019/04/12/oj Web/">Web calculator+Rapid Typing</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
         <p><span>发布时间:</span>2019-04-12, 17:07:11</p>
-        <p><span>最后更新:</span>2019-04-12, 17:10:46</p>
+        <p><span>最后更新:</span>2019-04-12, 17:20:59</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/04/12/oj Web/" title="Web calculator+Rapid Typing">https://hanqd.github.io/2019/04/12/oj Web/</a>
             <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/12/oj Web/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
