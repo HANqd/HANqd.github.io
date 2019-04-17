@@ -15,17 +15,25 @@
 
 
 
-<meta name="description" content="1008 数组元素循环右移问题题目描述一个数组A中存有N（&amp;gt;0）个整数，在不允许使用另外数组的前提下，将每个整数循环向右移">
+<meta name="description" content="BabyXSS题目描述打开题目连接，界面如下：">
+<meta name="keywords" content="web,XSS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日一题 1008+pwn学习">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/31/每日一题1008/index.html">
+<meta property="og:title" content="Web babyXSS">
+<meta property="og:url" content="https://hanqd.github.io/2019/04/17/oj XSS/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="1008 数组元素循环右移问题题目描述一个数组A中存有N（&amp;gt;0）个整数，在不允许使用另外数组的前提下，将每个整数循环向右移">
+<meta property="og:description" content="BabyXSS题目描述打开题目连接，界面如下：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-31T13:03:40.801Z">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/64.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/65.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/66.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/67.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/68.png">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/69.PNG">
+<meta property="og:updated_time" content="2019-04-17T09:34:01.976Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每日一题 1008+pwn学习">
-<meta name="twitter:description" content="1008 数组元素循环右移问题题目描述一个数组A中存有N（&amp;gt;0）个整数，在不允许使用另外数组的前提下，将每个整数循环向右移">
+<meta name="twitter:title" content="Web babyXSS">
+<meta name="twitter:description" content="BabyXSS题目描述打开题目连接，界面如下：">
+<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/64.PNG">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +65,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>每日一题 1008+pwn学习 | HANqd&#39;s BLOG</title>
+<title>Web babyXSS | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -267,11 +275,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-每日一题1008" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-oj XSS" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/31/每日一题1008/" class="article-date">
-      <time datetime="2019-03-31T13:02:45.449Z" itemprop="datePublished">2019-03-31</time>
+      <a href="/2019/04/17/oj XSS/" class="article-date">
+      <time datetime="2019-04-17T09:27:34.347Z" itemprop="datePublished">2019-04-17</time>
 </a>
 
 
@@ -286,7 +294,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      每日一题 1008+pwn学习
+      Web babyXSS
     </h1>
   
 
@@ -296,6 +304,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XSS/">XSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -303,13 +315,26 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="1008-数组元素循环右移问题"><a href="#1008-数组元素循环右移问题" class="headerlink" title="1008 数组元素循环右移问题"></a>1008 数组元素循环右移问题</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>一个数组A中存有N（&gt;0）个整数，在不允许使用另外数组的前提下，将每个整数循环向右移<br><a id="more"></a><br>M（≥0）个位置，即将A中的数据由（A0 A1⋯AN−1）变换为（AN−M ⋯AN−1 A0 A1 ⋯AN−M−1）（最后M个数循环移至最前面的M个位置）。如果需要考虑程序移动数据的次数尽量少，要如何设计移动的方法？</p>
-<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式:"></a>输入格式:</h3><p>每个输入包含一个测试用例，第1行输入N（1≤N≤100）和M（≥0）；第2行输入N个整数，之间用空格分隔。</p>
-<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式:"></a>输出格式:</h3><p>在一行中输出循环右移M位以后的整数序列，之间用空格分隔，序列结尾不能有多余空格。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>方法一：可以直接在输入时改变输入顺序<br>方法二：用数据结构中的链表中的reverse函数，进行反转<br><strong>注意：这里有m&gt;n的情况，需要对m进行处理，m=m%n，这样数组才不会出错。</strong></p>
-<h3 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h3><p>方法一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int a[101];</span><br><span class="line">	int n,m;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	if(m&gt;n)</span><br><span class="line">	&#123;</span><br><span class="line">		m=m%n;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=m;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=0;i&lt;m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=0;i&lt;n-1;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;a[n-1];</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>方法二：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int n,m;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	int *p=new int[n];//分配一块长度为n的内存，指针p指向这个数组的首址</span><br><span class="line">	for(int i=0;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;p[i];</span><br><span class="line">	&#125;</span><br><span class="line">	m=m%n;</span><br><span class="line">	reverse(p,p+n-m);//前n-m个数反转，由1 2 3 4-&gt;4 3 2 1</span><br><span class="line">	reverse(p+n-m,p+n);//后面的数反转，由5 6 -&gt;6 5</span><br><span class="line">	reverse(p,p+n);//n个数全反转 4 3 2 1 6 5 -&gt;5 6 1 2 3 4</span><br><span class="line">	for(int i=0;i&lt;n-1;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;p[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;p[n-1];</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="pwn学习"><a href="#pwn学习" class="headerlink" title="pwn学习"></a>pwn学习</h3><p>从网上找了CTF关于pwn的解题类型，看了一些大佬的博客，对Ubuntu配置pwn的环境，可是！！各种包都按不上，更新源也出错，找了好多大学的替换源，也还是出错。。。。。明天再弄！</p>
+        <h2 id="BabyXSS"><a href="#BabyXSS" class="headerlink" title="BabyXSS"></a>BabyXSS</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>打开题目连接，界面如下：<br><a id="more"></a><br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/64.PNG" alt><br>看到第一句：flag在admin.php中，只有admin能得到它。，点击admin.php进入admin界面<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/65.PNG" alt><br>第二句：你可以向admin发送消息，求他给你flag，但他不会鸟你。哈哈哈哈<br>下边有两个输入框，随便在里边输点内容，结果如下图：<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/66.PNG" alt><br>Proof of work失败。</p>
+<h3 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h3><ol>
+<li>XSS：<a href="https://ctf-wiki.github.io/ctf-wiki/web/xss/" target="_blank" rel="noopener">https://ctf-wiki.github.io/ctf-wiki/web/xss/</a> ，内容很详细，XSS简介+XSS类型+XSS利用 （此题为Cookies窃取）</li>
+<li>Proof of work<br>PoW——工作量证明 ：<a href="https://www.jianshu.com/p/2aea9cdc825a" target="_blank" rel="noopener">https://www.jianshu.com/p/2aea9cdc825a</a></li>
+<li>安装Proofofwork ：<a href="https://github.com/kmyk/libproofofwork" target="_blank" rel="noopener">https://github.com/kmyk/libproofofwork</a><br>命令<code>pip install Proofofwork</code>，我用的是Python2.7版本，pip安装时报错：</li>
+</ol>
+<p>DEPRECATION: Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won’t be maintained after that date. A future version of pip will drop support for Python 2.7.</p>
+<p>弃用：Python 2.7将于2020年1月1日到期。请升级您的Python，因为在该日期之后将不再维护Python 2.7。 未来的pip版本将放弃对Python 2.7的支持。<br>今天pip时报出这个信息，python2也快走到头了，且行且珍惜。</p>
+<p>于是安装了Python3版本，安装还是出错。<br><code>Command &quot;D:\python3\python.exe -u -c &quot;import setuptools, tokenize;__file__=&#39;C:\\Users\\Administrator\\AppData\\Local\\Temp\\pycharm-packaging\\proofofwork\\setup.py&#39;;f=getattr(tokenize, &#39;open&#39;, open)(__file__);code=f.read().replace(&#39;\r\n&#39;, &#39;\n&#39;);f.close()</code><br>尝试解决这个错误，试了好几个方法后，无果，果断换Linux系统安装。还是出现同样错误。</p>
+<p>直接下载安装包，还是不行，放弃这个方法。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ol>
+<li>substr(md5(‘’),0,6) === ‘7502a1’<br>substr（）函数是截取字符串，这里的字符串是用md5加密后的，取加密后字符串的前6个字符，使它强等于‘7502a1’。</li>
+<li>用md5加密字符串 <a href="https://blog.csdn.net/t8116189520/article/details/78928334" target="_blank" rel="noopener">https://blog.csdn.net/t8116189520/article/details/78928334</a><br>itertools模块用法：<a href="http://outofmemory.cn/code-snippet/2390/python-itertools-module-learn-note" target="_blank" rel="noopener">http://outofmemory.cn/code-snippet/2390/python-itertools-module-learn-note</a><br>startswith函数用法：<a href="https://blog.csdn.net/doiido/article/details/43280657" target="_blank" rel="noopener">https://blog.csdn.net/doiido/article/details/43280657</a><br>Python代码为：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> count</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span><span class="params">(str1)</span>:</span></span><br><span class="line">    m = hashlib.md5(str1.encode(encoding=<span class="string">'utf8'</span>))</span><br><span class="line">    <span class="keyword">return</span> m.hexdigest()</span><br><span class="line"></span><br><span class="line"><span class="comment">#从1开始循环，默认每次加1，直到与示例字符串相等，退出循环</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> count(<span class="number">1</span>):</span><br><span class="line">    s=md5(str(i))</span><br><span class="line">    <span class="keyword">if</span> s.startswith(<span class="string">'c3301d'</span>):</span><br><span class="line">        print(i)</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>把得到的字符串，输入md5框中，结果如下<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/67.PNG" alt><br>说明输入的字符串是正确的。</li>
+<li>在XSS平台上创建自己的项目，选择默认模板，根据下边的代码，选择代码在mesage框中输入，再输上MD5，步骤2中得到的字符串，提交，在xss平台的项目内容中，可以看到得到的信息，打开后有cookie，cookie里的token是admin的。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/68.png" alt></li>
+<li>拿到admin的cookie之后，就可以假冒admin拿到flag。<br>在burpsuite软件中抓包，抓包详细操作之前已经学过，这里不再赘述（在<a href="https://hanqd.github.io/2019/04/11/20190411/）">https://hanqd.github.io/2019/04/11/20190411/）</a> ，抓admin.php网页的包，主要是修改其cookie。<br>抓包结果如下<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/69.PNG" alt><br>把上边的cookie改为XSS平台得到的cookie（即admin的cookie），在forward，在admin.php界面即可看到flag。</li>
+</ol>
 
       
     </div>
@@ -318,13 +343,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/31/每日一题1008/">每日一题 1008+pwn学习</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/17/oj XSS/">Web babyXSS</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-31, 21:02:45</p>
-        <p><span>最后更新:</span>2019-03-31, 21:03:40</p>
+        <p><span>发布时间:</span>2019-04-17, 17:27:34</p>
+        <p><span>最后更新:</span>2019-04-17, 17:34:01</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/31/每日一题1008/" title="每日一题 1008+pwn学习">https://hanqd.github.io/2019/03/31/每日一题1008/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/31/每日一题1008/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/17/oj XSS/" title="Web babyXSS">https://hanqd.github.io/2019/04/17/oj XSS/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/17/oj XSS/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -336,16 +361,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/04/01/20190401/">
-                    每日一题 1009+vector容器
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/30/每日一题/">
-                    每日一题 1007+Misc Another 01Game
+                <a href="/2019/04/16/php3/">
+                    Web：BasicFileInclude
                 </a>
             </div>
         
@@ -357,7 +376,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1008-数组元素循环右移问题"><span class="toc-number">1.</span> <span class="toc-text">1008 数组元素循环右移问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式"><span class="toc-number">1.2.</span> <span class="toc-text">输入格式:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式"><span class="toc-number">1.3.</span> <span class="toc-text">输出格式:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.4.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-代码"><span class="toc-number">1.5.</span> <span class="toc-text">C++代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pwn学习"><span class="toc-number">1.6.</span> <span class="toc-text">pwn学习</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#BabyXSS"><span class="toc-number">1.</span> <span class="toc-text">BabyXSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#知识准备"><span class="toc-number">1.2.</span> <span class="toc-text">知识准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.3.</span> <span class="toc-text">题目分析</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -393,7 +412,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"每日一题 1008+pwn学习　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Web babyXSS　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -409,7 +428,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/31/每日一题1008/" data-title="每日一题 1008+pwn学习" data-url="https://hanqd.github.io/2019/03/31/每日一题1008/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/17/oj XSS/" data-title="Web babyXSS" data-url="https://hanqd.github.io/2019/04/17/oj XSS/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -432,15 +451,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/04/01/20190401/" title="上一篇: 每日一题 1009+vector容器">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/30/每日一题/" title="下一篇: 每日一题 1007+Misc Another 01Game">
+            <a href="/2019/04/16/php3/" title="下一篇: Web：BasicFileInclude">
                 <i class="fa fa-angle-right"></i>
             </a>
         
