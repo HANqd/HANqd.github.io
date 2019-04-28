@@ -23,17 +23,17 @@
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
 <meta property="og:description" content="Realwifi题目描述">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="e:/blog/source/img/1.png">
-<meta property="og:image" content="e:/blog/source/img/3.png">
-<meta property="og:image" content="e:/blog/source/img/2.png">
-<meta property="og:image" content="e:/blog/source/img/4.png">
-<meta property="og:image" content="e:/blog/source/img/6.png">
-<meta property="og:image" content="e:/blog/source/img/5.png">
-<meta property="og:updated_time" content="2019-04-28T13:55:50.924Z">
+<meta property="og:image" content="https://github.com/HANqd/HANqd.github.io/raw/master/img/1.PNG">
+<meta property="og:image" content="https://github.com/HANqd/HANqd.github.io/raw/master/img/3.PNG">
+<meta property="og:image" content="https://github.com/HANqd/HANqd.github.io/raw/master/img/2.PNG">
+<meta property="og:image" content="https://github.com/HANqd/HANqd.github.io/raw/master/img/4.PNG">
+<meta property="og:image" content="https://github.com/HANqd/HANqd.github.io/raw/master/img/6.PNG">
+<meta property="og:image" content="https://github.com/HANqd/HANqd.github.io/raw/master/img/5.PNG">
+<meta property="og:updated_time" content="2019-04-28T14:17:06.292Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Misc Realwifi">
 <meta name="twitter:description" content="Realwifi题目描述">
-<meta name="twitter:image" content="e:/blog/source/img/1.png">
+<meta name="twitter:image" content="https://github.com/HANqd/HANqd.github.io/raw/master/img/1.PNG">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -316,17 +316,17 @@
       
           
         <h2 id="Realwifi"><a href="#Realwifi" class="headerlink" title="Realwifi"></a>Realwifi</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><a id="more"></a>
-<p><img src="E:\blog\source\img\1.png" alt><br>下载文件，查看文件类型<br><img src="E:\blog\source\img\3.png" alt><br>是一个抓到的数据文件，用wireshark软件打开此文件，发现协议是802.11协议，搜了一下此协议，Wifi以802.11做为其网络层以下的协议。</p>
+<p><img src="https://github.com/HANqd/HANqd.github.io/raw/master/img/1.PNG" alt><br>下载文件，查看文件类型<br><img src="https://github.com/HANqd/HANqd.github.io/raw/master/img/3.PNG" alt><br>是一个抓到的数据文件，用wireshark软件打开此文件，发现协议是802.11协议，搜了一下此协议，Wifi以802.11做为其网络层以下的协议。</p>
 <h3 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h3><ol>
 <li>这个是比较全且比较详细的关于802.11协议的介绍：<a href="http://www.sohu.com/a/242052940_468740" target="_blank" rel="noopener">http://www.sohu.com/a/242052940_468740</a></li>
 <li>无线密码破解的writeup：<a href="https://www.freebuf.com/column/153197.html" target="_blank" rel="noopener">https://www.freebuf.com/column/153197.html</a></li>
 <li>所用工具：aircrack-ng  安装：<code>sudo apt-get install aircrack-ng</code></li>
 <li>操作环境：Ubuntu<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3></li>
-<li>在ctf中遇到802.11协议题目，大多用aricrack-ng工具，查看ESSID和加密类型，使用命令<br><code>aircrack-ng realwifi.pcap</code><br><img src="E:\blog\source\img\2.png" alt></li>
-<li>用弱口令字典暴力破解WiFi密码，使用命令<br><code>aircrack-ng -w rkolin.txt realwifi.pcap</code><br>这个弱口令字典在网上可以下载。得到WiFi密码为12345678<br><img src="E:\blog\source\img\4.png" alt></li>
+<li>在ctf中遇到802.11协议题目，大多用aricrack-ng工具，查看ESSID和加密类型，使用命令<br><code>aircrack-ng realwifi.pcap</code><br><img src="https://github.com/HANqd/HANqd.github.io/raw/master/img/2.PNG" alt></li>
+<li>用弱口令字典暴力破解WiFi密码，使用命令<br><code>aircrack-ng -w rkolin.txt realwifi.pcap</code><br>这个弱口令字典在网上可以下载。得到WiFi密码为12345678<br><img src="https://github.com/HANqd/HANqd.github.io/raw/master/img/4.PNG" alt></li>
 <li>利用ESSID和WiFi密码，解密原来的realWiFi文件，得到解密后的新的文件，使用命令：<br><code>airdecap-ng -e Blue-Whale -p 12345678 realwifi.pcap</code></li>
-<li>用wireshark工具打开新文件<br>追踪tcp流，可看到flag<br><img src="E:\blog\source\img\6.png" alt></li>
-<li>得到flag<br><img src="E:\blog\source\img\5.png" alt></li>
+<li>用wireshark工具打开新文件<br>追踪tcp流，可看到flag<br><img src="https://github.com/HANqd/HANqd.github.io/raw/master/img/6.PNG" alt></li>
+<li>得到flag<br><img src="https://github.com/HANqd/HANqd.github.io/raw/master/img/5.PNG" alt></li>
 </ol>
 
       
@@ -339,7 +339,7 @@
         <p><span>本文标题:</span><a href="/2019/04/28/misc realwifi/">Misc Realwifi</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
         <p><span>发布时间:</span>2019-04-28, 21:55:05</p>
-        <p><span>最后更新:</span>2019-04-28, 21:55:50</p>
+        <p><span>最后更新:</span>2019-04-28, 22:17:06</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/04/28/misc realwifi/" title="Misc Realwifi">https://hanqd.github.io/2019/04/28/misc realwifi/</a>
             <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/28/misc realwifi/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
