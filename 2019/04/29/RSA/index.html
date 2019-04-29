@@ -15,20 +15,22 @@
 
 
 
-<meta name="description" content="今天安装了pycharm,界面很好看，是一款好用的编译器。继续学习Python！">
+<meta name="description" content="What’s RSA?知识准备">
+<meta name="keywords" content="RSA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python笔记——数据类型（整数、浮点数、数据类型转换）">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/index.html">
+<meta property="og:title" content="Crypto RSA">
+<meta property="og:url" content="https://hanqd.github.io/2019/04/29/RSA/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="今天安装了pycharm,界面很好看，是一款好用的编译器。继续学习Python！">
+<meta property="og:description" content="What’s RSA?知识准备">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/3.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/4.PNG">
-<meta property="og:updated_time" content="2019-03-18T09:06:28.161Z">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/85.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/86.PNG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/87.PNG">
+<meta property="og:updated_time" content="2019-04-29T14:59:35.439Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python笔记——数据类型（整数、浮点数、数据类型转换）">
-<meta name="twitter:description" content="今天安装了pycharm,界面很好看，是一款好用的编译器。继续学习Python！">
-<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/3.PNG">
+<meta name="twitter:title" content="Crypto RSA">
+<meta name="twitter:description" content="What’s RSA?知识准备">
+<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/85.PNG">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -60,7 +62,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Python笔记——数据类型（整数、浮点数、数据类型转换） | HANqd&#39;s BLOG</title>
+<title>Crypto RSA | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -270,11 +272,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-Python数据类型（整数、浮点数、数据类型转换）" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-RSA" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/" class="article-date">
-      <time datetime="2019-03-18T08:38:50.653Z" itemprop="datePublished">2019-03-18</time>
+      <a href="/2019/04/29/RSA/" class="article-date">
+      <time datetime="2019-04-29T14:49:12.932Z" itemprop="datePublished">2019-04-29</time>
 </a>
 
 
@@ -289,7 +291,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Python笔记——数据类型（整数、浮点数、数据类型转换）
+      Crypto RSA
     </h1>
   
 
@@ -299,6 +301,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RSA/">RSA</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -306,94 +312,22 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>今天安装了pycharm,界面很好看，是一款好用的编译器。<br>继续学习Python！<br><a id="more"></a></p>
-<h2 id="整数（int）"><a href="#整数（int）" class="headerlink" title="整数（int）"></a>整数（int）</h2><p>&emsp; 整数包括正整数、负整数和零。Python中的整数范围是很大的。Python中整数还可以以几种不同的进制进行书写。0+“进制标志”+数字代表不同进制的数，进制标志有以下几种：</p>
-<ul>
-<li>0o[0O]数字       表示八进制整数（例如：0o24/0O24）</li>
-<li>0x[0X]数字       表示十六进制整数（例如：0x3F/0X3F）</li>
-<li>0b[0B]数字       表示二进制整数（例如：0b101/0B101）</li>
-</ul>
-<p>不带进制标志的为十进制数。<br>&emsp; <strong>注意：每种进制开头数字都是0；八进制的数字0后是小写字母o或大写字母O；但十进制不得以数字0开头书写；每种进制书写时数码不得超过进制规定的数码范围。</strong><br>整数运算符</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">运算符</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">**</td>
-<td style="text-align:center">乘方运算符</td>
-</tr>
-<tr>
-<td style="text-align:center">*</td>
-<td style="text-align:center">乘法运算符</td>
-</tr>
-<tr>
-<td style="text-align:center">/</td>
-<td style="text-align:center">除法运算符</td>
-</tr>
-<tr>
-<td style="text-align:center">//</td>
-<td style="text-align:center">整除运算符</td>
-</tr>
-<tr>
-<td style="text-align:center">%</td>
-<td style="text-align:center">取余运算符</td>
-</tr>
-<tr>
-<td style="text-align:center">+</td>
-<td style="text-align:center">加法运算符</td>
-</tr>
-<tr>
-<td style="text-align:center">-</td>
-<td style="text-align:center">减法运算符</td>
-</tr>
-<tr>
-<td style="text-align:center">&#124;</td>
-<td style="text-align:center">位或</td>
-</tr>
-<tr>
-<td style="text-align:center">^</td>
-<td style="text-align:center">位异或</td>
-</tr>
-<tr>
-<td style="text-align:center">&amp;</td>
-<td style="text-align:center">位与</td>
-</tr>
-<tr>
-<td style="text-align:center">&lt;&lt;</td>
-<td style="text-align:center">左移运算</td>
-</tr>
-<tr>
-<td style="text-align:center">&gt;&gt;</td>
-<td style="text-align:center">右移运算</td>
-</tr>
-</tbody>
-</table>
-<p>“//”运算符就是取商而丢弃余数，比如:14//4=3<br>|、^、&amp;、&lt;&lt;、&gt;&gt;运算符都是位运算符，要依据二进制形式进行运算。</p>
-<p>运算符优先级从高到低排列如下：</p>
-<ul>
-<li>**</li>
-<li>*、/、%</li>
-<li>+、-</li>
-<li>|、^、&amp;、&lt;&lt;、&gt;&gt;</li>
-</ul>
-<p>在同一个式子中，可以使用括号来修改运算符的优先级，即括号具有最高优先级。不必强记运算符的优先级，在没有把握的情况下可以运用括号。<br><strong>注意：“/”运算符的运算结果为浮点数，即时是两个整数相除。</strong></p>
-<h2 id="浮点数（float）"><a href="#浮点数（float）" class="headerlink" title="浮点数（float）"></a>浮点数（float）</h2><p>浮点数就是常用的带小数的数，当然整数部分也可以为零。浮点数的书写除了一般形式（如3.14）外，还有以下几种表示方法：</p>
-<ul>
-<li>19.     小数部分为零，可以不写；</li>
-<li>.098    整数部分为零，可以不写；</li>
-<li>-2e3    科学计数法，表示-2*10^3</li>
-</ul>
-<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>Python中常用的数据类型的相互转换，所使用函数如下：</p>
-<ul>
-<li>str(object=’’)       可以将整数和浮点数转换为字符串，默认建立空字符串</li>
-<li>int(x,base=10)       将数字字符串或数值转换为整数（base表示进制）</li>
-<li>float(x)             将字符串或数值转换为浮点数</li>
-</ul>
-<p>此外：str()可以创建一个空字符串，int()也可以建立一个默认值为0的整数，float()可以建立一个默认值为0.0的浮点数。<br>【实例】<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/3.PNG" alt><br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/4.PNG" alt><br>注意：将字符串形式的数值转换为整数时，其中只能包含数字。<br>input()函数接受键盘输入时，无论输入的是整数、浮点数还是字符串，Python得到的都是字符串，那么当需要整数或浮点数时都要进行类型转换。</p>
+        <h2 id="What’s-RSA"><a href="#What’s-RSA" class="headerlink" title="What’s RSA?"></a>What’s RSA?</h2><h3 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h3><a id="more"></a>
+<ol>
+<li>RSA算法： <a href="https://www.anquanke.com/post/id/87105" target="_blank" rel="noopener">https://www.anquanke.com/post/id/87105</a></li>
+<li>CTF中常用的RSA解题：<a href="https://www.k2zone.cn/?p=2157" target="_blank" rel="noopener">https://www.k2zone.cn/?p=2157</a><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3>题目给了两个文件，其中一个是后缀为.pem的RSA私钥文件，另一个是被加密的flag文件<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3>这是一道RSA入门题目，直接给出了私钥和加密文件。</li>
+<li>有了私钥，直接解密文件即可，使用openssl工具（在Ubuntu里安装sudo apt-get install openssl即可）进行解密。<br>命令：<code>openssl rsautl -decrypt -in flag.encrypt -inkey rsa_private_key.pem -out flag.txt</code><br>意思是在flag.encrypt文件中用rsa_private_key.pem解密，生成flag.txt解密后的文件。</li>
+<li>打开flag.txt即可找到flag。</li>
+</ol>
+<h2 id="RSA2"><a href="#RSA2" class="headerlink" title="RSA2"></a>RSA2</h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>题目给了后缀名为.pem的公钥文件和加密文件flag.encrypt</p>
+<h3 id="题目分析-1"><a href="#题目分析-1" class="headerlink" title="题目分析"></a>题目分析</h3><p>这道题目有两种解题思路：flag文件是被私钥加密，需要用公钥解密；另一个是flag文件是被公钥加密，需要用私钥解密。使用上个题目中的命令，使用公钥解密，不对，所以这道题目应该是使用私钥加密的。</p>
+<ol>
+<li>现在有了公钥，如何得到私钥？<br>使用公钥得到n，知道n后分解得到p和q，再根据RSA算法解出d,得到私钥即可。<br>公钥（e,n）,私钥（d,n）。</li>
+<li>使用命令：<code>openssl rsa -pubin -text -modulus -in pubkey.pem</code><br>得到modulus即为n（十六进制）<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/85.PNG" alt><br>转成十进制得到n:87924348264132406875276140514499937145050893665602592992418171647042491658461</li>
+<li>用yafu工具（下载Windows版<a href="https://sourceforge.net/projects/yafu/" target="_blank" rel="noopener">https://sourceforge.net/projects/yafu/</a> ，运行x64位的程序）分解n,得到p和q<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/86.PNG" alt></li>
+<li>用RSA-tool解出d<br>d:2DB139DC7B9747A32312240AA11D7E8AA554BFA0BD5B981C0903667936609179E98FB1AA54141(十六进制)<br>d:93076836824908620642628594590464850812511038475673825979968428923835223225430811644363358529</li>
+<li>有了d和n,生成私钥<br>需要下载pycrypto库，安装出错：<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/87.PNG" alt></li>
+</ol>
 
       
     </div>
@@ -402,13 +336,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/">Python笔记——数据类型（整数、浮点数、数据类型转换）</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/29/RSA/">Crypto RSA</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-18, 16:38:50</p>
-        <p><span>最后更新:</span>2019-03-18, 17:06:28</p>
+        <p><span>发布时间:</span>2019-04-29, 22:49:12</p>
+        <p><span>最后更新:</span>2019-04-29, 22:59:35</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/" title="Python笔记——数据类型（整数、浮点数、数据类型转换）">https://hanqd.github.io/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/29/RSA/" title="Crypto RSA">https://hanqd.github.io/2019/04/29/RSA/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/29/RSA/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -420,16 +354,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/26/每日一题1003/">
-                    每日一题 1003
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/17/Python数据类型（字符串）/">
-                    Python笔记——数据类型（字符串）
+                <a href="/2019/04/28/misc realwifi/">
+                    Misc Realwifi
                 </a>
             </div>
         
@@ -441,7 +369,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#整数（int）"><span class="toc-number">1.</span> <span class="toc-text">整数（int）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浮点数（float）"><span class="toc-number">2.</span> <span class="toc-text">浮点数（float）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型转换"><span class="toc-number">3.</span> <span class="toc-text">类型转换</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What’s-RSA"><span class="toc-number">1.</span> <span class="toc-text">What’s RSA?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#知识准备"><span class="toc-number">1.1.</span> <span class="toc-text">知识准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.2.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.3.</span> <span class="toc-text">题目分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA2"><span class="toc-number">2.</span> <span class="toc-text">RSA2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述-1"><span class="toc-number">2.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析-1"><span class="toc-number">2.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -477,7 +405,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Python笔记——数据类型（整数、浮点数、数据类型转换）　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Crypto RSA　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -493,7 +421,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/" data-title="Python笔记——数据类型（整数、浮点数、数据类型转换）" data-url="https://hanqd.github.io/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/29/RSA/" data-title="Crypto RSA" data-url="https://hanqd.github.io/2019/04/29/RSA/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -516,15 +444,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/26/每日一题1003/" title="上一篇: 每日一题 1003">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/17/Python数据类型（字符串）/" title="下一篇: Python笔记——数据类型（字符串）">
+            <a href="/2019/04/28/misc realwifi/" title="下一篇: Misc Realwifi">
                 <i class="fa fa-angle-right"></i>
             </a>
         
