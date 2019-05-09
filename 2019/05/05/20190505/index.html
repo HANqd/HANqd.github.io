@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="第一章 计算机系统漫游这一章通过研究“hello world”这一简单程序的生命周期，介绍了计算机系统的主要概念和主题，先从概念或名词的上理解计算机系统。">
+<meta name="description" content="第一章 计算机系统漫游这一章通过研究“hello world”这一简单程序的生命周期，介绍了计算机系统的主要概念和主题，先从概念或名词的上理解计算机系统。这一章先概括地介绍了一下计算机系统的硬件和软件，剩余章节会详细的介绍，让我们有一个大体了解与框架。  运行一个简单的程序所做工作（Hello程序的生命周期） 系统硬件 存储设备 操作系统（应用软件与系统硬件的桥梁） 系统之间的通信 重要概念">
 <meta name="keywords" content="CSAPP笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSAPP笔记-第一章 计算机系统漫游">
 <meta property="og:url" content="https://hanqd.github.io/2019/05/05/20190505/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="第一章 计算机系统漫游这一章通过研究“hello world”这一简单程序的生命周期，介绍了计算机系统的主要概念和主题，先从概念或名词的上理解计算机系统。">
+<meta property="og:description" content="第一章 计算机系统漫游这一章通过研究“hello world”这一简单程序的生命周期，介绍了计算机系统的主要概念和主题，先从概念或名词的上理解计算机系统。这一章先概括地介绍了一下计算机系统的硬件和软件，剩余章节会详细的介绍，让我们有一个大体了解与框架。  运行一个简单的程序所做工作（Hello程序的生命周期） 系统硬件 存储设备 操作系统（应用软件与系统硬件的桥梁） 系统之间的通信 重要概念">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-05T13:41:04.933Z">
+<meta property="og:updated_time" content="2019-05-09T14:19:48.466Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSAPP笔记-第一章 计算机系统漫游">
-<meta name="twitter:description" content="第一章 计算机系统漫游这一章通过研究“hello world”这一简单程序的生命周期，介绍了计算机系统的主要概念和主题，先从概念或名词的上理解计算机系统。">
+<meta name="twitter:description" content="第一章 计算机系统漫游这一章通过研究“hello world”这一简单程序的生命周期，介绍了计算机系统的主要概念和主题，先从概念或名词的上理解计算机系统。这一章先概括地介绍了一下计算机系统的硬件和软件，剩余章节会详细的介绍，让我们有一个大体了解与框架。  运行一个简单的程序所做工作（Hello程序的生命周期） 系统硬件 存储设备 操作系统（应用软件与系统硬件的桥梁） 系统之间的通信 重要概念">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -308,8 +308,17 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="第一章-计算机系统漫游"><a href="#第一章-计算机系统漫游" class="headerlink" title="第一章 计算机系统漫游"></a>第一章 计算机系统漫游</h2><p>这一章通过研究“hello world”这一简单程序的生命周期，介绍了计算机系统的主要概念和主题，先从概念或名词的上理解计算机系统。<br><a id="more"></a></p>
-<h3 id="Hello程序的生命周期"><a href="#Hello程序的生命周期" class="headerlink" title="Hello程序的生命周期"></a>Hello程序的生命周期</h3><ol>
+        <h2 id="第一章-计算机系统漫游"><a href="#第一章-计算机系统漫游" class="headerlink" title="第一章 计算机系统漫游"></a>第一章 计算机系统漫游</h2><p>这一章通过研究“hello world”这一简单程序的生命周期，介绍了计算机系统的主要概念和主题，先从概念或名词的上理解计算机系统。这一章先概括地介绍了一下计算机系统的硬件和软件，剩余章节会详细的介绍，让我们有一个大体了解与框架。</p>
+<ul>
+<li>运行一个简单的程序所做工作（Hello程序的生命周期）</li>
+<li>系统硬件</li>
+<li>存储设备</li>
+<li>操作系统（应用软件与系统硬件的桥梁）</li>
+<li>系统之间的通信</li>
+<li>重要概念<a id="more"></a>
+<h3 id="Hello程序的生命周期"><a href="#Hello程序的生命周期" class="headerlink" title="Hello程序的生命周期"></a>Hello程序的生命周期</h3></li>
+</ul>
+<ol>
 <li>源程序</li>
 </ol>
 <ul>
@@ -337,6 +346,41 @@
 <ol start="3">
 <li>运行hello文件<br>要想在Linux系统上运行该可执行文件，我们将他的文件名输入到称为shell的应用程序中：<code>./hello</code><br>shell是一个命令行解释器，它输出一个提示符，等待输入一个命令行，然后执行这个命令。<br>运行hello文件，shell程序分两种情况：<br>a. 经过处理器再到内存<br>b. 不经过处理器，利用直接存储器（DMA）技术，直接从磁盘到达主存，一旦目标文件hello中的代码和数据被加载到主存，处理器就开始执行hello程序的main程序中的机器语言指令，这些指令将“hello world\n”字符串中的字节从主存复制到寄存器文件，再从寄存器文件中复制到显示设备，最终显示在屏幕上。</li>
 </ol>
+<h3 id="系统的硬件组成"><a href="#系统的硬件组成" class="headerlink" title="系统的硬件组成"></a>系统的硬件组成</h3><ol>
+<li>总线：携带信息字节并负责在各个部门间传递</li>
+<li>I/O设备：系统与外界的联系通道，一般包括键盘、鼠标、显示器和磁盘</li>
+<li>主存：一个临时存储设备，在处理器执行程序时，用来存放程序和程序处理的数据</li>
+<li>处理器（CPU）：解释（或执行）存储在主存中指令的引擎<br>CPU在指令的要求下可能会执行的操作：</li>
+</ol>
+<ul>
+<li>加载：从主存复制一个字节或一个字到寄存器，以覆盖寄存器原来的内容</li>
+<li>存储：从寄存器复制一个字节或者一个字到主存的某个位置，以覆盖这个位置上原来的内容</li>
+<li>操作：把两个寄存器的内容复制到ALU，ALU对这两个字做算术运算，并将结果存放到一个寄存器中，以覆盖该寄存器中原来的内容</li>
+<li>跳转：从指令本身中抽取一个字，并将这个字复制到程序计数器（PC）中，以覆盖PC中原来的值</li>
+</ul>
+<h3 id="存储设备形成层次结构"><a href="#存储设备形成层次结构" class="headerlink" title="存储设备形成层次结构"></a>存储设备形成层次结构</h3><p>在处理器和一个较大较慢的设备（如主存）之间插入一个更小更快的存储设备（如高速缓存）的想法已经成为一个普遍的观念。<br>每个计算机系统中的存储设备都被组织成一个存储器层次结构。</p>
+<blockquote>
+<p>L0 CPU寄存器：保存来自高速缓存存储器的字<br>L1-L3 高速缓存（SRAM）：L1高速缓存保存取自L2高速缓存的高速缓存行，L2保存L3，L3保存来自主存的高速缓存行<br>L4 主存（DRAM）：保存取自本地磁盘的磁盘块<br>L5 本地二级存储（本地磁盘）：保存取自远程服务器上磁盘的文件<br>L6 远程二级存储（分布式文件系统，Web服务器）</p>
+</blockquote>
+<p>从L0-L6，设备的访问速度越来越慢，容量越来越大，并且每字节的造价也越来越便宜。</p>
+<h3 id="操作系统管理硬件"><a href="#操作系统管理硬件" class="headerlink" title="操作系统管理硬件"></a>操作系统管理硬件</h3><p>运行程序时，程序没有直接访问键盘、显示器、磁盘或者主存，而是依靠操作系统提供的服务，也就是说，操作系统是应用程序和硬件之间的一层软件，所有应用程序对硬件的操作尝试都必须通过操作系统。</p>
+<p>操作系统的功能：<br>（1）防止硬件被失控的应用程序滥用；<br>（2）向应用程序提供简单一致机制来控制复杂而又通常不相同的低级硬件设备<br>操作系统通过几个基本的抽象概念（进程、虚拟内存和文件）来实现这两个功能。</p>
+<ul>
+<li>文件是对I/O设备的抽象</li>
+<li>虚拟内存是对主存和磁盘I/O设备的抽象</li>
+<li>进程则是对处理器、主存和I/O设备的抽象</li>
+</ul>
+<ol>
+<li>进程<br>在一个系统上可以同时运行多个进程，而每个进程都好像在独占的使用处理器、主存和I/O设备。<br><strong>并发运行：</strong>一个进程的指令和另一个进程的指令是交错执行的。<br><strong>上下文：</strong>操作系统保持跟踪进程运行所需的所有状态信息，比如PC和寄存器文件的当前值，以及主存内容。<br><strong>上下文切换：</strong>操作系统把控制权从当前进程转移到某个新进程，即保存当前进程的上下文，恢复新进程的上下文，将控制权传递到新进程。<br>从一个进程到另一个进程的转换是由操作系统内核（kernel）管理的。内核是操作系统代码常驻主存的部分。</li>
+<li>线程<br>一个进程实际上可以由多个线程组成。线程易共享数据，运行速度快。</li>
+<li>虚拟内存<br>虚拟内存是一个抽象概念，即每个进程好像都在独占地使用主存。</li>
+<li>文件<br>文件就是字节序列。每个I/O设备，包括磁盘、键盘、显示器甚至网络都可以看成文件。<h3 id="系统之间通过网络通信"><a href="#系统之间通过网络通信" class="headerlink" title="系统之间通过网络通信"></a>系统之间通过网络通信</h3>系统可以通过网络和其他系统连接到一起。<br>当系统从主存复制一串字节到网络适配器时，数据流经过网络到达另一台机器，相似的，系统可以读取从其他机器发送来的数据，并把数据复制到自己的主存。<br>客户端和服务器之间交互的类型在所有的网络应用中是非常典型的。<h3 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h3></li>
+<li>Amdahl定律<br>该定律的主要思想是，当我们对系统的某个部分加速时，其对系统整体性能的影响取决于该部分的重要性和加速程度。<br>【计算】<br>若系统执行某应用程序需要时间为T1，假设系统某部分（该应用程序的某个部分）所需执行时间与该时间的比例是a，而该部分性能提升比例为k。<br>该部分初始所需时间为：a*T1<br>现在所需时间为：(a*T1)/k<br>该应用程序的总的执行时间为：T2=（1-a）*T1+(a*T1)/k=T1[(1-a)+a/k]<br>加速比：S=T1/T2=1/((1-a)+a/k)</li>
+</ol>
+<p>要想显著加速整个系统，必须提升全系统中相当大的部分的速度。</p>
+<ol start="2">
+<li>并行和并发<br>并行：指一个同时具有多个活动的系统。<br>并行：用并发来使一个系统运行的更快。<br>（1）线性级并发<br>同时有多个程序执行的系统，就是并发。使用线程，能够在一个进程中执行多个控制流。<br>（2）指令级并行<br>处理器可以同时执行多条指令的属性称为指令级并行。<br>（3）单指令、多数据<br>许多现代处理器拥有特殊的硬件，允许一条指令产生多个可以并行执行的操作，这种方式称为单指令、多数据。<br>3.抽象</li>
+</ol>
 
       
     </div>
@@ -348,7 +392,7 @@
         <p><span>本文标题:</span><a href="/2019/05/05/20190505/">CSAPP笔记-第一章 计算机系统漫游</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
         <p><span>发布时间:</span>2019-05-05, 21:40:05</p>
-        <p><span>最后更新:</span>2019-05-05, 21:41:04</p>
+        <p><span>最后更新:</span>2019-05-09, 22:19:48</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/05/05/20190505/" title="CSAPP笔记-第一章 计算机系统漫游">https://hanqd.github.io/2019/05/05/20190505/</a>
             <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/05/05/20190505/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -378,7 +422,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一章-计算机系统漫游"><span class="toc-number">1.</span> <span class="toc-text">第一章 计算机系统漫游</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hello程序的生命周期"><span class="toc-number">1.1.</span> <span class="toc-text">Hello程序的生命周期</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一章-计算机系统漫游"><span class="toc-number">1.</span> <span class="toc-text">第一章 计算机系统漫游</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hello程序的生命周期"><span class="toc-number">1.1.</span> <span class="toc-text">Hello程序的生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统的硬件组成"><span class="toc-number">1.2.</span> <span class="toc-text">系统的硬件组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储设备形成层次结构"><span class="toc-number">1.3.</span> <span class="toc-text">存储设备形成层次结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作系统管理硬件"><span class="toc-number">1.4.</span> <span class="toc-text">操作系统管理硬件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统之间通过网络通信"><span class="toc-number">1.5.</span> <span class="toc-text">系统之间通过网络通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重要概念"><span class="toc-number">1.6.</span> <span class="toc-text">重要概念</span></a></li></ol></li></ol>
         
     </div>
     <style>
