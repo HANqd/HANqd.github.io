@@ -15,14 +15,23 @@
 
 
 
+<meta name="description" content="pwnable.kr-collision这道题目与第一道题目做题步骤差不多，直接查看源码，再往下做即可，这里涉及的知识点是MD5碰撞。">
+<meta name="keywords" content="pwn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="你好，hexo">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/15/你好，hexo/index.html">
+<meta property="og:title" content="pwnable.kr-collision">
+<meta property="og:url" content="https://hanqd.github.io/2019/05/19/pwnable-collision/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
+<meta property="og:description" content="pwnable.kr-collision这道题目与第一道题目做题步骤差不多，直接查看源码，再往下做即可，这里涉及的知识点是MD5碰撞。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-15T08:45:25.929Z">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/img/6.JPG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/img/7.JPG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/img/9.JPG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/img/8.JPG">
+<meta property="og:updated_time" content="2019-05-19T13:00:51.298Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你好，hexo">
+<meta name="twitter:title" content="pwnable.kr-collision">
+<meta name="twitter:description" content="pwnable.kr-collision这道题目与第一道题目做题步骤差不多，直接查看源码，再往下做即可，这里涉及的知识点是MD5碰撞。">
+<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/img/6.JPG">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -54,7 +63,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>你好，hexo | HANqd&#39;s BLOG</title>
+<title>pwnable.kr-collision | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -264,11 +273,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-你好，hexo" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-pwnable-collision" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/15/你好，hexo/" class="article-date">
-      <time datetime="2019-03-15T08:45:25.000Z" itemprop="datePublished">2019-03-15</time>
+      <a href="/2019/05/19/pwnable-collision/" class="article-date">
+      <time datetime="2019-05-19T12:59:43.203Z" itemprop="datePublished">2019-05-19</time>
 </a>
 
 
@@ -283,7 +292,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      你好，hexo
+      pwnable.kr-collision
     </h1>
   
 
@@ -293,6 +302,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -300,7 +313,18 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        
+        <h2 id="pwnable-kr-collision"><a href="#pwnable-kr-collision" class="headerlink" title="pwnable.kr-collision"></a>pwnable.kr-collision</h2><p>这道题目与第一道题目做题步骤差不多，直接查看源码，再往下做即可，这里涉及的知识点是MD5碰撞。<br><a id="more"></a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Daddy told me about cool MD5 hash collision today.</span><br><span class="line">I wanna do something like that too!</span><br><span class="line">ssh col@pwnable.kr -p2222 (pw:guest)</span><br></pre></td></tr></table></figure>
+<p>照样给了一行远程登录命令ssh <a href="mailto:col@pwnable.kr" target="_blank" rel="noopener">col@pwnable.kr</a> -p2222 (pw:guest)</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ol>
+<li>远程登录，输入命令：ssh <a href="mailto:col@pwnable.kr" target="_blank" rel="noopener">col@pwnable.kr</a> -p 2222，输入密码：guest，以col用户的身份进入端口为2222的主机。<br><img src="https://github.com/HANqd/IMG/raw/master/img/img/6.JPG" alt="远程登录" title="远程登录"></li>
+<li>查看col.c源代码</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> hashcode = <span class="number">0x21DD09EC</span>;</span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="title">check_password</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* p)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* ip = (<span class="keyword">int</span>*)p;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++)&#123;</span><br><span class="line">		res += ip[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(argc&lt;<span class="number">2</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"usage : %s [passcode]\n"</span>, argv[<span class="number">0</span>]);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">strlen</span>(argv[<span class="number">1</span>]) != <span class="number">20</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"passcode length should be 20 bytes\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(hashcode == check_password( argv[<span class="number">1</span>] ))&#123;</span><br><span class="line">		system(<span class="string">"/bin/cat flag"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"wrong passcode.\n"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>分析代码<br>代码中 hashcode = 0x21DD09EC，主函数中需要输入的参数长度是20个字节，再看if语句，只要check_password( argv[1] )等于0x21DD09EC就会获得flag，主要看check_password函数，函数的功能是把输入的char类型的参数p强制转换为int型，char类型是1个字节，int类型的是4个字节，要求输入20个字节，四个一组（int型），一共5组，和for循环对应起来，意思就是5个int类型的数相加结果为0x21DD09EC。<br>假设其中四个数是0x01010101，那另一个数就是0x21DD09EC-0x01010101*4，结果为：<br><img src="https://github.com/HANqd/IMG/raw/master/img/img/7.JPG" alt="算数" title="算数"><br>查看col文件类型，得知cup是80386，存储方式为小端存储，则在输入上面的五个数时，注意输入顺序。<br><img src="https://github.com/HANqd/IMG/raw/master/img/img/9.JPG" alt="文件类型" title="文件类型"><br>这里的Python指令要用反引号` （键盘上在1的左边）括起来。<br><img src="https://github.com/HANqd/IMG/raw/master/img/img/8.JPG" alt="得到flag" title="得到flag"></li>
+</ol>
+
       
     </div>
     
@@ -308,13 +332,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/15/你好，hexo/">你好，hexo</a></p>
+        <p><span>本文标题:</span><a href="/2019/05/19/pwnable-collision/">pwnable.kr-collision</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-15, 16:45:25</p>
-        <p><span>最后更新:</span>2019-03-15, 16:45:25</p>
+        <p><span>发布时间:</span>2019-05-19, 20:59:43</p>
+        <p><span>最后更新:</span>2019-05-19, 21:00:51</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/15/你好，hexo/" title="你好，hexo">https://hanqd.github.io/2019/03/15/你好，hexo/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/15/你好，hexo/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/05/19/pwnable-collision/" title="pwnable.kr-collision">https://hanqd.github.io/2019/05/19/pwnable-collision/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/05/19/pwnable-collision/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -326,16 +350,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/17/Python数据类型（字符串）/">
-                    Python笔记——数据类型（字符串）
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/15/hello-world/">
-                    Hello World
+                <a href="/2019/05/18/pwnable-fd/">
+                    pwnable.kr-fd
                 </a>
             </div>
         
@@ -347,7 +365,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#pwnable-kr-collision"><span class="toc-number">1.</span> <span class="toc-text">pwnable.kr-collision</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -383,7 +401,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"你好，hexo　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"pwnable.kr-collision　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -399,7 +417,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/15/你好，hexo/" data-title="你好，hexo" data-url="https://hanqd.github.io/2019/03/15/你好，hexo/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/05/19/pwnable-collision/" data-title="pwnable.kr-collision" data-url="https://hanqd.github.io/2019/05/19/pwnable-collision/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -422,15 +440,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/17/Python数据类型（字符串）/" title="上一篇: Python笔记——数据类型（字符串）">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/15/hello-world/" title="下一篇: Hello World">
+            <a href="/2019/05/18/pwnable-fd/" title="下一篇: pwnable.kr-fd">
                 <i class="fa fa-angle-right"></i>
             </a>
         
