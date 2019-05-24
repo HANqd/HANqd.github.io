@@ -15,22 +15,18 @@
 
 
 
-<meta name="description" content="题目Reverse sign in题目描述题目中只给了一个rev1文件，其他的没有了。">
+<meta name="description" content="pwnable.kr random涉及知识点：rand()函数。">
+<meta name="keywords" content="pwn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CTF逆向reverse：Reverse sign in">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/28/reverse1/index.html">
+<meta property="og:title" content="pwnable.kr-random">
+<meta property="og:url" content="https://hanqd.github.io/2019/05/24/pwnable random/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="题目Reverse sign in题目描述题目中只给了一个rev1文件，其他的没有了。">
+<meta property="og:description" content="pwnable.kr random涉及知识点：rand()函数。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/7.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/8.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/9.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/10.PNG">
-<meta property="og:updated_time" content="2019-03-28T02:57:29.140Z">
+<meta property="og:updated_time" content="2019-05-24T12:04:30.544Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CTF逆向reverse：Reverse sign in">
-<meta name="twitter:description" content="题目Reverse sign in题目描述题目中只给了一个rev1文件，其他的没有了。">
-<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/7.PNG">
+<meta name="twitter:title" content="pwnable.kr-random">
+<meta name="twitter:description" content="pwnable.kr random涉及知识点：rand()函数。">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -62,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>CTF逆向reverse：Reverse sign in | HANqd&#39;s BLOG</title>
+<title>pwnable.kr-random | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -272,11 +268,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-reverse1" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-pwnable random" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/28/reverse1/" class="article-date">
-      <time datetime="2019-03-28T02:52:16.969Z" itemprop="datePublished">2019-03-28</time>
+      <a href="/2019/05/24/pwnable random/" class="article-date">
+      <time datetime="2019-05-24T09:45:52.425Z" itemprop="datePublished">2019-05-24</time>
 </a>
 
 
@@ -291,7 +287,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      CTF逆向reverse：Reverse sign in
+      pwnable.kr-random
     </h1>
   
 
@@ -301,6 +297,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -308,20 +308,28 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="题目Reverse-sign-in"><a href="#题目Reverse-sign-in" class="headerlink" title="题目Reverse sign in"></a>题目Reverse sign in</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>题目中只给了一个rev1文件，其他的没有了。<br><a id="more"></a></p>
+        <h2 id="pwnable-kr-random"><a href="#pwnable-kr-random" class="headerlink" title="pwnable.kr random"></a>pwnable.kr random</h2><p>涉及知识点：rand()函数。<br><a id="more"></a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Daddy, teach me how to use random value in programming!</span><br><span class="line"></span><br><span class="line">ssh random@pwnable.kr -p2222 (pw:guest)</span><br></pre></td></tr></table></figure>
+<p>题目的意思是在程序中使用随机值。</p>
 <h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ol>
-<li>知道是个逆向题目，所以直接用ida打开该文件，Fn+F5反编译为c伪代码，得到如下图，知道flag就在sub_400686函数中。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/7.PNG" alt></li>
-<li>查看sub_400686函数伪代码，如下<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/8.PNG" alt></li>
-<li>找到byte_400818数据，即为数组中的32个值<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/9.PNG" alt></li>
-<li>(char)(*(_BYTE *)(i + a1)<br>在C语言中，内存地址也是用整数int表示（32bit）。因此，(BYTE *)(i+a1) 表示把整数(i+a1)强制转换为BYTE型数值的<strong>地址</strong>。<ul>
-<li>char *(i+a1) 即i+a1指向一个字符串常量</li>
-<li>^是在程序中是异或运算符号，即长度为32的数组与i进行异或运算</li>
-</ul>
+<li>同样，远程访问random用户。<br>有三个文件：random、random.c、flag</li>
+<li>查看random.c文件</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> random;</span><br><span class="line">	random = rand();	<span class="comment">// random value!</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> key=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;key);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>( (key ^ random) == <span class="number">0xdeadbeef</span> )&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Good!\n"</span>);</span><br><span class="line">		system(<span class="string">"/bin/cat flag"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Wrong, maybe you should try 2^32 cases.\n"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据程序，只要输入的key值与random随机值异或等于0xdeadbeef，即可得到flag。</p>
+<ol start="3">
+<li>看rand()函数。<blockquote>
+<p>rand函数不是真正的随机数生成器，而srand()会设置供rand()使用的随机数种子。如果你在第一次调用rand()之前没有调用srand()，那么系统会为你自动调用srand()。而使用同种子相同的数调用 rand()会导致相同的随机数序列被生成。</p>
+</blockquote>
 </li>
 </ol>
-<h3 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int b[]=&#123;0x66,0x6D, 0x63, 0x64, 0x7F, 0x3C, 0x36, 0x72, 0x57, 0x42, 0x64,</span><br><span class="line">	0x3B, 0x7B, 0x52, 0x7C, 0x3C, 0x66, 0x54, 0x60,0x60, 0x27,</span><br><span class="line">	0x4A, 0x49, 0x7F, 0x71, 0x58, 0x52, 0x72, 0x7D, 0x75, 0x2A, 0x62&#125;;</span><br><span class="line">	char a[33];</span><br><span class="line">	for(int i=0;i&lt;=31;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		a[i]= b[i]^i;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int j=0;j&lt;=31;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[j];</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/10.PNG" alt><br>得到flag，注意：最后那个是两个_，输入时只输了一个，试了两遍！！！要细心啊~~~</p>
-
+<p>也就是说，没有调用srand()函数，没有设置随机数种子，rand()函数就只会生成一个随机数，且不会变。</p>
+<ol start="4">
+<li>查看产生的随机数</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> random;</span><br><span class="line">    random = rand();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,random);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行得到1804289383，十六进制为0x6b8b4567.<br>与0xdeadbeef进行异或，得到3039230856，运行输入得到flag。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">random@ubuntu:~$ ./random</span><br><span class="line"><span class="number">3039230856</span></span><br><span class="line">Good!</span><br><span class="line">Mommy, I thought libc random is unpredictable...</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -329,13 +337,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/28/reverse1/">CTF逆向reverse：Reverse sign in</a></p>
+        <p><span>本文标题:</span><a href="/2019/05/24/pwnable random/">pwnable.kr-random</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-28, 10:52:16</p>
-        <p><span>最后更新:</span>2019-03-28, 10:57:29</p>
+        <p><span>发布时间:</span>2019-05-24, 17:45:52</p>
+        <p><span>最后更新:</span>2019-05-24, 20:04:30</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/28/reverse1/" title="CTF逆向reverse：Reverse sign in">https://hanqd.github.io/2019/03/28/reverse1/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/28/reverse1/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/05/24/pwnable random/" title="pwnable.kr-random">https://hanqd.github.io/2019/05/24/pwnable random/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/05/24/pwnable random/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -347,16 +355,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/28/每日一题1005/">
-                    每日一题 1005
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/27/每日一题1004/">
-                    每日一题 1004
+                <a href="/2019/05/23/pwnable passcode/">
+                    pwnable.kr-passcode
                 </a>
             </div>
         
@@ -368,7 +370,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目Reverse-sign-in"><span class="toc-number">1.</span> <span class="toc-text">题目Reverse sign in</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.2.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-代码"><span class="toc-number">1.3.</span> <span class="toc-text">C++代码</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#pwnable-kr-random"><span class="toc-number">1.</span> <span class="toc-text">pwnable.kr random</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -404,7 +406,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"CTF逆向reverse：Reverse sign in　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"pwnable.kr-random　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -420,7 +422,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/28/reverse1/" data-title="CTF逆向reverse：Reverse sign in" data-url="https://hanqd.github.io/2019/03/28/reverse1/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/05/24/pwnable random/" data-title="pwnable.kr-random" data-url="https://hanqd.github.io/2019/05/24/pwnable random/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -443,15 +445,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/28/每日一题1005/" title="上一篇: 每日一题 1005">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/27/每日一题1004/" title="下一篇: 每日一题 1004">
+            <a href="/2019/05/23/pwnable passcode/" title="下一篇: pwnable.kr-passcode">
                 <i class="fa fa-angle-right"></i>
             </a>
         
