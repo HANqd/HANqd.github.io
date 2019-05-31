@@ -15,21 +15,18 @@
 
 
 
-<meta name="description" content="Forensics2题目描述题目给了一个.pcap文件，给了一句提示：是关于文件的。">
+<meta name="description" content="前言最近终于把毕业论文弄完了，一遍遍的修改格式，打印，准备答辩PPT，预答辩，然后拍了毕业照，接下来要忙的就是论文装订，档案审核，毕业季真是忙的要命啊！要读的书也因为毕业的事情搁浅了一段时间，现在拾起来。">
+<meta name="keywords" content="CSAPP笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Misc：Forensics2（流量分析题）">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/28/Misc Forensics2/index.html">
+<meta property="og:title" content="《CSAPP》 位移运算+机器中的整数表示（第二章）">
+<meta property="og:url" content="https://hanqd.github.io/2019/05/31/CSAPP2/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="Forensics2题目描述题目给了一个.pcap文件，给了一句提示：是关于文件的。">
+<meta property="og:description" content="前言最近终于把毕业论文弄完了，一遍遍的修改格式，打印，准备答辩PPT，预答辩，然后拍了毕业照，接下来要忙的就是论文装订，档案审核，毕业季真是忙的要命啊！要读的书也因为毕业的事情搁浅了一段时间，现在拾起来。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/11.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/12.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/13.PNG">
-<meta property="og:updated_time" content="2019-03-28T12:38:57.870Z">
+<meta property="og:updated_time" content="2019-05-31T13:03:26.349Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Misc：Forensics2（流量分析题）">
-<meta name="twitter:description" content="Forensics2题目描述题目给了一个.pcap文件，给了一句提示：是关于文件的。">
-<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/11.PNG">
+<meta name="twitter:title" content="《CSAPP》 位移运算+机器中的整数表示（第二章）">
+<meta name="twitter:description" content="前言最近终于把毕业论文弄完了，一遍遍的修改格式，打印，准备答辩PPT，预答辩，然后拍了毕业照，接下来要忙的就是论文装订，档案审核，毕业季真是忙的要命啊！要读的书也因为毕业的事情搁浅了一段时间，现在拾起来。">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -61,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Misc：Forensics2（流量分析题） | HANqd&#39;s BLOG</title>
+<title>《CSAPP》 位移运算+机器中的整数表示（第二章） | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -271,11 +268,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-Misc Forensics2" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-CSAPP2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/28/Misc Forensics2/" class="article-date">
-      <time datetime="2019-03-28T12:37:55.193Z" itemprop="datePublished">2019-03-28</time>
+      <a href="/2019/05/31/CSAPP2/" class="article-date">
+      <time datetime="2019-05-31T13:02:23.987Z" itemprop="datePublished">2019-05-31</time>
 </a>
 
 
@@ -290,7 +287,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Misc：Forensics2（流量分析题）
+      《CSAPP》 位移运算+机器中的整数表示（第二章）
     </h1>
   
 
@@ -300,6 +297,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSAPP笔记/">CSAPP笔记</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -307,24 +308,30 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="Forensics2"><a href="#Forensics2" class="headerlink" title="Forensics2"></a>Forensics2</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>题目给了一个.pcap文件，给了一句提示：是关于文件的。<br><a id="more"></a></p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ol>
-<li><p>用wireshark软件打开文件，发现有很多协议，之前学的网络的知识也忘得差不多了。。。。决定先了解一下各个协议的功能。</p>
-<ul>
-<li>ICMP：ICMP是（Internet Control Message Protocol）Internet控制报文协议。它是TCP/IP协议簇的一个子协议，用于在IP主机、路由器之间传递控制消息。控制消息是指网络通不通、主机是否可达、路由是否可用等网络本身的消息。这些控制消息虽然并<strong>不传输用户数据</strong>，但是对于用户数据的传递起着重要的作用。在<strong>网络层</strong>。</li>
-<li>ARP：地址解析协议，即ARP（Address Resolution Protocol），是根据IP地址获取物理地址的一个TCP/IP协议。在<strong>网络层</strong>。</li>
-<li>TCP：TCP（Transmission Control Protocol 传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层通信协议。在因特网协议族（Internet protocol suite）中，TCP层是位于IP层之上，应用层之下的中间层。当应用层向TCP层发送用于网间传输的、用8位字节表示的数据流，TCP则把数据流分割成适当长度的报文段，最大传输段大小（MSS）通常受该计算机连接的网络的数据链路层的最大传送单元（MTU）限制。之后TCP把数据包传给IP层，由它来通过网络将包传送给接收端实体的TCP层。在<strong>运输层</strong>。</li>
-<li>SSH：SSH 为 Secure Shell 的缩写，SSH 为建立在<strong>应用层</strong>基础上的安全协议。SSH 是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。通过使用SSH，可以把所有传输的数据进行加密，这样”中间人”这种攻击方式就不可能实现了，而且也能够防止DNS欺骗和IP欺骗。使用SSH，还有一个额外的好处就是传输的数据是经过压缩的，所以可以加快传输的速度。</li>
-<li>NFS：NFS（Network File System）即网络文件系统，是FreeBSD支持的文件系统中的一种，它允许网络中的计算机之间通过TCP/IP网络共享资源。在NFS的应用中，本地NFS的客户端应用可以透明地读写位于远端NFS服务器上的文件，就像访问本地文件一样。在<strong>应用层</strong></li>
-<li>portmap端口映射是一个服务器，将RPC程序号转换为DARPA的协议端口号，在使用RPC调用时它必须运行。portmap进程的主要功能是把RPC程序号转化为Internet的端口号。</li>
-<li>mount在Windows系统下的含义是：挂载文件到一个虚拟盘或一个虚拟文件夹中，通过访问这个虚拟盘或文件夹使用整个文件。</li>
-</ul>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近终于把毕业论文弄完了，一遍遍的修改格式，打印，准备答辩PPT，预答辩，然后拍了毕业照，接下来要忙的就是论文装订，档案审核，毕业季真是忙的要命啊！<br>要读的书也因为毕业的事情搁浅了一段时间，现在拾起来。<br><a id="more"></a></p>
+<h3 id="C语言中的移位运算"><a href="#C语言中的移位运算" class="headerlink" title="C语言中的移位运算"></a>C语言中的移位运算</h3><p>C语言中移位运算分为向左移和向右移。</p>
+<ol>
+<li><p>逻辑左移和算术左移操作是一样的，不管是有符号数和无符号数，都是在后边补0。<br>【举例】<br>01100011  逻辑左移&lt;&lt;4：00110000  算术左移&lt;&lt;4：00110000<br>10010101  逻辑左移&lt;&lt;4：01010000  算术左移&lt;&lt;4：01010000</p>
 </li>
-<li><p>根据上述协议的功能和定义，猜测要找的文件在NFS协议共享的资源中，运用了SSH协议进行了加密。</p>
+<li><p>逻辑右移在最高位补0，算术右移在高位补相应的高位数值（一般有符号数就默认算术右移）。<br>【举例】<br>01100011  逻辑右移&gt;&gt;4：00000110  算术右移&gt;&gt;4：00000110<br>10010101  逻辑右移&gt;&gt;4：00001001  算术左移&gt;&gt;4：11111001</p>
 </li>
-<li>对NFS协议进行过滤，如下图，找到flag.txt.gz，是一个压缩包形式。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/11.PNG" alt></li>
-<li>在这条协议附件逐个分析每条协议传输的信息，最后在write那条中找到了data.<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/12.PNG" alt></li>
-<li>在data处右键-》显示分组字节-》选择压缩，即可得到flag。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/13.PNG" alt></li>
+</ol>
+<h3 id="整数表示"><a href="#整数表示" class="headerlink" title="整数表示"></a>整数表示</h3><p>这里首先介绍了各个数据类型（有符号数和无符号数的char、int等）的最大值与最小值，这里不再贴出来了。</p>
+<ol>
+<li><p>无符号数的编码<br>简单来说，就是二进制表示方法，由0，1组成。<br><strong>函数B2Uw</strong>：Binary to Unsigned，长度为w二进制数的无符号表示（二进制到无符号数）。<br>（1）无符号数编码的定义<br>一个w位的二进制无符号数，B2Uw函数能从位相量映射到整数。<br>【举例】<br>B2U4（[0001]）=0*2^3+0*2^2+0*2^1+1*2^0=0+0+0+1=1<br>B2U4（[1011]）=1*2^3+0*2^2+1*2^1+1*2^0=8+0+2+1=11<br>给出一个十进制数，就能得出唯一一个二进制数。<br>每个介于0~2^w-1之间的数都有唯一一个w位的值编码。（无符号编码具有唯一性）</p>
+</li>
+<li><p>补码编码<br>常见的有符号数的计算机表示方法就是补码（two’s-complement）形式。<br><strong>函数B2Tw</strong>：Binary to Two’s-complement，长度为w。（二进制到补码形式）<br>最高有效位即为符号位，它的“权重”为-2^w-1。<br>【举例】<br>B2T4（[0001]）=-0*2^3+0*2^2+0*2^1+1*2^0=0+0+0+1=1<br>B2T4（[1011]）=-1*2^3+0*2^2+1*2^1+1*2^0=-8+0+2+1=-5<br>补码编码也具有唯一性。</p>
+</li>
+<li><p>有符号数和无符号数之间的转换<br>有符号数和无符号数之间可以进行强制类型转换。<br>将负数转换成无符号数可能会得到0，如果需要转换的无符号数太大，超出了补码能够表示的范围，可能会得到TMax。<br>【举例】有符号数转换成无符号数<br>（unsigned short）-12345=53191,即T2U16(-12345)=53191<br>这里保持位值不变，只是改变了解释这些位的方式。因为-12345和53191的二进制表示是一样的。<br>规则：数值可能会变，但是位模式不变。<br><strong>函数T2Uw</strong>，定义为T2Uw(x)=B2Uw(T2Bw(x))。这个函数的输入是一个TMinw~TMaxw的数，结果得到一个0~UMaxw的值。<br>函数U2Tw，同上，U2T16(53191)=-12345，十六进制表示写作0xCFC7的16位位模式既是-12345的补码表示，又是53191的无符号表示。同时12345+53191=65536=2^16。</p>
+</li>
+<li><p>C语言中的有符号数和无符号数<br>通常大多数数字都默认是有符号的，要创建一个无符号常量时，必须加上后缀字符‘U’或者‘u’，例如12345U或者0x1A2Bu。<br>printf输出数值时，分别用指示符%d、%u、%x分别表示有符号十进制、无符号十进制和十六进制格式输出一个数字。</p>
+</li>
+<li><p>扩展一个数字的位表示<br>一个常见的运算是在不同字节的整数之间转换，同时又保持数值不变。<br>零扩展：将一个无符号数转换为一个更大的数据类型，只要简单地在表示的开头添加0即可。<br>符号扩展：将一个补码数字转换为一个更大的数据类型，在表示中添加最高有效位的值。（因为是补码的形式，转换为原码后，再计算，值是一样的。）</p>
+</li>
+<li><p>截断数字<br>减少表示一个数字的位数。<br>int-&gt;short。将32位的int截断成了16位的short int。<br>截断无符号数：<br>截断k位，即把高w-k位丢弃，从左到右前k位。<br>截断符号数：<br>先用无符号数截断后表示，再转换为补码形式即可。</p>
+</li>
+<li><p>存在的漏洞<br>已经看到了许多无符号数运算的细微特性，尤其是有符号数到无符号数的隐式转换，会导致错误或者漏洞。避免这类错误的一种方法就是绝不使用无符号数。</p>
+</li>
 </ol>
 
       
@@ -334,13 +341,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/28/Misc Forensics2/">Misc：Forensics2（流量分析题）</a></p>
+        <p><span>本文标题:</span><a href="/2019/05/31/CSAPP2/">《CSAPP》 位移运算+机器中的整数表示（第二章）</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-28, 20:37:55</p>
-        <p><span>最后更新:</span>2019-03-28, 20:38:57</p>
+        <p><span>发布时间:</span>2019-05-31, 21:02:23</p>
+        <p><span>最后更新:</span>2019-05-31, 21:03:26</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/28/Misc Forensics2/" title="Misc：Forensics2（流量分析题）">https://hanqd.github.io/2019/03/28/Misc Forensics2/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/28/Misc Forensics2/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/05/31/CSAPP2/" title="《CSAPP》 位移运算+机器中的整数表示（第二章）">https://hanqd.github.io/2019/05/31/CSAPP2/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/05/31/CSAPP2/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -352,16 +359,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/29/每日一题1006/">
-                    每日一题 1006
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/28/每日一题1005/">
-                    每日一题 1005
+                <a href="/2019/05/26/pwnable input/">
+                    pwnable.kr-input
                 </a>
             </div>
         
@@ -373,7 +374,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Forensics2"><span class="toc-number">1.</span> <span class="toc-text">Forensics2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C语言中的移位运算"><span class="toc-number">1.1.</span> <span class="toc-text">C语言中的移位运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#整数表示"><span class="toc-number">1.2.</span> <span class="toc-text">整数表示</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -409,7 +410,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Misc：Forensics2（流量分析题）　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"《CSAPP》 位移运算+机器中的整数表示（第二章）　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -425,7 +426,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/28/Misc Forensics2/" data-title="Misc：Forensics2（流量分析题）" data-url="https://hanqd.github.io/2019/03/28/Misc Forensics2/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/05/31/CSAPP2/" data-title="《CSAPP》 位移运算+机器中的整数表示（第二章）" data-url="https://hanqd.github.io/2019/05/31/CSAPP2/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -448,15 +449,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/29/每日一题1006/" title="上一篇: 每日一题 1006">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/28/每日一题1005/" title="下一篇: 每日一题 1005">
+            <a href="/2019/05/26/pwnable input/" title="下一篇: pwnable.kr-input">
                 <i class="fa fa-angle-right"></i>
             </a>
         
