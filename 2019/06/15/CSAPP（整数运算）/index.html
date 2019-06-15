@@ -15,24 +15,18 @@
 
 
 
-<meta name="description" content="Confusion1题目描述打开网址，就给了一个图片，看这个图片好像是个蛇缠着一个大象（貌似是这样）。">
-<meta name="keywords" content="web,SSTI">
+<meta name="description" content="整数运算无符号加法两个非负整数x和y，满足0&amp;lt;=x,y&amp;lt;=2^w，每个数都能表示为w位无符号数字。无符号运算就是把整数和x+y截断为w位得到的结果，再把这个结果看做是一个无符号数。也可以看作一种形式的模运算。原理：当x+y&amp;lt;2^w，相加结果为x+y，属于正常情况当2^w&amp;lt;=x+y&amp;lt;2^w+1，相加结果为x+y-2^w，属于溢出情况算术运算溢出：指完整的整数结果不能放到">
+<meta name="keywords" content="CSAPP笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="oj Web-Confusion1(SSTI攻击)">
-<meta property="og:url" content="https://hanqd.github.io/2019/04/21/oj web confusion1/index.html">
+<meta property="og:title" content="《CSAPP》整数运算（第二章）">
+<meta property="og:url" content="https://hanqd.github.io/2019/06/15/CSAPP（整数运算）/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="Confusion1题目描述打开网址，就给了一个图片，看这个图片好像是个蛇缠着一个大象（貌似是这样）。">
+<meta property="og:description" content="整数运算无符号加法两个非负整数x和y，满足0&amp;lt;=x,y&amp;lt;=2^w，每个数都能表示为w位无符号数字。无符号运算就是把整数和x+y截断为w位得到的结果，再把这个结果看做是一个无符号数。也可以看作一种形式的模运算。原理：当x+y&amp;lt;2^w，相加结果为x+y，属于正常情况当2^w&amp;lt;=x+y&amp;lt;2^w+1，相加结果为x+y-2^w，属于溢出情况算术运算溢出：指完整的整数结果不能放到">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/74.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/75.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/76.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/77.PNG">
-<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/78.PNG">
-<meta property="og:updated_time" content="2019-04-21T13:49:41.949Z">
+<meta property="og:updated_time" content="2019-06-15T10:44:35.814Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="oj Web-Confusion1(SSTI攻击)">
-<meta name="twitter:description" content="Confusion1题目描述打开网址，就给了一个图片，看这个图片好像是个蛇缠着一个大象（貌似是这样）。">
-<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/20190317/74.PNG">
+<meta name="twitter:title" content="《CSAPP》整数运算（第二章）">
+<meta name="twitter:description" content="整数运算无符号加法两个非负整数x和y，满足0&amp;lt;=x,y&amp;lt;=2^w，每个数都能表示为w位无符号数字。无符号运算就是把整数和x+y截断为w位得到的结果，再把这个结果看做是一个无符号数。也可以看作一种形式的模运算。原理：当x+y&amp;lt;2^w，相加结果为x+y，属于正常情况当2^w&amp;lt;=x+y&amp;lt;2^w+1，相加结果为x+y-2^w，属于溢出情况算术运算溢出：指完整的整数结果不能放到">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -64,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>oj Web-Confusion1(SSTI攻击) | HANqd&#39;s BLOG</title>
+<title>《CSAPP》整数运算（第二章） | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -274,11 +268,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-oj web confusion1" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-CSAPP（整数运算）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/21/oj web confusion1/" class="article-date">
-      <time datetime="2019-04-21T13:29:12.901Z" itemprop="datePublished">2019-04-21</time>
+      <a href="/2019/06/15/CSAPP（整数运算）/" class="article-date">
+      <time datetime="2019-06-15T10:43:16.206Z" itemprop="datePublished">2019-06-15</time>
 </a>
 
 
@@ -293,7 +287,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      oj Web-Confusion1(SSTI攻击)
+      《CSAPP》整数运算（第二章）
     </h1>
   
 
@@ -304,7 +298,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSTI/">SSTI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSAPP笔记/">CSAPP笔记</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -314,39 +308,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="Confusion1"><a href="#Confusion1" class="headerlink" title="Confusion1"></a>Confusion1</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>打开网址，就给了一个图片，看这个图片好像是个蛇缠着一个大象（貌似是这样）。<br><a id="more"></a><br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/74.PNG" alt><br>网页上还有两个按钮，登录和注册，点进去都是404.</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ol>
-<li>根据题目提示，寻找用户输入，理解图片，点了所有能点的，也没发现用户输入点在哪，图片就是一个蛇缠着一个大象，话说多大的蛇能缠住大象啊！那就是蟒蛇（Python）。那这道题目与Python有关？？？</li>
-<li>把点进去的网页的源代码全看了，在两个404中发现了flag所在！！！网页代码如下：</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>404 Not Found<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Not Found<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>The requested URL /login.php was not found on this server.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">address</span>&gt;</span>Apache/2.4.10 (Debian) Server at 123.207.149.64 Port 23361<span class="tag">&lt;/<span class="name">address</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Flag @ /opt/flag_1234qwerty.txt --&gt;</span></span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>看了网上的wp，知道这是一个SSTI类型的题目<br>404页面 + Python 很容易就联想到 Flask jinja injection(SSTI)</li>
-<li>这里是另一种注入，对于新手来说，又增加了知识点，不能仅限于解题，得把原理及题目思路搞懂才行。</li>
-<li>读flag文件命令：<br><code>&amp;#123;&amp;#123;&#39;&#39;.__class__.__mro__[2].__subclasses__()[40](&#39;/opt/flag_1234qwerty.txt&#39;).read()&amp;#125;&amp;#125;</code>，（注：’&#123;’表示左大括号，’&#125;’是右大括号，hexo在部署博客时，遇到大括号会出错。）出现如下，考虑是把class、mro、subclasses、read给过滤了。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/75.PNG" alt><br>多次测试，确实过滤了以上字符<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/76.PNG" alt><br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/77.PNG" alt></li>
-<li>用request.args进行绕过，让上边那四个当成参数返回。request.args是flask中的一个属性,为返回请求的参数。<br>以上命令改为：<br><code>&amp;#123;&amp;#123;&#39;&#39;[request.args.a][request.args.b][2][request.args.c]()[40](&#39;/opt/flag_1234qwerty.txt&#39;)[request.args.d]()&amp;#125;&amp;#125;?a=__class__&amp;b=__mro__&amp;c=__subclasses__&amp;d=read</code></li>
-<li>最后在404界面得到flag。</li>
-</ol>
-<h3 id="所用知识"><a href="#所用知识" class="headerlink" title="所用知识"></a>所用知识</h3><ol>
-<li>附writeup博客：<a href="https://www.xctf.org.cn/library/details/8723e039db0164e2f7345a12d2edd2a5e800adf7/" target="_blank" rel="noopener">https://www.xctf.org.cn/library/details/8723e039db0164e2f7345a12d2edd2a5e800adf7/</a></li>
-<li><p>SSTI：<a href="https://hellohxk.com/blog/ssti/" target="_blank" rel="noopener">https://hellohxk.com/blog/ssti/</a>  +<a href="https://xz.aliyun.com/t/3679" target="_blank" rel="noopener">https://xz.aliyun.com/t/3679</a> (这个很详细，易懂)。<br><strong>模板引擎</strong>：就是写好的代码模板，然后把数据填到模板里，经过浏览器渲染（理解成合成好理解），生成html页面返回给浏览器。优点是能够代码重用。<br><img src="https://github.com/HANqd/IMG/raw/master/img/20190317/78.PNG" alt><br>这里就用了模板，把数据塞到模板里。<br><strong>服务器端模板注入</strong>：在&#123;&#123;&#125;&#125;里，他将我们的代码进行了执行。服务器将我们的数据经过引擎解析的时候，进行了执行，模板注入与sql注入成因有点相似，都是信任了用户的输入，将不可靠的用户输入不经过滤直接进行了执行，用户插入了恶意代码同样也会执行。</p>
-</li>
-<li><p>模板注入时：实行文件读写和命令执行的基本操作：获取基本类-&gt;获取基本类的子类-&gt;在子类中找到关于命令执行和文件读写的模块。</p>
-</li>
-</ol>
-<p>python的几个函数解析</p>
-<blockquote>
-<p>_<em>class</em>_ 返回调用的参数类型<br>_<em>bases__ 返回类型列表<br>__mro</em>_ 此属性是在方法解析期间寻找基类时考虑的类元组<br>_<em>subclasses</em>_() 返回object的子类<br>_<em>globals</em>_ 函数会以字典类型返回当前位置的全部全局变量 与 func_globals 等价</p>
-</blockquote>
-<p>获取基本类(object)：</p>
-<blockquote>
-<p>‘’._<em>class</em>_._<em>mro__[2]<br>{}.__class</em>_._<em>bases__[0]<br>().__class</em>_._<em>bases__[0]<br>[].__class</em>_._<em>bases__[0]<br>request.__class</em>_.__mro__[9]   //在flask的jinja2模块渲染时可用</p>
-</blockquote>
-<p>获取基本类的子类：</p>
-<blockquote>
-<p>object._<em>subclasses__()<br>//‘’.__class</em>_._<em>mro</em>_[2]._<em>subclasses</em>_()</p>
-</blockquote>
-<p>快速查找该引用对应的位置：<br><code>&#39;&#39;.__class__.__mro__[2].__subclasses__().index(file)</code> 比如file在的位置为40，则<br>读文件：<br><code>&#39;&#39;.__class__.__mro__[2].__subclasses__()[40]</code></p>
+        <h2 id="整数运算"><a href="#整数运算" class="headerlink" title="整数运算"></a>整数运算</h2><h3 id="无符号加法"><a href="#无符号加法" class="headerlink" title="无符号加法"></a>无符号加法</h3><p>两个非负整数x和y，满足0&lt;=x,y&lt;=2^w，每个数都能表示为w位无符号数字。<br>无符号运算就是把整数和x+y截断为w位得到的结果，再把这个结果看做是一个无符号数。也可以看作一种形式的模运算。<br><strong>原理：</strong><br>当x+y&lt;2^w，相加结果为x+y，属于正常情况<br>当2^w&lt;=x+y&lt;2^w+1，相加结果为x+y-2^w，属于溢出情况<br><strong>算术运算溢出：</strong><br>指完整的整数结果不能放到数据类型的字长限制中去，如上边的两个运算数的和为2^w或者更大时，就发生了溢出。<br><strong>检测无符号数加法中的溢出：</strong><br>对在范围内0&lt;=x,y&lt;=UMaxw中的x和y，令s是x+y的和，当且仅当s小于x（或者等价的s小于y）时，发生了溢出。</p>
+<h3 id="补码加法"><a href="#补码加法" class="headerlink" title="补码加法"></a>补码加法</h3><p>给定在范围-2^w-1&lt;=x,y&lt;=2^w-1 -1之内的整数值x和y，他们的和就在范围-2^w&lt;=x+y&lt;=2^w -2之内，要想准确表示，可能需要w+1位。<br>定义补码加法x+y为整数和x+y被截断为w位的结果，并将这个结果看做是补码数。<br><strong>原理：</strong><br>当2^w-1&lt;=x+y时，相加结果为x+y-2^w,属于正溢出情况（两个正数相加，得到一个负数）<br>当-2^w-1&lt;=x+y&lt;=2^w-1，相加结果为x+y，属于正常情况<br>当x+y&lt;-2^w-1时，相加结果为x+y+2^w，属于负溢出情况（两个负数相加，得到一个非负的结果）<br><strong>检测补码加法中的溢出</strong><br>当两个大于0的数相加得到一个负数时，发生正溢出。<br>当两个小于0的数相加得到一个非负数时，发生负溢出。</p>
+<h3 id="补码的非"><a href="#补码的非" class="headerlink" title="补码的非"></a>补码的非</h3><p>当x=TMinw时，补码的非等于TMinw。<br>当x&gt;TMinw时，补码的非等于包括符号位，每位取反，最后一位加1，得到的结果。</p>
+<h3 id="无符号乘法"><a href="#无符号乘法" class="headerlink" title="无符号乘法"></a>无符号乘法</h3><p>将一个无符号数截断为w位等价于计算该值模2^w。<br><strong>原理：</strong><br>对满足0&lt;=x,y&lt;=UMaxw的x和y有：x*y=(x*y)mod 2^w</p>
+<h3 id="补码乘法"><a href="#补码乘法" class="headerlink" title="补码乘法"></a>补码乘法</h3><p>先计算无符号乘法，再把无符号数转换为补码即可<br><strong>原理：</strong><br>x*y=U2Tw((x*y)mod 2^w)</p>
+<h3 id="乘以常数"><a href="#乘以常数" class="headerlink" title="乘以常数"></a>乘以常数</h3><p>编译器使用了一项重要的优化，用移位和加法运算的组合来代替乘以常数因子的乘法。<br><strong>乘以2的幂</strong><br>乘以2^k，就在该数的右边加k个0。相当于左移k位，对于其固定字长的乘法，把其高k位被丢弃。</p>
+<h3 id="除以2的幂"><a href="#除以2的幂" class="headerlink" title="除以2的幂"></a>除以2的幂</h3><p>除以2的幂也可以用移位运算来实现，只不过用的是右移，无符号数和补码数分别使用逻辑移位和算术移位来达到目的。<br><strong>无符号数：</strong>一定是逻辑右移。右移k位，在高位补0，没有实际意义。<br><strong>补码数：</strong>向下舍入。当x&gt;=0时，即为非负数时，效果与逻辑右移是一样的，对于负数来讲，如果需要舍入时，要进行向下舍入。例如：右移4位将会把-771.25向下舍入位-772。</p>
 
       
     </div>
@@ -355,13 +323,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/04/21/oj web confusion1/">oj Web-Confusion1(SSTI攻击)</a></p>
+        <p><span>本文标题:</span><a href="/2019/06/15/CSAPP（整数运算）/">《CSAPP》整数运算（第二章）</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-04-21, 21:29:12</p>
-        <p><span>最后更新:</span>2019-04-21, 21:49:41</p>
+        <p><span>发布时间:</span>2019-06-15, 18:43:16</p>
+        <p><span>最后更新:</span>2019-06-15, 18:44:35</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/04/21/oj web confusion1/" title="oj Web-Confusion1(SSTI攻击)">https://hanqd.github.io/2019/04/21/oj web confusion1/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/21/oj web confusion1/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/06/15/CSAPP（整数运算）/" title="《CSAPP》整数运算（第二章）">https://hanqd.github.io/2019/06/15/CSAPP（整数运算）/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/06/15/CSAPP（整数运算）/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -373,16 +341,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/04/27/20190427/">
-                    恶意软件样本地址集合
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/04/19/oj pwn bof/">
-                    oj pwn-bof
+                <a href="/2019/05/31/CSAPP2/">
+                    《CSAPP》 位移运算+机器中的整数表示（第二章）
                 </a>
             </div>
         
@@ -394,7 +356,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Confusion1"><span class="toc-number">1.</span> <span class="toc-text">Confusion1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.2.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#所用知识"><span class="toc-number">1.3.</span> <span class="toc-text">所用知识</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#整数运算"><span class="toc-number">1.</span> <span class="toc-text">整数运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#无符号加法"><span class="toc-number">1.1.</span> <span class="toc-text">无符号加法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#补码加法"><span class="toc-number">1.2.</span> <span class="toc-text">补码加法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#补码的非"><span class="toc-number">1.3.</span> <span class="toc-text">补码的非</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无符号乘法"><span class="toc-number">1.4.</span> <span class="toc-text">无符号乘法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#补码乘法"><span class="toc-number">1.5.</span> <span class="toc-text">补码乘法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#乘以常数"><span class="toc-number">1.6.</span> <span class="toc-text">乘以常数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#除以2的幂"><span class="toc-number">1.7.</span> <span class="toc-text">除以2的幂</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -430,7 +392,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"oj Web-Confusion1(SSTI攻击)　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"《CSAPP》整数运算（第二章）　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -446,7 +408,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/21/oj web confusion1/" data-title="oj Web-Confusion1(SSTI攻击)" data-url="https://hanqd.github.io/2019/04/21/oj web confusion1/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/06/15/CSAPP（整数运算）/" data-title="《CSAPP》整数运算（第二章）" data-url="https://hanqd.github.io/2019/06/15/CSAPP（整数运算）/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -469,15 +431,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/04/27/20190427/" title="上一篇: 恶意软件样本地址集合">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/04/19/oj pwn bof/" title="下一篇: oj pwn-bof">
+            <a href="/2019/05/31/CSAPP2/" title="下一篇: 《CSAPP》 位移运算+机器中的整数表示（第二章）">
                 <i class="fa fa-angle-right"></i>
             </a>
         

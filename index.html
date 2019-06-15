@@ -270,6 +270,72 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-CSAPP（整数运算）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/06/15/CSAPP（整数运算）/" class="article-date">
+      <time datetime="2019-06-15T10:43:16.206Z" itemprop="datePublished">2019-06-15</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/15/CSAPP（整数运算）/">《CSAPP》整数运算（第二章）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="整数运算"><a href="#整数运算" class="headerlink" title="整数运算"></a>整数运算</h2><h3 id="无符号加法"><a href="#无符号加法" class="headerlink" title="无符号加法"></a>无符号加法</h3><p>两个非负整数x和y，满足0&lt;=x,y&lt;=2^w，每个数都能表示为w位无符号数字。<br>无符号运算就是把整数和x+y截断为w位得到的结果，再把这个结果看做是一个无符号数。也可以看作一种形式的模运算。<br><strong>原理：</strong><br>当x+y&lt;2^w，相加结果为x+y，属于正常情况<br>当2^w&lt;=x+y&lt;2^w+1，相加结果为x+y-2^w，属于溢出情况<br><strong>算术运算溢出：</strong><br>指完整的整数结果不能放到数据类型的字长限制中去，如上边的两个运算数的和为2^w或者更大时，就发生了溢出。<br><strong>检测无符号数加法中的溢出：</strong><br>对在范围内0&lt;=x,y&lt;=UMaxw中的x和y，令s是x+y的和，当且仅当s小于x（或者等价的s小于y）时，发生了溢出。</p>
+<h3 id="补码加法"><a href="#补码加法" class="headerlink" title="补码加法"></a>补码加法</h3><p>给定在范围-2^w-1&lt;=x,y&lt;=2^w-1 -1之内的整数值x和y，他们的和就在范围-2^w&lt;=x+y&lt;=2^w -2之内，要想准确表示，可能需要w+1位。<br>定义补码加法x+y为整数和x+y被截断为w位的结果，并将这个结果看做是补码数。<br><strong>原理：</strong><br>当2^w-1&lt;=x+y时，相加结果为x+y-2^w,属于正溢出情况（两个正数相加，得到一个负数）<br>当-2^w-1&lt;=x+y&lt;=2^w-1，相加结果为x+y，属于正常情况<br>当x+y&lt;-2^w-1时，相加结果为x+y+2^w，属于负溢出情况（两个负数相加，得到一个非负的结果）<br><strong>检测补码加法中的溢出</strong><br>当两个大于0的数相加得到一个负数时，发生正溢出。<br>当两个小于0的数相加得到一个非负数时，发生负溢出。</p>
+<h3 id="补码的非"><a href="#补码的非" class="headerlink" title="补码的非"></a>补码的非</h3><p>当x=TMinw时，补码的非等于TMinw。<br>当x&gt;TMinw时，补码的非等于包括符号位，每位取反，最后一位加1，得到的结果。</p>
+<h3 id="无符号乘法"><a href="#无符号乘法" class="headerlink" title="无符号乘法"></a>无符号乘法</h3><p>将一个无符号数截断为w位等价于计算该值模2^w。<br><strong>原理：</strong><br>对满足0&lt;=x,y&lt;=UMaxw的x和y有：x*y=(x*y)mod 2^w</p>
+<h3 id="补码乘法"><a href="#补码乘法" class="headerlink" title="补码乘法"></a>补码乘法</h3><p>先计算无符号乘法，再把无符号数转换为补码即可<br><strong>原理：</strong><br>x*y=U2Tw((x*y)mod 2^w)</p>
+<h3 id="乘以常数"><a href="#乘以常数" class="headerlink" title="乘以常数"></a>乘以常数</h3><p>编译器使用了一项重要的优化，用移位和加法运算的组合来代替乘以常数因子的乘法。<br><strong>乘以2的幂</strong><br>乘以2^k，就在该数的右边加k个0。相当于左移k位，对于其固定字长的乘法，把其高k位被丢弃。</p>
+<h3 id="除以2的幂"><a href="#除以2的幂" class="headerlink" title="除以2的幂"></a>除以2的幂</h3><p>除以2的幂也可以用移位运算来实现，只不过用的是右移，无符号数和补码数分别使用逻辑移位和算术移位来达到目的。<br><strong>无符号数：</strong>一定是逻辑右移。右移k位，在高位补0，没有实际意义。<br><strong>补码数：</strong>向下舍入。当x&gt;=0时，即为非负数时，效果与逻辑右移是一样的，对于负数来讲，如果需要舍入时，要进行向下舍入。例如：右移4位将会把-771.25向下舍入位-772。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSAPP笔记/">CSAPP笔记</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-CSAPP2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -834,77 +900,6 @@
       
         <p class="article-more-link">
           <a href="/2019/05/10/CSAPP第二章/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190505" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/05/05/20190505/" class="article-date">
-      <time datetime="2019-05-05T13:40:05.753Z" itemprop="datePublished">2019-05-05</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/05/20190505/">CSAPP笔记-第一章 计算机系统漫游</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="第一章-计算机系统漫游"><a href="#第一章-计算机系统漫游" class="headerlink" title="第一章 计算机系统漫游"></a>第一章 计算机系统漫游</h2><p>这一章通过研究“hello world”这一简单程序的生命周期，介绍了计算机系统的主要概念和主题，先从概念或名词的上理解计算机系统。这一章先概括地介绍了一下计算机系统的硬件和软件，剩余章节会详细的介绍，让我们有一个大体了解与框架。</p>
-<ul>
-<li>运行一个简单的程序所做工作（Hello程序的生命周期）</li>
-<li>系统硬件</li>
-<li>存储设备</li>
-<li>操作系统（应用软件与系统硬件的桥梁）</li>
-<li>系统之间的通信</li>
-<li>重要概念
-          
-      
-    </li></ul></div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSAPP笔记/">CSAPP笔记</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/05/05/20190505/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
