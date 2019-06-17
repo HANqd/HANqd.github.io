@@ -270,6 +270,70 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-CSAPP（浮点数）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/06/17/CSAPP（浮点数）/" class="article-date">
+      <time datetime="2019-06-17T14:17:07.686Z" itemprop="datePublished">2019-06-17</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/17/CSAPP（浮点数）/">《CSAPP》浮点数+浮点数运算（第二章）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h2><h3 id="二进制小数（定点表示法）"><a href="#二进制小数（定点表示法）" class="headerlink" title="二进制小数（定点表示法）"></a>二进制小数（定点表示法）</h3><p>二进制小数：101.11<br>小数点左边的位的权是2的正幂，点右边的位的权是2的负幂。即表示十进制数：1*2^2+0*2^1+1*2^0+1*2^-1+1*2^-2=4+0+1+1/2+1/4=5(3/4)<br>小数点左移一位相当于这个数被2除，右移一位相当于将该数乘2。<br>
+          
+      
+    </p></div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSAPP笔记/">CSAPP笔记</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/06/17/CSAPP（浮点数）/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-CSAPP（整数运算）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -299,16 +363,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="整数运算"><a href="#整数运算" class="headerlink" title="整数运算"></a>整数运算</h2><h3 id="无符号加法"><a href="#无符号加法" class="headerlink" title="无符号加法"></a>无符号加法</h3><p>两个非负整数x和y，满足0&lt;=x,y&lt;=2^w，每个数都能表示为w位无符号数字。<br>无符号运算就是把整数和x+y截断为w位得到的结果，再把这个结果看做是一个无符号数。也可以看作一种形式的模运算。<br><strong>原理：</strong><br>当x+y&lt;2^w，相加结果为x+y，属于正常情况<br>当2^w&lt;=x+y&lt;2^w+1，相加结果为x+y-2^w，属于溢出情况<br><strong>算术运算溢出：</strong><br>指完整的整数结果不能放到数据类型的字长限制中去，如上边的两个运算数的和为2^w或者更大时，就发生了溢出。<br><strong>检测无符号数加法中的溢出：</strong><br>对在范围内0&lt;=x,y&lt;=UMaxw中的x和y，令s是x+y的和，当且仅当s小于x（或者等价的s小于y）时，发生了溢出。</p>
-<h3 id="补码加法"><a href="#补码加法" class="headerlink" title="补码加法"></a>补码加法</h3><p>给定在范围-2^w-1&lt;=x,y&lt;=2^w-1 -1之内的整数值x和y，他们的和就在范围-2^w&lt;=x+y&lt;=2^w -2之内，要想准确表示，可能需要w+1位。<br>定义补码加法x+y为整数和x+y被截断为w位的结果，并将这个结果看做是补码数。<br><strong>原理：</strong><br>当2^w-1&lt;=x+y时，相加结果为x+y-2^w,属于正溢出情况（两个正数相加，得到一个负数）<br>当-2^w-1&lt;=x+y&lt;=2^w-1，相加结果为x+y，属于正常情况<br>当x+y&lt;-2^w-1时，相加结果为x+y+2^w，属于负溢出情况（两个负数相加，得到一个非负的结果）<br><strong>检测补码加法中的溢出</strong><br>当两个大于0的数相加得到一个负数时，发生正溢出。<br>当两个小于0的数相加得到一个非负数时，发生负溢出。</p>
-<h3 id="补码的非"><a href="#补码的非" class="headerlink" title="补码的非"></a>补码的非</h3><p>当x=TMinw时，补码的非等于TMinw。<br>当x&gt;TMinw时，补码的非等于包括符号位，每位取反，最后一位加1，得到的结果。</p>
-<h3 id="无符号乘法"><a href="#无符号乘法" class="headerlink" title="无符号乘法"></a>无符号乘法</h3><p>将一个无符号数截断为w位等价于计算该值模2^w。<br><strong>原理：</strong><br>对满足0&lt;=x,y&lt;=UMaxw的x和y有：x*y=(x*y)mod 2^w</p>
-<h3 id="补码乘法"><a href="#补码乘法" class="headerlink" title="补码乘法"></a>补码乘法</h3><p>先计算无符号乘法，再把无符号数转换为补码即可<br><strong>原理：</strong><br>x*y=U2Tw((x*y)mod 2^w)</p>
-<h3 id="乘以常数"><a href="#乘以常数" class="headerlink" title="乘以常数"></a>乘以常数</h3><p>编译器使用了一项重要的优化，用移位和加法运算的组合来代替乘以常数因子的乘法。<br><strong>乘以2的幂</strong><br>乘以2^k，就在该数的右边加k个0。相当于左移k位，对于其固定字长的乘法，把其高k位被丢弃。</p>
-<h3 id="除以2的幂"><a href="#除以2的幂" class="headerlink" title="除以2的幂"></a>除以2的幂</h3><p>除以2的幂也可以用移位运算来实现，只不过用的是右移，无符号数和补码数分别使用逻辑移位和算术移位来达到目的。<br><strong>无符号数：</strong>一定是逻辑右移。右移k位，在高位补0，没有实际意义。<br><strong>补码数：</strong>向下舍入。当x&gt;=0时，即为非负数时，效果与逻辑右移是一样的，对于负数来讲，如果需要舍入时，要进行向下舍入。例如：右移4位将会把-771.25向下舍入位-772。</p>
-
+              <h2 id="整数运算"><a href="#整数运算" class="headerlink" title="整数运算"></a>整数运算</h2><h3 id="无符号加法"><a href="#无符号加法" class="headerlink" title="无符号加法"></a>无符号加法</h3><p>两个非负整数x和y，满足0&lt;=x,y&lt;=2^w，每个数都能表示为w位无符号数字。<br>无符号运算就是把整数和x+y截断为w位得到的结果，再把这个结果看做是一个无符号数。也可以看作一种形式的模运算。<br>
+          
       
-    </div>
+    </p></div>
     
     <div class="article-info article-info-index">
       
@@ -319,6 +377,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSAPP笔记/">CSAPP笔记</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/06/15/CSAPP（整数运算）/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -836,70 +898,6 @@
       
         <p class="article-more-link">
           <a href="/2019/05/18/pwnable-fd/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-CSAPP第二章" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/05/10/CSAPP第二章/" class="article-date">
-      <time datetime="2019-05-10T13:40:06.151Z" itemprop="datePublished">2019-05-10</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/10/CSAPP第二章/">CSAPP笔记-第二章 信息的表示和处理</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我在读书时养成的习惯，先读目录，了解文章大体结构，知道每章每节主要讲了哪些内容，把每个章节的结构理清楚，我必须得让自己的逻辑清楚，要不就觉得知识点很乱，必须理清！本科期间，在课上听老师讲完后，课下根据自己的思路理清书本后，记一遍笔记（本人喜欢动手记笔记），大部分知识点都能记住。现在，改用博客的形式记笔记，还有点不习惯，个人感觉效果不如动手记笔记好。可能每个人的学习方法不同吧。<br>博客记笔记有个优点就是可以随意查阅，并且不害怕丢，也不占地方，有想法的时候或者自己认为有意义的内容都可以在这里记录，就像一个电子笔记本。<br>废话说了这么多，进入正题。<br>最近在忙毕业论文的事，抽空读点书，接下来会继续在本篇博客更新第二章的学习内容。<br>
-          
-      
-    </p></div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSAPP笔记/">CSAPP笔记</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/05/10/CSAPP第二章/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
