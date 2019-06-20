@@ -15,17 +15,24 @@
 
 
 
-<meta name="description" content="1009 说反话题目描述给定一句英语，要求你编写程序，将句中所有单词的顺序颠倒输出。">
+<meta name="description" content="程序的机器级表示GCC C语言编译器以汇编代码的形式产生输出，汇编代码是机器代码的文本表示，给出程序中的每一条指令。然后GCC调用汇编器和链接器，根据汇编代码生成可执行的机器代码。为什么要学习机器代码呢？对于程序员来说，能够阅读和理解汇编代码仍是一项很重要的技能。逆向工程：通过研究系统和逆向工作，来试图了解系统的创建过程。">
+<meta name="keywords" content="CSAPP笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日一题 1009+vector容器">
-<meta property="og:url" content="https://hanqd.github.io/2019/04/01/20190401/index.html">
+<meta property="og:title" content="《CSAPP》程序的机器级表示（第三章）">
+<meta property="og:url" content="https://hanqd.github.io/2019/06/20/CSAPP（第三章1）/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="1009 说反话题目描述给定一句英语，要求你编写程序，将句中所有单词的顺序颠倒输出。">
+<meta property="og:description" content="程序的机器级表示GCC C语言编译器以汇编代码的形式产生输出，汇编代码是机器代码的文本表示，给出程序中的每一条指令。然后GCC调用汇编器和链接器，根据汇编代码生成可执行的机器代码。为什么要学习机器代码呢？对于程序员来说，能够阅读和理解汇编代码仍是一项很重要的技能。逆向工程：通过研究系统和逆向工作，来试图了解系统的创建过程。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-01T09:35:48.721Z">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/img/12.JPG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/img/13.JPG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/img/14.JPG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/img/15.JPG">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/img/16.JPG">
+<meta property="og:updated_time" content="2019-06-20T12:03:03.445Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每日一题 1009+vector容器">
-<meta name="twitter:description" content="1009 说反话题目描述给定一句英语，要求你编写程序，将句中所有单词的顺序颠倒输出。">
+<meta name="twitter:title" content="《CSAPP》程序的机器级表示（第三章）">
+<meta name="twitter:description" content="程序的机器级表示GCC C语言编译器以汇编代码的形式产生输出，汇编代码是机器代码的文本表示，给出程序中的每一条指令。然后GCC调用汇编器和链接器，根据汇编代码生成可执行的机器代码。为什么要学习机器代码呢？对于程序员来说，能够阅读和理解汇编代码仍是一项很重要的技能。逆向工程：通过研究系统和逆向工作，来试图了解系统的创建过程。">
+<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/img/12.JPG">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +64,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>每日一题 1009+vector容器 | HANqd&#39;s BLOG</title>
+<title>《CSAPP》程序的机器级表示（第三章） | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -267,11 +274,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-20190401" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-CSAPP（第三章1）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/01/20190401/" class="article-date">
-      <time datetime="2019-04-01T09:34:28.033Z" itemprop="datePublished">2019-04-01</time>
+      <a href="/2019/06/20/CSAPP（第三章1）/" class="article-date">
+      <time datetime="2019-06-20T12:02:15.730Z" itemprop="datePublished">2019-06-20</time>
 </a>
 
 
@@ -286,7 +293,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      每日一题 1009+vector容器
+      《CSAPP》程序的机器级表示（第三章）
     </h1>
   
 
@@ -296,6 +303,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSAPP笔记/">CSAPP笔记</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -303,55 +314,50 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="1009-说反话"><a href="#1009-说反话" class="headerlink" title="1009 说反话"></a>1009 说反话</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一句英语，要求你编写程序，将句中所有单词的顺序颠倒输出。<br><a id="more"></a></p>
-<h3 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h3><p>测试输入包含一个测试用例，在一行内给出总长度不超过 80 的字符串。字符串由若干单词和若干空格组成，其中单词是由英文字母（大小写有区分）组成的字符串，单词之间用 1 个空格分开，输入保证句子末尾没有多余的空格。</p>
-<h3 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h3><p>每个测试用例的输出占一行，输出倒序后的句子。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>输入样例：<br>Hello World Here I Come<br>输出样例：<br>Come I Here World Hello<br>由样例，可以想到用栈来解决，符合栈的先进后出的特点，还可以用vactor容器解决。</p>
-<h3 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h3><p>方法一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;stack&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	char c;</span><br><span class="line">	stack&lt;string&gt; s;  //声明一个string类型的栈变量s </span><br><span class="line">	string str;</span><br><span class="line">	while(cin&gt;&gt;str)</span><br><span class="line">	&#123;</span><br><span class="line">		s.push(str);//str入栈 </span><br><span class="line">		if((c=getchar())==&apos;\n&apos;) break;//c接收入栈的单个字符，判断是否输入完毕 </span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;s.top();//输出栈顶元素 </span><br><span class="line">	s.pop();//栈顶元素出栈 </span><br><span class="line">	while(!s.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;&quot; &quot;&lt;&lt;s.top();//循环输出栈顶元素 </span><br><span class="line">		s.pop();//栈顶元素出栈 </span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>getchar()函数作用：<br>getchar()是到缓冲区读取第一个字符<br>首先,从键盘输入许多字符,最后回车后,所有字符包括回车放到缓冲区<br>这时才开始循环执行getchar(),读入一个字符判断是否回车,不是就继续读,是回车就退出循环(之所以说是顺序接受一行字符,是因为它取的始终是缓冲区中第一个字符,每取一个缓冲区的字符少一个,也就是顺序读取了)</p>
-<p>方法二：vactor<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main ()</span><br><span class="line">&#123;</span><br><span class="line">	char c;</span><br><span class="line">	vector&lt;string&gt; v;//相当于string v[]，数组长度不定 </span><br><span class="line">	string str;</span><br><span class="line">	while(cin&gt;&gt;str)</span><br><span class="line">	&#123;</span><br><span class="line">		v.insert(v.begin(),str);//向容器v中存入str字符串 </span><br><span class="line">		if((c=getchar())==&apos;\n&apos;) break;</span><br><span class="line">	&#125;</span><br><span class="line">	vector&lt;string&gt;::iterator i=v.begin(),end=v.end();//i指向v的首地址，区间是到最后一个元素 </span><br><span class="line">	for(int j=v.size();j&gt;0;j--)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;*i;//输出i指针指向的内容</span><br><span class="line">		if(j!=1)</span><br><span class="line">		cout&lt;&lt;&quot; &quot;;</span><br><span class="line">		i++;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="vector-向量"><a href="#vector-向量" class="headerlink" title="vector(向量)"></a>vector(向量)</h3><p>C++中的一种数据结构,确切的说是一个类.它相当于一个动态的数组,当程序员无法知道自己需要的数组的规模多大时,用其来解决问题可以达到最大节约空间的目的.</p>
-<p>用法:</p>
+        <h2 id="程序的机器级表示"><a href="#程序的机器级表示" class="headerlink" title="程序的机器级表示"></a>程序的机器级表示</h2><p>GCC C语言编译器以汇编代码的形式产生输出，汇编代码是机器代码的文本表示，给出程序中的每一条指令。然后GCC调用汇编器和链接器，根据汇编代码生成可执行的机器代码。<br>为什么要学习机器代码呢？对于程序员来说，能够阅读和理解汇编代码仍是一项很重要的技能。<br>逆向工程：通过研究系统和逆向工作，来试图了解系统的创建过程。<br><a id="more"></a></p>
+<h3 id="机器级代码"><a href="#机器级代码" class="headerlink" title="机器级代码"></a>机器级代码</h3><p>对于机器级编程来说，其中两种抽象尤为重要。</p>
+<ul>
+<li>第一种是由指令集体系结构或指令集架构（ISA）来定义机器级程序的格式和行为，它定义了处理器状态、指令的格式，以及每条指令对状态的影响。</li>
+<li>第二种是机器级程序使用的内存地址是虚拟地址，提供的内存模型看上去是一个非常大的字节数组。</li>
+</ul>
+<p>一些通常对C语言程序员隐藏的处理器状态都是可见的：</p>
+<ul>
+<li>程序计数器（PC）给出将要执行的下一条指令在内存中的地址。</li>
+<li>整数寄存器，有16个，分别存储64位的值。这些寄存器可以存储地址或整数数据。有的寄存器被用来记录某些重要的程序状态，而其他的寄存器用来保存临时数据。</li>
+<li>条件码寄存器，保存着最近执行的算术或逻辑指令的状态信息。他们用来实现控制或数据流中的条件变化。</li>
+<li>一组向量寄存器可以存放一个或多个整数或浮点数值。</li>
+</ul>
+<p>虽然C语言提供了一种模型，可以在内存中声明和分配各种数据类型的对象，但是机器代码只是简单的将内存看成一个很大的、按字节寻址的数组。</p>
+<p>程序内存包含：程序的可执行机器代码，操作系统需要的一些信息，用来管理过程调用和返回的运行时栈，以及用户分配的内存块。</p>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><ol>
+<li><p>由源程序查看汇编代码，使用如下命令：<br>Linux&gt; gcc -0g -S 源程序名.c<br>这会使GCC运行编译器，产生一个汇编文件 源程序名.s，但是不做其他进一步的工作。</p>
+</li>
+<li><p>使用-c命令行选项，GCC会编译并汇编该代码：<br>Linux&gt; gcc -0g -c 源程序名.c<br>这就会产生目标代码文件 源程序名.o，他是二进制格式的，无法直接查看。<br>例如：一段字节序列的十六进制表示：53 48 89 d3 e8 00 00 00 00 48 89 03 5b c3。<br>机器执行的程序只是一个字节序列，它是对一系列指令的编码，机器对产生这些指令的源代码几乎一无所知。</p>
+</li>
+<li><p>查看机器代码文件的内容，用反汇编器，根据机器代码产生一种类似于汇编代码的格式。<br>使用命令：-d<br>Linux&gt; objdump -d 源程序名.o</p>
+</li>
+</ol>
+<h3 id="关于格式的注解"><a href="#关于格式的注解" class="headerlink" title="关于格式的注解"></a>关于格式的注解</h3><p>用-S命令生成的汇编文件，有以.开头的行，所有以.开头的行都是指导汇编器和链接器工作的伪指令，我们通常可以忽略这些行。</p>
+<h3 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h3><p>C语言数据类型在x86-64中的大小。在64位机器中，指针长8字节。<br><img src="https://github.com/HANqd/IMG/raw/master/img/img/12.JPG" alt></p>
+<p>浮点数主要有两种形式：单精度值（4字节），对应于C语言数据类型float，双精度值（8字节），对应于C语言数据类型double。</p>
+<h3 id="访问信息"><a href="#访问信息" class="headerlink" title="访问信息"></a>访问信息</h3><p>一个x86-64的中央处理单元（CPU）包含一组16个存储64位值的通用目的寄存器。这些寄存器用来存储整数数据和指针。<br><img src="https://github.com/HANqd/IMG/raw/master/img/img/13.JPG" alt><br><img src="https://github.com/HANqd/IMG/raw/master/img/img/14.JPG" alt></p>
+<p>当这些指令以寄存器作为目标时，对于生成小于8字节结果的指令，寄存器中剩下的字节会怎么样，对此有两条规则：生成1字节和2字节数字的指令会保持剩下的字节不变，生成4字节数字的指令会把高位4个字节置0。</p>
 <ol>
-<li>文件包含:<br>首先在程序开头处加上#include (vector)以包含所需要的类文件vector<br>还有一定要加上using namespace std;</li>
-<li>变量声明:<br>2.1 例:声明一个int向量以替代一维的数组:vector (int) a;(等于声明了一个int数组a[],大小没有指定,可以动态的向里面添加删除)。<br>2.2 例:用vector代替二维数组.其实只要声明一个一维数组向量即可,而一个数组的名字其实代表的是它的首地址,所以只要声明一个地址的向量即可,即:vector (int *) a.同理想用向量代替三维数组也是一样,vector (int**)a;再往上面依此类推.</li>
-<li>具体的用法以及函数调用:</li>
+<li>操作数指示符<br>大多数指令有一个或多个操作数，指示出执行一个操作中要使用的源数据值，以及放置结果的目的位置。<br>各种不同的<strong>操作数</strong>的可能性被分为三种类型。</li>
 </ol>
 <ul>
-<li>push_back   在数组的最后添加一个数据</li>
-<li>pop_back    去掉数组的最后一个数据 </li>
-<li>at                得到编号位置的数据</li>
-<li>begin           得到数组头的指针</li>
-<li>end             得到数组的最后一个单元+1的指针</li>
-<li>front        得到数组头的引用</li>
-<li>back            得到数组的最后一个单元的引用</li>
-<li>max_size     得到vector最大可以是多大</li>
-<li>capacity       当前vector分配的大小</li>
-<li>size           当前使用数据的大小</li>
-<li>resize         改变当前使用数据的大小，如果它比当前使用的大，者填充默认值</li>
-<li>reserve      改变当前vecotr所分配空间的大小</li>
-<li>erase         删除指针指向的数据项</li>
-<li>clear          清空当前的vector</li>
-<li>rend          将vector反转构的结束指针返回(其实就是原来的begin-1)</li>
-<li>empty        判断vector是否为空</li>
-<li>swap         与另一个vector交换数据</li>
+<li>立即数：用来表示常数值。在ATT格式的汇编代码中，立即数的书写方式是‘$’后面跟一个用标准C表示法表示的整数，比如，$-577或$0x1F。</li>
+<li>寄存器：它表示某个寄存器中的内容。16个寄存器的低位1字节、2字节、4字节或8字节中的一个作为操作数，这些字节数分别对应于8位、16位、32位或64位。用符号ra来表示任意寄存器a,用引用R[ra]来表示它的值。</li>
+<li>内存引用：它会根据计算出来的地址（通常称为有效地址）访问某个内存位置。用符号Mb[Addr]表示对存储在内存中从Addr开始的b个字节值的引用，为了简便，通常省去下标b。</li>
 </ul>
-<p>详细的函数实现功能：其中vector<int> c.</int></p>
-<ul>
-<li>c.clear()         移除容器中所有数据。</li>
-<li>c.empty()         判断容器是否为空。</li>
-<li>c.erase(pos)        删除pos位置的数据</li>
-<li>c.erase(beg,end) 删除[beg,end)区间的数据</li>
-<li>c.front()         传回第一个数据。</li>
-<li>c.insert(pos,elem)  在pos位置插入一个elem拷贝</li>
-<li>c.pop_back()     删除最后一个数据。</li>
-<li>c.push_back(elem) 在尾部加入一个数据。</li>
-<li>c.resize(num)     重新设置该容器的大小</li>
-<li>c.size()         回容器中实际数据的个数。</li>
-<li>c.begin()           返回指向容器第一个元素的迭代器</li>
-<li>c.end()             返回指向容器最后一个元素的迭代器</li>
-</ul>
-<h3 id="iterator"><a href="#iterator" class="headerlink" title="iterator"></a>iterator</h3><p>iterator是C++标准库（STL）中的迭代器<br>可以把它理解成类似指针的东西~当然，只是用处差不多，使用方式和声明方式可是完全不同.</p>
+<p>有多种不同的<strong>寻址模式</strong>，允许不同形式的内存引用。语法Imm(rb,ri,s)表示的是最常用的形式。分别表示：一个立即数偏移Imm，一个基址寄存器rb，一个变址寄存器ri，一个比例因子s，这里的s必须是1、2、4或者8。基址和变址寄存器都必须是64位寄存器，有效地址被计算位Imm+R[rb]+R[ri]*s。<br><img src="https://github.com/HANqd/IMG/raw/master/img/img/15.JPG" alt></p>
+<ol start="2">
+<li><p>数据传送指令<br>最简单形式的数据传送指令——mov类。这些指令把数据从源位置复制到目的位置，不做任何变化。<br>源操作数指的值是一个立即数，存储在寄存器中或者内存中，目的操作数指定一个位置，要么是一个寄存器或者是一个内存地址。<br>x86-64加了一条限制，传送指令的两个操作数不能都指向内存位置。将一个值从内存位置复制到另一个内存位置需要两条指令：第一条指令将源值加载到寄存器中，第二条将该寄存器值写入目的位置。<br><img src="https://github.com/HANqd/IMG/raw/master/img/img/16.JPG" alt></p>
+</li>
+<li><p>压入和弹出栈数据<br>栈在处理过程调用中起到至关重要的作用。<br>栈可以实现为一个数组，总是从数组的一端插入和删除元素，这一端被称为栈顶。在x86-64中，程序栈存放在内存中某个区域，栈向下增长，栈顶元素的地址是所有栈中元素地址中最低的。栈底是高地址。栈指针%rsp保存着栈顶元素的地址。</p>
+</li>
+</ol>
+<p>pushq指令是把数据压入栈，popq指令是弹出数据，这些指令只有一个操作数——压入的数据源和弹出的数据目的。<br>将一个四字值压入栈，首先要将栈指针减8，然后将值写到新的栈顶地址。因此，指令pushq %rbp的行为等价于下面两条指令：<br>subq $8,%rsp<br>movq %rbp,(%rsp)<br>弹出一个四字的操作包括从栈顶位置读出数据，然后栈指针加8，因此，指令popq %rax等价于下面两条指令：<br>movq (%rsp),%rax<br>addq $8,%rsp</p>
 
       
     </div>
@@ -360,13 +366,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/04/01/20190401/">每日一题 1009+vector容器</a></p>
+        <p><span>本文标题:</span><a href="/2019/06/20/CSAPP（第三章1）/">《CSAPP》程序的机器级表示（第三章）</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-04-01, 17:34:28</p>
-        <p><span>最后更新:</span>2019-04-01, 17:35:48</p>
+        <p><span>发布时间:</span>2019-06-20, 20:02:15</p>
+        <p><span>最后更新:</span>2019-06-20, 20:03:03</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/04/01/20190401/" title="每日一题 1009+vector容器">https://hanqd.github.io/2019/04/01/20190401/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/01/20190401/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/06/20/CSAPP（第三章1）/" title="《CSAPP》程序的机器级表示（第三章）">https://hanqd.github.io/2019/06/20/CSAPP（第三章1）/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/06/20/CSAPP（第三章1）/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -378,16 +384,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/04/02/20190402/">
-                    pwn-栈溢出（1）
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/31/每日一题1008/">
-                    每日一题 1008+pwn学习
+                <a href="/2019/06/17/CSAPP（浮点数）/">
+                    《CSAPP》浮点数+浮点数运算（第二章）
                 </a>
             </div>
         
@@ -399,7 +399,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1009-说反话"><span class="toc-number">1.</span> <span class="toc-text">1009 说反话</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式："><span class="toc-number">1.2.</span> <span class="toc-text">输入格式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式："><span class="toc-number">1.3.</span> <span class="toc-text">输出格式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.4.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-代码"><span class="toc-number">1.5.</span> <span class="toc-text">C++代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vector-向量"><span class="toc-number">1.6.</span> <span class="toc-text">vector(向量)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iterator"><span class="toc-number">1.7.</span> <span class="toc-text">iterator</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#程序的机器级表示"><span class="toc-number">1.</span> <span class="toc-text">程序的机器级表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机器级代码"><span class="toc-number">1.1.</span> <span class="toc-text">机器级代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码示例"><span class="toc-number">1.2.</span> <span class="toc-text">代码示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于格式的注解"><span class="toc-number">1.3.</span> <span class="toc-text">关于格式的注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据格式"><span class="toc-number">1.4.</span> <span class="toc-text">数据格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#访问信息"><span class="toc-number">1.5.</span> <span class="toc-text">访问信息</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -435,7 +435,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"每日一题 1009+vector容器　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"《CSAPP》程序的机器级表示（第三章）　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -451,7 +451,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/01/20190401/" data-title="每日一题 1009+vector容器" data-url="https://hanqd.github.io/2019/04/01/20190401/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/06/20/CSAPP（第三章1）/" data-title="《CSAPP》程序的机器级表示（第三章）" data-url="https://hanqd.github.io/2019/06/20/CSAPP（第三章1）/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -474,15 +474,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/04/02/20190402/" title="上一篇: pwn-栈溢出（1）">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/31/每日一题1008/" title="下一篇: 每日一题 1008+pwn学习">
+            <a href="/2019/06/17/CSAPP（浮点数）/" title="下一篇: 《CSAPP》浮点数+浮点数运算（第二章）">
                 <i class="fa fa-angle-right"></i>
             </a>
         
