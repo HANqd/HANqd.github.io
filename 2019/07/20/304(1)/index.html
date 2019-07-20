@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="1017 A除以B题目描述本题要求计算 A/B，其中 A 是不超过 1000 位的正整数，B 是 1 位正整数。你需要输出商数 Q 和余数 R，使得 A=B×Q+R 成立。">
-<meta name="keywords" content="PAT每日一题">
+<meta name="description" content="这道测试拖了很久了，之前也看过，一看是反汇编的知识，自己对于反汇编又不是很熟悉加上有很多杂事，没有集中的时间来做，就拖了又拖，现在可以来仔细看看题目了。">
+<meta name="keywords" content="304challenge">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日一题 1017（大数除法）">
-<meta property="og:url" content="https://hanqd.github.io/2019/04/09/每日一题1017/index.html">
+<meta property="og:title" content="304challenge-1">
+<meta property="og:url" content="https://hanqd.github.io/2019/07/20/304(1)/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="1017 A除以B题目描述本题要求计算 A/B，其中 A 是不超过 1000 位的正整数，B 是 1 位正整数。你需要输出商数 Q 和余数 R，使得 A=B×Q+R 成立。">
+<meta property="og:description" content="这道测试拖了很久了，之前也看过，一看是反汇编的知识，自己对于反汇编又不是很熟悉加上有很多杂事，没有集中的时间来做，就拖了又拖，现在可以来仔细看看题目了。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-09T14:14:32.616Z">
+<meta property="og:updated_time" content="2019-07-20T12:06:52.871Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每日一题 1017（大数除法）">
-<meta name="twitter:description" content="1017 A除以B题目描述本题要求计算 A/B，其中 A 是不超过 1000 位的正整数，B 是 1 位正整数。你需要输出商数 Q 和余数 R，使得 A=B×Q+R 成立。">
+<meta name="twitter:title" content="304challenge-1">
+<meta name="twitter:description" content="这道测试拖了很久了，之前也看过，一看是反汇编的知识，自己对于反汇编又不是很熟悉加上有很多杂事，没有集中的时间来做，就拖了又拖，现在可以来仔细看看题目了。">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>每日一题 1017（大数除法） | HANqd&#39;s BLOG</title>
+<title>304challenge-1 | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -268,11 +268,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-每日一题1017" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-304(1)" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/09/每日一题1017/" class="article-date">
-      <time datetime="2019-04-09T01:57:02.820Z" itemprop="datePublished">2019-04-09</time>
+      <a href="/2019/07/20/304(1)/" class="article-date">
+      <time datetime="2019-07-20T12:06:02.177Z" itemprop="datePublished">2019-07-20</time>
 </a>
 
 
@@ -287,7 +287,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      每日一题 1017（大数除法）
+      304challenge-1
     </h1>
   
 
@@ -298,7 +298,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PAT每日一题/">PAT每日一题</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/304challenge/">304challenge</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -308,14 +308,38 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="1017-A除以B"><a href="#1017-A除以B" class="headerlink" title="1017 A除以B"></a>1017 A除以B</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>本题要求计算 A/B，其中 A 是不超过 1000 位的正整数，B 是 1 位正整数。你需要输出商数 Q 和余数 R，使得 A=B×Q+R 成立。<br><a id="more"></a></p>
-<h3 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h3><p>输入在一行中依次给出 A 和 B，中间以 1 空格分隔。</p>
-<h3 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h3><p>在一行中依次输出 Q 和 R，中间以 1 空格分隔。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>输入样例：<br>123456789050987654321 7</p>
-<p>输出样例：<br>17636684150141093474 3</p>
-<p>这里的A是不超过1000位的正整数，超出了一般数据类型的表示范围，涉及到大整数的运算，用字符串来表示大数。这里的大数除法思想是：先用大数字符串的第一个数即是s[0]除以被除数，样例中是s[0]=1,用1/7，Q=0,R=1,再用R*10+s[1]除以7，得到商和余数，（这里为什么余数要乘以10？因为这个余数是上一个字符除以7余下的，相比较算术运算中的十位和个位，先用十位上的数除以7，余数不等于0，则在计算个位除以7时，需要加上十位余下的数，计算才正确。）以此类推，直到计算完字符串的最后一个字符。</p>
-<h3 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	string A;</span><br><span class="line">	int B,Q=0,R=0;</span><br><span class="line">	cin&gt;&gt;A&gt;&gt;B;</span><br><span class="line">	Q=(A[0]-&apos;0&apos;)/B;</span><br><span class="line">	if(A.length()==1||(A.length()&gt;0&amp;&amp;Q!=0))</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;Q;</span><br><span class="line">	&#125;</span><br><span class="line">	R=(A[0]-&apos;0&apos;)%B;	</span><br><span class="line">	for(int i=1;i&lt;A.length();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		Q=((R*10)+A[i]-&apos;0&apos;)/B;</span><br><span class="line">		cout&lt;&lt;Q;</span><br><span class="line">		R=((R*10)+A[i]-&apos;0&apos;)%B;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;&quot; &quot;&lt;&lt;R;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>大数四则运算：<a href="https://www.cnblogs.com/wuqianling/p/5387099.html" target="_blank" rel="noopener">https://www.cnblogs.com/wuqianling/p/5387099.html</a><br>各种数据类型的取值范围：<a href="https://www.cnblogs.com/fightformylife/p/4022058.htmlhttps://www.cnblogs.com/fightformylife/p/4022058.html" target="_blank" rel="noopener">https://www.cnblogs.com/fightformylife/p/4022058.htmlhttps://www.cnblogs.com/fightformylife/p/4022058.html</a></p>
+        <p>这道测试拖了很久了，之前也看过，一看是反汇编的知识，自己对于反汇编又不是很熟悉加上有很多杂事，没有集中的时间来做，就拖了又拖，现在可以来仔细看看题目了。<br><a id="more"></a></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>题目给了三个任务：</p>
+<ol>
+<li>对myvm进行分析，理解其指令格式，取址方式，了解指令用法；</li>
+<li>基于对myvm的理解写出对应的反汇编器；</li>
+<li>对hello程序进程分析，理解hello程序所做的所有事情。</li>
+</ol>
+<p>我对题目的理解是：先分析myvm程序，得出需要的汇编语言指令集，有了指令集再编写反汇编器（反汇编器是把机器代码或二进制代码转换为汇编语言的程序），最后用这个反汇编器对hello程序进行反汇编，得到hello程序的汇编语言形式。</p>
+<p><strong>反汇编器最主要的是二进制指令集到汇编指令集的映射。</strong></p>
+<p>接下来先对myvm程序进行分析，得出反汇编器所需的指令集。</p>
+<h3 id="mymv程序分析"><a href="#mymv程序分析" class="headerlink" title="mymv程序分析"></a>mymv程序分析</h3><ol>
+<li>myvm的主函数</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">__int64 __usercall main@&lt;rax&gt;(<span class="keyword">char</span> **a1@&lt;rsi&gt;, <span class="keyword">char</span> **a2@&lt;rdx&gt;, __int64 a3@&lt;rax&gt;, <span class="keyword">int</span> a4@&lt;edi&gt;)</span><br><span class="line">&#123;</span><br><span class="line">  __int64 v4; <span class="comment">// rbx</span></span><br><span class="line">  <span class="keyword">int</span> v5; <span class="comment">// eax</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( a4 == <span class="number">2</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    signal(<span class="number">2</span>, handler);</span><br><span class="line">    v4 = sub_CE0(a1[<span class="number">1</span>], handler);</span><br><span class="line">    unk_202014 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      v5 = sub_E90(v4);</span><br><span class="line">      <span class="keyword">if</span> ( v5 )</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">if</span> ( !unk_202014 )</span><br><span class="line">        <span class="keyword">goto</span> LABEL_8;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( v5 == <span class="number">2</span> )</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">"Illegal Instruction"</span>);</span><br><span class="line">LABEL_8:</span><br><span class="line">    nullsub_1(v4);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Usage: %s &lt;myvm program&gt;\n"</span>, *a1, a3);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0L</span>L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从代码中可以得到主函数调用了signal、sub_CE0、sub_E90、nullsub_1函数，有while循环，有if条件语句。</p>
+<p>signal()函数：<br><a href="https://www.cnblogs.com/wuyepeng/p/9790396.html" target="_blank" rel="noopener">https://www.cnblogs.com/wuyepeng/p/9790396.html</a> ，signal(2, handler)属于第三种情况，自定义一个信号处理函数handler，要求内核在处理该信号时切换到用户态执行这个处理函数。当程序是一个死循环（while（1））时，按Ctrl+c可以终止程序。</p>
+<ol start="2">
+<li>调用sub_CE0()函数</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *__<span class="function">fastcall <span class="title">sub_CE0</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  FILE *v1; <span class="comment">// rax</span></span><br><span class="line">  FILE *v2; <span class="comment">// rbx</span></span><br><span class="line">  __int64 v3; <span class="comment">// r15</span></span><br><span class="line">  <span class="keyword">void</span> *v4; <span class="comment">// r14</span></span><br><span class="line">  <span class="keyword">char</span> *v5; <span class="comment">// rbx</span></span><br><span class="line"></span><br><span class="line">  v1 = fopen(a1, <span class="string">"rb"</span>);</span><br><span class="line">  v2 = v1;</span><br><span class="line">  <span class="keyword">if</span> ( !v1 )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0L</span>L;</span><br><span class="line">  fseek(v1, <span class="number">0L</span>L, <span class="number">2</span>);</span><br><span class="line">  v3 = ftell(v2);</span><br><span class="line">  fseek(v2, <span class="number">0L</span>L, <span class="number">0</span>);</span><br><span class="line">  v4 = <span class="built_in">malloc</span>(<span class="number">0x10000</span>uLL);</span><br><span class="line">  <span class="built_in">memset</span>(v4, <span class="number">0</span>, <span class="number">0x10000</span>uLL);</span><br><span class="line">  fread(v4, <span class="number">1u</span>LL, v3, v2);</span><br><span class="line">  fclose(v2);</span><br><span class="line">  _mm_storeu_si128(</span><br><span class="line">    (__m128i *)&amp;unk_202018 + <span class="number">4096</span>,</span><br><span class="line">    _mm_unpacklo_epi64((__m128i)(<span class="keyword">unsigned</span> __int64)&amp;unk_202018, (__m128i)((<span class="keyword">unsigned</span> __int64)&amp;unk_202018 + <span class="number">0x8000</span>)));</span><br><span class="line">  <span class="built_in">memcpy</span>(&amp;unk_202018, v4, <span class="number">0x10000</span>uLL);</span><br><span class="line">  _mm_storeu_si128((__m128i *)&amp;unk_202018 + <span class="number">4097</span>, (__m128i)<span class="number">0L</span>L);</span><br><span class="line">  *(_QWORD *)((<span class="keyword">char</span> *)&amp;unk_202018 + <span class="number">65566</span>) = <span class="number">0L</span>L;</span><br><span class="line">  *((_WORD *)&amp;unk_202018 + <span class="number">32785</span>) = <span class="number">32764</span>;</span><br><span class="line">  *((_QWORD *)&amp;unk_202018 + <span class="number">8197</span>) = <span class="number">0L</span>L;</span><br><span class="line">  v5 = (<span class="keyword">char</span> *)&amp;unk_202018 + <span class="number">0x10000</span>;</span><br><span class="line">  <span class="built_in">free</span>(v4);</span><br><span class="line">  <span class="keyword">return</span> v5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>（1）程序中的FILE数据类型，FILE是C语言文件结构定义，打开文件和文件操作要用到这类结构。可以看成变量类型，用于变量声明。这个是一种数据结构类型，用来表示一个文件的相关信息，如果定义了一个文件指针，就用这个指针来指向某个文件，然后就能使用这个指针对文件来进行操作了。也就是说可以用v1和v2对文件进行操作。</p>
+<p>（2）调用<a href="https://baike.baidu.com/item/c%E8%AF%AD%E8%A8%80fopen%E5%87%BD%E6%95%B0/1775995?fr=aladdin" title="fopen（）函数" target="_blank" rel="noopener">fopen（）函数</a>是打开一个文件的函数，其中有两个参数，第一个是要打开文件的文件名，第二个是对其文件进行哪种操作。<br>程序中是打开a1文件，对其进行rb操作，”rb”：打开一个二进制文件，文件必须存在，只允许读。</p>
+<p>（3）调用<a href="https://baike.baidu.com/item/fseek/10942382?fr=aladdin" title="fseek()函数" target="_blank" rel="noopener">fseek()函数</a>，int fseek(FILE *stream, long offset, int fromwhere),函数设置文件指针stream的位置。如果执行成功，stream将指向以fromwhere（偏移起始位置：<strong>文件头0(SEEK_SET)</strong>，<strong>当前位置1(SEEK_CUR)</strong>，<strong>文件尾2(SEEK_END)</strong>）为基准，偏移offset（指针偏移量）个字节的位置。如果执行失败(比如offset超过文件自身大小)，则不改变stream指向的位置。<br>这里 fseek(v1, 0LL, 2)，指针v1指向文件的文件尾，fseek(v2, 0LL, 0)指针v2指向文件的文件头。</p>
+<p>（4）调用ftell（）函数，用于得到文件位置指针当前位置相对于文件首的偏移字节数。v3 = ftell(v2)，把文件位置指针v2当前位置相对于文件首的偏移字节数赋值给v3。</p>
+<p>（5）调用malloc（）函数，动态分配内存，其函数原型为void *malloc(unsigned int size)；其作用是在内存的动态存储区中分配一个长度为size的连续空间。此函数的返回值是分配区域的起始地址，或者说，此函数是一个指针型函数，返回的指针指向该分配域的开头位置。如果分配成功则返回指向被分配内存的指针(此存储区中的初始值不确定)，否则返回空指针NULL。当内存不再使用时，应使用free()函数将内存块释放。<br>这里分配了一块长度为0x10000uLL的连续内存区域，且v4指向该区域的开头位置。</p>
+<p>（6）调用memset()函数，对分配的以v4开头的长度为0x10000uLL的连续内存区域进行初始化，初始化为0.</p>
+<p>（7）调用fread()函数，它从文件流中读数据，函数原型为：size_t fread ( void <em>buffer, size_t size, size_t count, FILE </em>stream) ;buffer用于接收数据的内存地址，从给定流 stream 读取数据，最多读取count个项，每个项size个字节，如果调用成功返回实际读取到的项个数（小于或等于count），如果不成功或读到文件末尾返回 0。<br>fread(v4, 1uLL, v3, v2)从v2文件流中读取数据，最多读取v3个项，每个项1ull个字节，读取的数据存在以v4开始的内存中。</p>
+<p>这里以上的代码意思是：<br>打开a1文件，只读，用v1指向a1文件，把v1赋值给v2，v2也指向a1文件，如果返回指针v1为空，则不能打开该文件。接下来v1指向文件尾，v3暂存v2的位置（即a1文件所在位置），v2指向文件头，分配以v4开始的长度为0x10000uLL的内存空间，并初始化为0，读取v2指向的文件流。关闭文件v2。</p>
+<p>（8）调用_mm_storeu_si128（）函数，功能是可以存储128位的数据。将逗号后的__m128i 变量的值存储到&amp;unk_202018 + 4096所指定的变量中去。</p>
+<p>（9）调用 _mm_unpacklo_epi64（）函数，返回一个_m128i的寄存器。</p>
+<p>（10）调用memcpy（）函数，void <em>memcpy(void </em>destin, void *source, unsigned n);从源source所指的内存地址的起始位置开始拷贝n个字节到目标destin所指的内存地址的起始位置中。<br>memcpy(&amp;unk_202018, v4, 0x10000uLL)从v4所指的内存地址的起始位置开始拷贝0x10000uLL个字节到目标&amp;unk_202018所指的内存地址的起始位置中。</p>
+<p>（11）_QWORD是一种无符号整数类型。</p>
 
       
     </div>
@@ -324,13 +348,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/04/09/每日一题1017/">每日一题 1017（大数除法）</a></p>
+        <p><span>本文标题:</span><a href="/2019/07/20/304(1)/">304challenge-1</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-04-09, 09:57:02</p>
-        <p><span>最后更新:</span>2019-04-09, 22:14:32</p>
+        <p><span>发布时间:</span>2019-07-20, 20:06:02</p>
+        <p><span>最后更新:</span>2019-07-20, 20:06:52</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/04/09/每日一题1017/" title="每日一题 1017（大数除法）">https://hanqd.github.io/2019/04/09/每日一题1017/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/04/09/每日一题1017/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/20/304(1)/" title="304challenge-1">https://hanqd.github.io/2019/07/20/304(1)/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/07/20/304(1)/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -342,16 +366,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/04/09/pwn环境搭建/">
-                    pwn环境搭建（Ubuntu下）
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/04/08/每日一题1015 1016/">
-                    每日一题1015（结构体+sort排序）+1016
+                <a href="/2019/07/01/软件安全分析与应用2/">
+                    《软件安全分析与应用》基础知识1
                 </a>
             </div>
         
@@ -363,7 +381,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1017-A除以B"><span class="toc-number">1.</span> <span class="toc-text">1017 A除以B</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式："><span class="toc-number">1.2.</span> <span class="toc-text">输入格式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式："><span class="toc-number">1.3.</span> <span class="toc-text">输出格式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.4.</span> <span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-代码"><span class="toc-number">1.5.</span> <span class="toc-text">C++代码</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-number">1.</span> <span class="toc-text">题目描述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mymv程序分析"><span class="toc-number">1.1.</span> <span class="toc-text">mymv程序分析</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -399,7 +417,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"每日一题 1017（大数除法）　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"304challenge-1　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -415,7 +433,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/09/每日一题1017/" data-title="每日一题 1017（大数除法）" data-url="https://hanqd.github.io/2019/04/09/每日一题1017/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/07/20/304(1)/" data-title="304challenge-1" data-url="https://hanqd.github.io/2019/07/20/304(1)/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -438,15 +456,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/04/09/pwn环境搭建/" title="上一篇: pwn环境搭建（Ubuntu下）">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/04/08/每日一题1015 1016/" title="下一篇: 每日一题1015（结构体+sort排序）+1016">
+            <a href="/2019/07/01/软件安全分析与应用2/" title="下一篇: 《软件安全分析与应用》基础知识1">
                 <i class="fa fa-angle-right"></i>
             </a>
         
