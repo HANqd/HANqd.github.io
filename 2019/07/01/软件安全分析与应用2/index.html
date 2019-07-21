@@ -18,14 +18,14 @@
 <meta name="description" content="从事恶意代码分析、软件漏洞分析的工作需要掌握计算机专业方面的诸多基础知识，这些知识包括但不限于硬件基础知识、反汇编及对抗技术以及操作系统基础。">
 <meta name="keywords" content="《软件安全分析与应用》学习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《软件安全分析与应用》基础知识1">
+<meta property="og:title" content="《软件安全分析与应用》基础知识">
 <meta property="og:url" content="https://hanqd.github.io/2019/07/01/软件安全分析与应用2/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
 <meta property="og:description" content="从事恶意代码分析、软件漏洞分析的工作需要掌握计算机专业方面的诸多基础知识，这些知识包括但不限于硬件基础知识、反汇编及对抗技术以及操作系统基础。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-01T11:58:12.384Z">
+<meta property="og:updated_time" content="2019-07-21T09:12:58.791Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《软件安全分析与应用》基础知识1">
+<meta name="twitter:title" content="《软件安全分析与应用》基础知识">
 <meta name="twitter:description" content="从事恶意代码分析、软件漏洞分析的工作需要掌握计算机专业方面的诸多基础知识，这些知识包括但不限于硬件基础知识、反汇编及对抗技术以及操作系统基础。">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -58,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>《软件安全分析与应用》基础知识1 | HANqd&#39;s BLOG</title>
+<title>《软件安全分析与应用》基础知识 | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -287,7 +287,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      《软件安全分析与应用》基础知识1
+      《软件安全分析与应用》基础知识
     </h1>
   
 
@@ -442,6 +442,24 @@
 </ol>
 <h3 id="程序调试"><a href="#程序调试" class="headerlink" title="程序调试"></a>程序调试</h3><p>程序调试时软件开发过程中进行排错和查错的过程，需要CPU架构的支持。<br>CPU设计了DR0-DR7共8个调试寄存器，用于断点设置功能。DR0-DR3这4个寄存器是断点地址寄存器，用于保存断点地址，DR4和DR5保留未使用，作为DR6和DR7的别名寄存器，DR6是调试状态寄存器，DR7是调试控制寄存器。</p>
 <h3 id="虚拟化支持"><a href="#虚拟化支持" class="headerlink" title="虚拟化支持"></a>虚拟化支持</h3><p>虚拟化技术能够基于系统CPU、内存、磁盘等资源虚拟出多台主机，提高资源利用率，最大化利用平台的硬件资源。</p>
+<h2 id="反汇编及对抗技术"><a href="#反汇编及对抗技术" class="headerlink" title="反汇编及对抗技术"></a>反汇编及对抗技术</h2><p>在恶意代码与软件漏洞分析的过程中，软件逆向分析是一项基本的技能，这一技能包括反汇编及对抗技术。从汇编语言、反汇编方法与原理来介绍反汇编基础，介绍代码混淆、反调试的对抗技术。</p>
+<h3 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h3><p>汇编语言是一种用于计算机、微处理器、微控制器或其他可编程器件的低级语言，也称为符号语言。</p>
+<ol>
+<li><p>寻址方式<br>IA-32架构的微处理器支持的数据寻址方式包括寄存器寻址、立即寻址、直接寻址、寄存器间接寻址、基址变址寻址、寄存器相对寻址、相对基址加变址寻址、比例变址寻址。之前在CSAPP中复习过，这里不再展开。</p>
+</li>
+<li><p>常用的汇编指令<br>汇编指令按照功能分类大致可分为数据传送指令、算术与逻辑运算指令、程序控制指令。<br>指令格式：op num1 num2，其中op为操作码助记符，num1是第一个操作数，称为目的操作数，num2是第二个操作数，称为源操作数。<br>（1）数据传送指令包括mov类指令、堆栈类指令、装载地址类指令、数据传送类指令、I/O传送类指令和其他传送指令。<br>（2）算术与逻辑运算指令分为4类：加、减、乘、除指令，比较指令，与、或、非、异或逻辑运算指令以及移位运算指令。<br>（3）程序控制指令包括转移指令、循环控制指令、过程调用指令、中断指令、机器控制指令等。</p>
+</li>
+</ol>
+<h3 id="反汇编"><a href="#反汇编" class="headerlink" title="反汇编"></a>反汇编</h3><p>反汇编是将机器语言转换成汇编语言的过程，将人类难以理解的机器语言转换成具有符号语义的指令语言。</p>
+<ol>
+<li>基本的反汇编流程包括4个步骤：<br>（1）确定反汇编的代码区域，即区分出程序的代码和数据段；<br>（2）确定了程序代码入口后，读取该位置的二进制机器指令，执行表查找，将机器码的值与它对应的汇编语言助记符提取出来，然后根据指令状态机提取操作数。<br>（3）获取指令并解码出所有的操作数之后，需要对它的汇编语言等价形式进行格式化，输出反汇编代码。<br>（4）完成一条指令的反汇编后，重复上述过程，继续反汇编下一条指令，直到反汇编完程序文件中的指令代码。</li>
+<li>如何完成反汇编，典型的算法包括：线性扫描和递归下降扫描算法。<br>（1）线性扫描算法的优点是能够完全覆盖程序所有代码，缺点是不会通过识别分支等线性指令提取程序的控制流，且没有考虑到代码中混有数据的情况，将数据当成指令解析可能导致无法预估的错误。采用线性扫描反汇编算法的工具有GUN调试器gdb，微软公司的WinDbg调试器和objdump。<br>（2）递归下降扫描反汇编算法加入了对控制流指令的深度解析，根据一条指令是否被另一条指令引用来决定是否对其进行反汇编，将CPU指令进行分类处理，处理过程中需要维护一个队列，记录待处理的分支入口，这个队列称为待处理队列。<br>优点是能够区分代码与数据，缺点是无法处理间接代码路径，需要对循环进行识别和处理，否则将导致无止境的重复分析。采用递归下降扫描反汇编算法的工具有IDA Pro反汇编工具。</li>
+</ol>
+<h3 id="代码混淆"><a href="#代码混淆" class="headerlink" title="代码混淆"></a>代码混淆</h3><p>代码混淆是一种将计算机程序代码转换成一种功能上等价，但是难以阅读和理解的变形。</p>
+<ol>
+<li>代码混淆可分为源程序代码混淆和二进制代码混淆。<br>（1）源代码的混淆可以将代码中的变量、函数、类的名称改成毫无意义的名字，比如单个字母、无意义的字母组合、字母数字编号等，使得阅读代码者难以猜测其用途。源代码的混淆还可以通过修改代码部分逻辑使其功能等价，但更加难以理解，比如添加无用代码，修改循环为递归，打乱代码格式等。<br>（2）二进制代码混淆是应用最为广泛的混淆手段，主要应用于对抗逆向的版权保护和恶意代码的反检测。二进制代码混淆的直接目的就是对抗反汇编，大致会分为两类：其一是“反反汇编”的混淆，即针对反汇编缺陷进行设计使反汇编出错，或者对代码加密混淆使其无法得到真正的运行代码。其二是指令控制流混淆，用来增加理解、分析反汇编代码的难度。</li>
+</ol>
+<h3 id="反调试"><a href="#反调试" class="headerlink" title="反调试"></a>反调试</h3><p>动态调试分析是最常用的分析方法之一，它能够弥补静态分析中难以处理代码加壳及花指令等混淆的不足。<br>常见的反调试技术有：<br>（1）基于调试特征检测的反调试<br>（2）基于调试特征隐藏代码</p>
 
       
     </div>
@@ -450,12 +468,12 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/07/01/软件安全分析与应用2/">《软件安全分析与应用》基础知识1</a></p>
+        <p><span>本文标题:</span><a href="/2019/07/01/软件安全分析与应用2/">《软件安全分析与应用》基础知识</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
         <p><span>发布时间:</span>2019-07-01, 19:57:00</p>
-        <p><span>最后更新:</span>2019-07-01, 19:58:12</p>
+        <p><span>最后更新:</span>2019-07-21, 17:12:58</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/07/01/软件安全分析与应用2/" title="《软件安全分析与应用》基础知识1">https://hanqd.github.io/2019/07/01/软件安全分析与应用2/</a>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/01/软件安全分析与应用2/" title="《软件安全分析与应用》基础知识">https://hanqd.github.io/2019/07/01/软件安全分析与应用2/</a>
             <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/07/01/软件安全分析与应用2/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -489,7 +507,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#处理器硬件架构基础"><span class="toc-number">1.</span> <span class="toc-text">处理器硬件架构基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU结构"><span class="toc-number">1.1.</span> <span class="toc-text">CPU结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保护模式"><span class="toc-number">1.2.</span> <span class="toc-text">保护模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特权级"><span class="toc-number">1.3.</span> <span class="toc-text">特权级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中断处理与异常处理"><span class="toc-number">1.4.</span> <span class="toc-text">中断处理与异常处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序调试"><span class="toc-number">1.5.</span> <span class="toc-text">程序调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚拟化支持"><span class="toc-number">1.6.</span> <span class="toc-text">虚拟化支持</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#处理器硬件架构基础"><span class="toc-number">1.</span> <span class="toc-text">处理器硬件架构基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU结构"><span class="toc-number">1.1.</span> <span class="toc-text">CPU结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保护模式"><span class="toc-number">1.2.</span> <span class="toc-text">保护模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特权级"><span class="toc-number">1.3.</span> <span class="toc-text">特权级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中断处理与异常处理"><span class="toc-number">1.4.</span> <span class="toc-text">中断处理与异常处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序调试"><span class="toc-number">1.5.</span> <span class="toc-text">程序调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚拟化支持"><span class="toc-number">1.6.</span> <span class="toc-text">虚拟化支持</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反汇编及对抗技术"><span class="toc-number">2.</span> <span class="toc-text">反汇编及对抗技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#汇编语言"><span class="toc-number">2.1.</span> <span class="toc-text">汇编语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反汇编"><span class="toc-number">2.2.</span> <span class="toc-text">反汇编</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码混淆"><span class="toc-number">2.3.</span> <span class="toc-text">代码混淆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反调试"><span class="toc-number">2.4.</span> <span class="toc-text">反调试</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -525,7 +543,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"《软件安全分析与应用》基础知识1　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"《软件安全分析与应用》基础知识　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -541,7 +559,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/07/01/软件安全分析与应用2/" data-title="《软件安全分析与应用》基础知识1" data-url="https://hanqd.github.io/2019/07/01/软件安全分析与应用2/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/07/01/软件安全分析与应用2/" data-title="《软件安全分析与应用》基础知识" data-url="https://hanqd.github.io/2019/07/01/软件安全分析与应用2/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -578,7 +596,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/20/304(1)/">304challenge-1</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/软件安全分析与应用2/">《软件安全分析与应用》基础知识1</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/24/软件安全分析与应用1/">《软件安全分析与应用》总括</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/20/CSAPP（第三章1）/">《CSAPP》程序的机器级表示（第三章）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/17/CSAPP（浮点数）/">《CSAPP》浮点数+浮点数运算（第二章）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/15/CSAPP（整数运算）/">《CSAPP》整数运算（第二章）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/31/CSAPP2/">《CSAPP》 位移运算+机器中的整数表示（第二章）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/26/pwnable input/">pwnable.kr-input</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/24/pwnable random/">pwnable.kr-random</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/23/pwnable passcode/">pwnable.kr-passcode</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/22/pwnable flag/">pwnable.kr-flag</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/pwnable bof/">pwnable.kr-bof</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/19/pwnable-collision/">pwnable.kr-collision</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/18/pwnable-fd/">pwnable.kr-fd</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/10/CSAPP第二章/">CSAPP笔记-第二章 信息的表示和处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/05/20190505/">CSAPP笔记-第一章 计算机系统漫游</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/RSA/">Crypto RSA</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/28/misc realwifi/">Misc Realwifi</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/27/20190427/">恶意软件样本地址集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/21/oj web confusion1/">oj Web-Confusion1(SSTI攻击)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/19/oj pwn bof/">oj pwn-bof</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17/oj XSS/">Web babyXSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/16/php3/">Web：BasicFileInclude</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/php2/">Web：Basic PHP2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/13/oj php1/">Web：Basic PHP</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/13/Sql/">web oj:Basic SQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/oj Web/">Web calculator+Rapid Typing</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411/">Web学习+oj Web</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/oj pwn/">pwn题目初尝试</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/pwn环境搭建/">pwn环境搭建（Ubuntu下）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/每日一题1017/">每日一题 1017（大数除法）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/08/每日一题1015 1016/">每日一题1015（结构体+sort排序）+1016</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/07/IDA Pro学习1/">IDA Pro权威指南-第一章 反汇编简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/每日一题1014/">每日一题 1014</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/05/每日一题1011 1012 1013/">每日一题 1011+1012+1013</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/04/Misc shell/">Misc shell</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/每日一题1010/">每日一题 1010</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/20190402/">pwn-栈溢出（1）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/20190401/">每日一题 1009+vector容器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/31/每日一题1008/">每日一题 1008+pwn学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/30/每日一题/">每日一题 1007+Misc Another 01Game</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/每日一题1006/">每日一题 1006</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/Misc Forensics2/">Misc：Forensics2（流量分析题）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/每日一题1005/">每日一题 1005</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/reverse1/">CTF逆向reverse：Reverse sign in</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/每日一题1004/">每日一题 1004</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/26/Web calculate/">Web calculator</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/26/每日一题1003/">每日一题 1003</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/">Python笔记——数据类型（整数、浮点数、数据类型转换）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/Python数据类型（字符串）/">Python笔记——数据类型（字符串）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/你好，hexo/">你好，hexo</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/20/304(1)/">304challenge-1</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/软件安全分析与应用2/">《软件安全分析与应用》基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/24/软件安全分析与应用1/">《软件安全分析与应用》总括</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/20/CSAPP（第三章1）/">《CSAPP》程序的机器级表示（第三章）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/17/CSAPP（浮点数）/">《CSAPP》浮点数+浮点数运算（第二章）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/15/CSAPP（整数运算）/">《CSAPP》整数运算（第二章）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/31/CSAPP2/">《CSAPP》 位移运算+机器中的整数表示（第二章）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/26/pwnable input/">pwnable.kr-input</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/24/pwnable random/">pwnable.kr-random</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/23/pwnable passcode/">pwnable.kr-passcode</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/22/pwnable flag/">pwnable.kr-flag</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/pwnable bof/">pwnable.kr-bof</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/19/pwnable-collision/">pwnable.kr-collision</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/18/pwnable-fd/">pwnable.kr-fd</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/10/CSAPP第二章/">CSAPP笔记-第二章 信息的表示和处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/05/20190505/">CSAPP笔记-第一章 计算机系统漫游</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/RSA/">Crypto RSA</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/28/misc realwifi/">Misc Realwifi</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/27/20190427/">恶意软件样本地址集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/21/oj web confusion1/">oj Web-Confusion1(SSTI攻击)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/19/oj pwn bof/">oj pwn-bof</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17/oj XSS/">Web babyXSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/16/php3/">Web：BasicFileInclude</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/php2/">Web：Basic PHP2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/13/oj php1/">Web：Basic PHP</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/13/Sql/">web oj:Basic SQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/oj Web/">Web calculator+Rapid Typing</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411/">Web学习+oj Web</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/oj pwn/">pwn题目初尝试</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/pwn环境搭建/">pwn环境搭建（Ubuntu下）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/每日一题1017/">每日一题 1017（大数除法）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/08/每日一题1015 1016/">每日一题1015（结构体+sort排序）+1016</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/07/IDA Pro学习1/">IDA Pro权威指南-第一章 反汇编简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/每日一题1014/">每日一题 1014</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/05/每日一题1011 1012 1013/">每日一题 1011+1012+1013</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/04/Misc shell/">Misc shell</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/每日一题1010/">每日一题 1010</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/20190402/">pwn-栈溢出（1）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/20190401/">每日一题 1009+vector容器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/31/每日一题1008/">每日一题 1008+pwn学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/30/每日一题/">每日一题 1007+Misc Another 01Game</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/每日一题1006/">每日一题 1006</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/Misc Forensics2/">Misc：Forensics2（流量分析题）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/每日一题1005/">每日一题 1005</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/reverse1/">CTF逆向reverse：Reverse sign in</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/每日一题1004/">每日一题 1004</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/26/Web calculate/">Web calculator</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/26/每日一题1003/">每日一题 1003</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/">Python笔记——数据类型（整数、浮点数、数据类型转换）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/Python数据类型（字符串）/">Python笔记——数据类型（字符串）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/你好，hexo/">你好，hexo</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/hello-world/">Hello World</a></li></ul>
 
 
 
