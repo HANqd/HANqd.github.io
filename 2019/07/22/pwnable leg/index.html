@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="HANqd">
+
+
+
+<meta name="description" content="pwnable.kr-leg涉及知识点：ARM指令 之前接触的都是x86指令，对ARM指令不熟悉，看了链接中的数据处理指令，发现与x86指令集略有不同。">
+<meta name="keywords" content="pwn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pwnable.kr-leg">
+<meta property="og:url" content="https://hanqd.github.io/2019/07/22/pwnable leg/index.html">
+<meta property="og:site_name" content="HANqd&#39;s BLOG">
+<meta property="og:description" content="pwnable.kr-leg涉及知识点：ARM指令 之前接触的都是x86指令，对ARM指令不熟悉，看了链接中的数据处理指令，发现与x86指令集略有不同。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-22T07:49:06.282Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pwnable.kr-leg">
+<meta name="twitter:description" content="pwnable.kr-leg涉及知识点：ARM指令 之前接触的都是x86指令，对ARM指令不熟悉，看了链接中的数据处理指令，发现与x86指令集略有不同。">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="HANqd&#39;s BLOG" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>pwnable.kr-leg | HANqd&#39;s BLOG</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: false
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">HANqd</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">一个刚进军安全的小白。</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/随笔">随笔</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:1561402970@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/304challenge/">304challenge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/802-11协议/">802.11协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP笔记/">CSAPP笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA-Pro学习/">IDA Pro学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Misc/">Misc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PAT每日一题/">PAT每日一题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/">RSA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSTI/">SSTI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn/">pwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn环境搭建/">pwn环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/《软件安全分析与应用》学习笔记/">《软件安全分析与应用》学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/恶意软件样本/">恶意软件样本</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hanqd.github.io/">HANqd</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于安全</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">HANqd</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">HANqd</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">一个刚进军安全的小白。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/随笔">随笔</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:1561402970@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-pwnable leg" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/07/22/pwnable leg/" class="article-date">
+      <time datetime="2019-07-22T07:47:43.302Z" itemprop="datePublished">2019-07-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      pwnable.kr-leg
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="pwnable-kr-leg"><a href="#pwnable-kr-leg" class="headerlink" title="pwnable.kr-leg"></a>pwnable.kr-leg</h2><p>涉及知识点：<a href="https://blog.csdn.net/u014069939/article/details/81107340" title="ARM指令" target="_blank" rel="noopener">ARM指令</a></p>
+<p>之前接触的都是x86指令，对ARM指令不熟悉，看了链接中的数据处理指令，发现与x86指令集略有不同。<br><a id="more"></a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Daddy told me I should study arm.</span><br><span class="line">But I prefer to study my leg!</span><br><span class="line"></span><br><span class="line">Download : http://pwnable.kr/bin/leg.c</span><br><span class="line">Download : http://pwnable.kr/bin/leg.asm</span><br><span class="line"></span><br><span class="line">ssh leg@pwnable.kr -p2222 (pw:guest)</span><br></pre></td></tr></table></figure>
+<p>题目中要求下载两个文件，并给出远程登录的端口。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ol>
+<li>下载文件<br>命令：wget+网址</li>
+<li>查看leg.c</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">key1</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">asm</span>(<span class="string">"mov r3, pc\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">key2</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">asm</span>(</span><br><span class="line">	<span class="string">"push	&#123;r6&#125;\n"</span></span><br><span class="line">	<span class="string">"add	r6, pc, $1\n"</span></span><br><span class="line">	<span class="string">"bx	r6\n"</span></span><br><span class="line">	<span class="string">".code   16\n"</span></span><br><span class="line">	<span class="string">"mov	r3, pc\n"</span></span><br><span class="line">	<span class="string">"add	r3, $0x4\n"</span></span><br><span class="line">	<span class="string">"push	&#123;r3&#125;\n"</span></span><br><span class="line">	<span class="string">"pop	&#123;pc&#125;\n"</span></span><br><span class="line">	<span class="string">".code	32\n"</span></span><br><span class="line">	<span class="string">"pop	&#123;r6&#125;\n"</span></span><br><span class="line">	);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">key3</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">asm</span>(<span class="string">"mov r3, lr\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> key=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Daddy has very strong arm! : "</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;key);</span><br><span class="line">	<span class="keyword">if</span>( (key1()+key2()+key3()) == key )&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Congratz!\n"</span>);</span><br><span class="line">		<span class="keyword">int</span> fd = open(<span class="string">"flag"</span>, O_RDONLY);</span><br><span class="line">		<span class="keyword">char</span> buf[<span class="number">100</span>];</span><br><span class="line">		<span class="keyword">int</span> r = read(fd, buf, <span class="number">100</span>);</span><br><span class="line">		write(<span class="number">0</span>, buf, r);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"I have strong leg :P\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>查看leg.asm，是leg.c的汇编语言形式</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">(gdb) disass main</span><br><span class="line">Dump of assembler code <span class="keyword">for</span> function main:</span><br><span class="line">   <span class="number">0x00008d3c</span> &lt;+<span class="number">0</span>&gt;:	push	&#123;r4, r11, lr&#125;</span><br><span class="line">   <span class="number">0x00008d40</span> &lt;+<span class="number">4</span>&gt;:	add	r11, sp, #<span class="number">8</span></span><br><span class="line">   <span class="number">0x00008d44</span> &lt;+<span class="number">8</span>&gt;:	sub	sp, sp, #<span class="number">12</span></span><br><span class="line">   <span class="number">0x00008d48</span> &lt;+<span class="number">12</span>&gt;:	mov	r3, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008d4c</span> &lt;+<span class="number">16</span>&gt;:	str	r3, [r11, #<span class="number">-16</span>]</span><br><span class="line">   <span class="number">0x00008d50</span> &lt;+<span class="number">20</span>&gt;:	ldr	r0, [pc, #<span class="number">104</span>]	; <span class="number">0x8dc0</span> &lt;main+<span class="number">132</span>&gt;</span><br><span class="line">   <span class="number">0x00008d54</span> &lt;+<span class="number">24</span>&gt;:	bl	<span class="number">0xfb6c</span> &lt;<span class="built_in">printf</span>&gt;</span><br><span class="line">   <span class="number">0x00008d58</span> &lt;+<span class="number">28</span>&gt;:	sub	r3, r11, #<span class="number">16</span></span><br><span class="line">   <span class="number">0x00008d5c</span> &lt;+<span class="number">32</span>&gt;:	ldr	r0, [pc, #<span class="number">96</span>]	; <span class="number">0x8dc4</span> &lt;main+<span class="number">136</span>&gt;</span><br><span class="line">   <span class="number">0x00008d60</span> &lt;+<span class="number">36</span>&gt;:	mov	r1, r3</span><br><span class="line">   <span class="number">0x00008d64</span> &lt;+<span class="number">40</span>&gt;:	bl	<span class="number">0xfbd8</span> &lt;__isoc99_scanf&gt;</span><br><span class="line">   <span class="number">0x00008d68</span> &lt;+<span class="number">44</span>&gt;:	bl	<span class="number">0x8cd4</span> &lt;key1&gt;</span><br><span class="line">   <span class="number">0x00008d6c</span> &lt;+<span class="number">48</span>&gt;:	mov	r4, r0</span><br><span class="line">   <span class="number">0x00008d70</span> &lt;+<span class="number">52</span>&gt;:	bl	<span class="number">0x8cf0</span> &lt;key2&gt;</span><br><span class="line">   <span class="number">0x00008d74</span> &lt;+<span class="number">56</span>&gt;:	mov	r3, r0</span><br><span class="line">   <span class="number">0x00008d78</span> &lt;+<span class="number">60</span>&gt;:	add	r4, r4, r3</span><br><span class="line">   <span class="number">0x00008d7c</span> &lt;+<span class="number">64</span>&gt;:	bl	<span class="number">0x8d20</span> &lt;key3&gt;</span><br><span class="line">   <span class="number">0x00008d80</span> &lt;+<span class="number">68</span>&gt;:	mov	r3, r0</span><br><span class="line">   <span class="number">0x00008d84</span> &lt;+<span class="number">72</span>&gt;:	add	r2, r4, r3</span><br><span class="line">   <span class="number">0x00008d88</span> &lt;+<span class="number">76</span>&gt;:	ldr	r3, [r11, #<span class="number">-16</span>]</span><br><span class="line">   <span class="number">0x00008d8c</span> &lt;+<span class="number">80</span>&gt;:	cmp	r2, r3</span><br><span class="line">   <span class="number">0x00008d90</span> &lt;+<span class="number">84</span>&gt;:	bne	<span class="number">0x8da8</span> &lt;main+<span class="number">108</span>&gt;</span><br><span class="line">   <span class="number">0x00008d94</span> &lt;+<span class="number">88</span>&gt;:	ldr	r0, [pc, #<span class="number">44</span>]	; <span class="number">0x8dc8</span> &lt;main+<span class="number">140</span>&gt;</span><br><span class="line">   <span class="number">0x00008d98</span> &lt;+<span class="number">92</span>&gt;:	bl	<span class="number">0x1050c</span> &lt;<span class="built_in">puts</span>&gt;</span><br><span class="line">   <span class="number">0x00008d9c</span> &lt;+<span class="number">96</span>&gt;:	ldr	r0, [pc, #<span class="number">40</span>]	; <span class="number">0x8dcc</span> &lt;main+<span class="number">144</span>&gt;</span><br><span class="line">   <span class="number">0x00008da0</span> &lt;+<span class="number">100</span>&gt;:	bl	<span class="number">0xf89c</span> &lt;system&gt;</span><br><span class="line">   <span class="number">0x00008da4</span> &lt;+<span class="number">104</span>&gt;:	b	<span class="number">0x8db0</span> &lt;main+<span class="number">116</span>&gt;</span><br><span class="line">   <span class="number">0x00008da8</span> &lt;+<span class="number">108</span>&gt;:	ldr	r0, [pc, #<span class="number">32</span>]	; <span class="number">0x8dd0</span> &lt;main+<span class="number">148</span>&gt;</span><br><span class="line">   <span class="number">0x00008dac</span> &lt;+<span class="number">112</span>&gt;:	bl	<span class="number">0x1050c</span> &lt;<span class="built_in">puts</span>&gt;</span><br><span class="line">   <span class="number">0x00008db0</span> &lt;+<span class="number">116</span>&gt;:	mov	r3, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008db4</span> &lt;+<span class="number">120</span>&gt;:	mov	r0, r3</span><br><span class="line">   <span class="number">0x00008db8</span> &lt;+<span class="number">124</span>&gt;:	sub	sp, r11, #<span class="number">8</span></span><br><span class="line">   <span class="number">0x00008dbc</span> &lt;+<span class="number">128</span>&gt;:	pop	&#123;r4, r11, pc&#125;</span><br><span class="line">   <span class="number">0x00008dc0</span> &lt;+<span class="number">132</span>&gt;:	andeq	r10, r6, r12, lsl #<span class="number">9</span></span><br><span class="line">   <span class="number">0x00008dc4</span> &lt;+<span class="number">136</span>&gt;:	andeq	r10, r6, r12, lsr #<span class="number">9</span></span><br><span class="line">   <span class="number">0x00008dc8</span> &lt;+<span class="number">140</span>&gt;:			; &lt;UNDEFINED&gt; instruction: <span class="number">0x0006a4b0</span></span><br><span class="line">   <span class="number">0x00008dcc</span> &lt;+<span class="number">144</span>&gt;:			; &lt;UNDEFINED&gt; instruction: <span class="number">0x0006a4bc</span></span><br><span class="line">   <span class="number">0x00008dd0</span> &lt;+<span class="number">148</span>&gt;:	andeq	r10, r6, r4, asr #<span class="number">9</span></span><br><span class="line">End of assembler dump.</span><br><span class="line">(gdb) disass key1</span><br><span class="line">Dump of assembler code <span class="keyword">for</span> function key1:</span><br><span class="line">   <span class="number">0x00008cd4</span> &lt;+<span class="number">0</span>&gt;:	push	&#123;r11&#125;		; (str r11, [sp, #<span class="number">-4</span>]!)</span><br><span class="line">   <span class="number">0x00008cd8</span> &lt;+<span class="number">4</span>&gt;:	add	r11, sp, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008cdc</span> &lt;+<span class="number">8</span>&gt;:	mov	r3, pc</span><br><span class="line">   <span class="number">0x00008ce0</span> &lt;+<span class="number">12</span>&gt;:	mov	r0, r3</span><br><span class="line">   <span class="number">0x00008ce4</span> &lt;+<span class="number">16</span>&gt;:	sub	sp, r11, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008ce8</span> &lt;+<span class="number">20</span>&gt;:	pop	&#123;r11&#125;		; (ldr r11, [sp], #<span class="number">4</span>)</span><br><span class="line">   <span class="number">0x00008cec</span> &lt;+<span class="number">24</span>&gt;:	bx	lr</span><br><span class="line">End of assembler dump.</span><br><span class="line">(gdb) disass key2</span><br><span class="line">Dump of assembler code <span class="keyword">for</span> function key2:</span><br><span class="line">   <span class="number">0x00008cf0</span> &lt;+<span class="number">0</span>&gt;:	push	&#123;r11&#125;		; (str r11, [sp, #<span class="number">-4</span>]!)</span><br><span class="line">   <span class="number">0x00008cf4</span> &lt;+<span class="number">4</span>&gt;:	add	r11, sp, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008cf8</span> &lt;+<span class="number">8</span>&gt;:	push	&#123;r6&#125;		; (str r6, [sp, #<span class="number">-4</span>]!)</span><br><span class="line">   <span class="number">0x00008cfc</span> &lt;+<span class="number">12</span>&gt;:	add	r6, pc, #<span class="number">1</span></span><br><span class="line">   <span class="number">0x00008d00</span> &lt;+<span class="number">16</span>&gt;:	bx	r6</span><br><span class="line">   <span class="number">0x00008d04</span> &lt;+<span class="number">20</span>&gt;:	mov	r3, pc</span><br><span class="line">   <span class="number">0x00008d06</span> &lt;+<span class="number">22</span>&gt;:	adds	r3, #<span class="number">4</span></span><br><span class="line">   <span class="number">0x00008d08</span> &lt;+<span class="number">24</span>&gt;:	push	&#123;r3&#125;</span><br><span class="line">   <span class="number">0x00008d0a</span> &lt;+<span class="number">26</span>&gt;:	pop	&#123;pc&#125;</span><br><span class="line">   <span class="number">0x00008d0c</span> &lt;+<span class="number">28</span>&gt;:	pop	&#123;r6&#125;		; (ldr r6, [sp], #<span class="number">4</span>)</span><br><span class="line">   <span class="number">0x00008d10</span> &lt;+<span class="number">32</span>&gt;:	mov	r0, r3</span><br><span class="line">   <span class="number">0x00008d14</span> &lt;+<span class="number">36</span>&gt;:	sub	sp, r11, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008d18</span> &lt;+<span class="number">40</span>&gt;:	pop	&#123;r11&#125;		; (ldr r11, [sp], #<span class="number">4</span>)</span><br><span class="line">   <span class="number">0x00008d1c</span> &lt;+<span class="number">44</span>&gt;:	bx	lr</span><br><span class="line">End of assembler dump.</span><br><span class="line">(gdb) disass key3</span><br><span class="line">Dump of assembler code <span class="keyword">for</span> function key3:</span><br><span class="line">   <span class="number">0x00008d20</span> &lt;+<span class="number">0</span>&gt;:	push	&#123;r11&#125;		; (str r11, [sp, #<span class="number">-4</span>]!)</span><br><span class="line">   <span class="number">0x00008d24</span> &lt;+<span class="number">4</span>&gt;:	add	r11, sp, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008d28</span> &lt;+<span class="number">8</span>&gt;:	mov	r3, lr</span><br><span class="line">   <span class="number">0x00008d2c</span> &lt;+<span class="number">12</span>&gt;:	mov	r0, r3</span><br><span class="line">   <span class="number">0x00008d30</span> &lt;+<span class="number">16</span>&gt;:	sub	sp, r11, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008d34</span> &lt;+<span class="number">20</span>&gt;:	pop	&#123;r11&#125;		; (ldr r11, [sp], #<span class="number">4</span>)</span><br><span class="line">   <span class="number">0x00008d38</span> &lt;+<span class="number">24</span>&gt;:	bx	lr</span><br><span class="line">End of assembler dump.</span><br><span class="line">(gdb)</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>由c代码看出满足key1()+key2()+key3()=key，并且输入key值，就可以得到flag。<br>那么题目就变成求key1()、key2()、key3()的值。</li>
+<li>得出key1()的值。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">key1</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">asm</span>(<span class="string">"mov r3, pc\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(gdb) disass key1</span><br><span class="line">Dump of assembler code <span class="keyword">for</span> function key1:</span><br><span class="line">   <span class="number">0x00008cd4</span> &lt;+<span class="number">0</span>&gt;:	push	&#123;r11&#125;		; (str r11, [sp, #<span class="number">-4</span>]!)</span><br><span class="line">   <span class="number">0x00008cd8</span> &lt;+<span class="number">4</span>&gt;:	add	r11, sp, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008cdc</span> &lt;+<span class="number">8</span>&gt;:	mov	r3, pc</span><br><span class="line">   <span class="number">0x00008ce0</span> &lt;+<span class="number">12</span>&gt;:	mov	r0, r3</span><br><span class="line">   <span class="number">0x00008ce4</span> &lt;+<span class="number">16</span>&gt;:	sub	sp, r11, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008ce8</span> &lt;+<span class="number">20</span>&gt;:	pop	&#123;r11&#125;		; (ldr r11, [sp], #<span class="number">4</span>)</span><br><span class="line">   <span class="number">0x00008cec</span> &lt;+<span class="number">24</span>&gt;:	bx	lr</span><br><span class="line">End of assembler dump.</span><br></pre></td></tr></table></figure>
+<p>其中asm()函数是内嵌汇编函数，在c代码中执行汇编指令。</p>
+<blockquote>
+</blockquote>
+<p>PC代表程序计数器，流水线使用三个阶段，因此指令分为三个阶段执行：.取指（从存储器装载一条指令）；.译码（识别将要被执行的指令）；.执行（处理指令并将结果写回寄存器），pc指向第三条指令。每条指令4字节长，那么pc总是指向当前指令+8。</p>
+<p>key1()的返回值为r0，根据汇编指令，r0=r3=pc，pc的值是指向正在取值的指令，而不是正在执行或者译码的指令。当前指令是0x00008cdc &lt;+8&gt;:    mov    r3, 那么pc即key1()=0x00008ce4。</p>
+<ol start="6">
+<li>得出key2()的值</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">key2</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">asm</span>(</span><br><span class="line">	<span class="string">"push	&#123;r6&#125;\n"</span></span><br><span class="line">	<span class="string">"add	r6, pc, $1\n"</span></span><br><span class="line">	<span class="string">"bx	r6\n"</span></span><br><span class="line">	<span class="string">".code   16\n"</span></span><br><span class="line">	<span class="string">"mov	r3, pc\n"</span></span><br><span class="line">	<span class="string">"add	r3, $0x4\n"</span></span><br><span class="line">	<span class="string">"push	&#123;r3&#125;\n"</span></span><br><span class="line">	<span class="string">"pop	&#123;pc&#125;\n"</span></span><br><span class="line">	<span class="string">".code	32\n"</span></span><br><span class="line">	<span class="string">"pop	&#123;r6&#125;\n"</span></span><br><span class="line">	);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(gdb) disass key2</span><br><span class="line">Dump of assembler code <span class="keyword">for</span> function key2:</span><br><span class="line">   <span class="number">0x00008cf0</span> &lt;+<span class="number">0</span>&gt;:	push	&#123;r11&#125;		; (str r11, [sp, #<span class="number">-4</span>]!)</span><br><span class="line">   <span class="number">0x00008cf4</span> &lt;+<span class="number">4</span>&gt;:	add	r11, sp, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008cf8</span> &lt;+<span class="number">8</span>&gt;:	push	&#123;r6&#125;		; (str r6, [sp, #<span class="number">-4</span>]!)</span><br><span class="line">   <span class="number">0x00008cfc</span> &lt;+<span class="number">12</span>&gt;:	add	r6, pc, #<span class="number">1</span></span><br><span class="line">   <span class="number">0x00008d00</span> &lt;+<span class="number">16</span>&gt;:	bx	r6</span><br><span class="line">   <span class="number">0x00008d04</span> &lt;+<span class="number">20</span>&gt;:	mov	r3, pc</span><br><span class="line">   <span class="number">0x00008d06</span> &lt;+<span class="number">22</span>&gt;:	adds	r3, #<span class="number">4</span></span><br><span class="line">   <span class="number">0x00008d08</span> &lt;+<span class="number">24</span>&gt;:	push	&#123;r3&#125;</span><br><span class="line">   <span class="number">0x00008d0a</span> &lt;+<span class="number">26</span>&gt;:	pop	&#123;pc&#125;</span><br><span class="line">   <span class="number">0x00008d0c</span> &lt;+<span class="number">28</span>&gt;:	pop	&#123;r6&#125;		; (ldr r6, [sp], #<span class="number">4</span>)</span><br><span class="line">   <span class="number">0x00008d10</span> &lt;+<span class="number">32</span>&gt;:	mov	r0, r3</span><br><span class="line">   <span class="number">0x00008d14</span> &lt;+<span class="number">36</span>&gt;:	sub	sp, r11, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008d18</span> &lt;+<span class="number">40</span>&gt;:	pop	&#123;r11&#125;		; (ldr r11, [sp], #<span class="number">4</span>)</span><br><span class="line">   <span class="number">0x00008d1c</span> &lt;+<span class="number">44</span>&gt;:	bx	lr</span><br><span class="line">End of assembler dump.</span><br></pre></td></tr></table></figure>
+<p>key2()返回值为r3，r3=pc，又r3=r3+4，所以r3=pc+4=0x00008d08+4=0x00008d0c<br>key2()=0x00008d0c。</p>
+<ol start="7">
+<li>得出key3()的值</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">key3</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">asm</span>(<span class="string">"mov r3, lr\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(gdb) disass key3</span><br><span class="line">Dump of assembler code <span class="keyword">for</span> function key3:</span><br><span class="line">   <span class="number">0x00008d20</span> &lt;+<span class="number">0</span>&gt;:	push	&#123;r11&#125;		; (str r11, [sp, #<span class="number">-4</span>]!)</span><br><span class="line">   <span class="number">0x00008d24</span> &lt;+<span class="number">4</span>&gt;:	add	r11, sp, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008d28</span> &lt;+<span class="number">8</span>&gt;:	mov	r3, lr</span><br><span class="line">   <span class="number">0x00008d2c</span> &lt;+<span class="number">12</span>&gt;:	mov	r0, r3</span><br><span class="line">   <span class="number">0x00008d30</span> &lt;+<span class="number">16</span>&gt;:	sub	sp, r11, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008d34</span> &lt;+<span class="number">20</span>&gt;:	pop	&#123;r11&#125;		; (ldr r11, [sp], #<span class="number">4</span>)</span><br><span class="line">   <span class="number">0x00008d38</span> &lt;+<span class="number">24</span>&gt;:	bx	lr</span><br><span class="line">End of assembler dump.</span><br></pre></td></tr></table></figure>
+<p>主函数中的汇编指令：调用完key3()函数后返回到主函数。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0x00008d7c</span> &lt;+<span class="number">64</span>&gt;:	bl	<span class="number">0x8d20</span> &lt;key3&gt;</span><br><span class="line"><span class="number">0x00008d80</span> &lt;+<span class="number">68</span>&gt;:	mov	r3, r0</span><br></pre></td></tr></table></figure></p>
+<p>由汇编指令得出key3()的返回值r0=r3=lr，lr保存的是子函数返回位置的地址，在主函数中看到lr=0x00008d80，所以key3()=0x00008d80。</p>
+<ol start="8">
+<li>计算key值。<br>计算脚本：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">key1=<span class="number">0x00008ce4</span></span><br><span class="line">key2=<span class="number">0x00008d0c</span></span><br><span class="line">key3=<span class="number">0x00008d80</span></span><br><span class="line">key=key1+key2+key3</span><br><span class="line">print key</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>得出结果：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdd@ubuntu:~/<span class="number">111</span>-oj/pwnable.kr-leg$ python leg.py</span><br><span class="line"><span class="number">108400</span></span><br></pre></td></tr></table></figure></p>
+<ol start="9">
+<li>运行程序</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/ $ ./leg</span><br><span class="line">Daddy has very strong arm! : <span class="number">108400</span></span><br><span class="line">Congratz!</span><br><span class="line">My daddy has a lot of ARMv5te muscle!</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/07/22/pwnable leg/">pwnable.kr-leg</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
+        <p><span>发布时间:</span>2019-07-22, 15:47:43</p>
+        <p><span>最后更新:</span>2019-07-22, 15:49:06</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/22/pwnable leg/" title="pwnable.kr-leg">https://hanqd.github.io/2019/07/22/pwnable leg/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/07/22/pwnable leg/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/07/20/304(1)/">
+                    304challenge-1
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#pwnable-kr-leg"><span class="toc-number">1.</span> <span class="toc-text">pwnable.kr-leg</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"pwnable.kr-leg　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/07/22/pwnable leg/" data-title="pwnable.kr-leg" data-url="https://hanqd.github.io/2019/07/22/pwnable leg/"></div>
+    <script>
+        var duoshuoQuery = {short_name:""};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/07/20/304(1)/" title="下一篇: 304challenge-1">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/22/pwnable leg/">pwnable.kr-leg</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/20/304(1)/">304challenge-1</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/软件安全分析与应用2/">《软件安全分析与应用》基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/24/软件安全分析与应用1/">《软件安全分析与应用》总括</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/20/CSAPP（第三章1）/">《CSAPP》程序的机器级表示（第三章）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/17/CSAPP（浮点数）/">《CSAPP》浮点数+浮点数运算（第二章）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/15/CSAPP（整数运算）/">《CSAPP》整数运算（第二章）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/31/CSAPP2/">《CSAPP》 位移运算+机器中的整数表示（第二章）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/26/pwnable input/">pwnable.kr-input</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/24/pwnable random/">pwnable.kr-random</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/23/pwnable passcode/">pwnable.kr-passcode</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/22/pwnable flag/">pwnable.kr-flag</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/pwnable bof/">pwnable.kr-bof</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/19/pwnable-collision/">pwnable.kr-collision</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/18/pwnable-fd/">pwnable.kr-fd</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/10/CSAPP第二章/">CSAPP笔记-第二章 信息的表示和处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/05/20190505/">CSAPP笔记-第一章 计算机系统漫游</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/RSA/">Crypto RSA</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/28/misc realwifi/">Misc Realwifi</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/27/20190427/">恶意软件样本地址集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/21/oj web confusion1/">oj Web-Confusion1(SSTI攻击)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/19/oj pwn bof/">oj pwn-bof</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17/oj XSS/">Web babyXSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/16/php3/">Web：BasicFileInclude</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/php2/">Web：Basic PHP2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/13/oj php1/">Web：Basic PHP</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/13/Sql/">web oj:Basic SQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/oj Web/">Web calculator+Rapid Typing</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411/">Web学习+oj Web</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/oj pwn/">pwn题目初尝试</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/pwn环境搭建/">pwn环境搭建（Ubuntu下）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/每日一题1017/">每日一题 1017（大数除法）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/08/每日一题1015 1016/">每日一题1015（结构体+sort排序）+1016</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/07/IDA Pro学习1/">IDA Pro权威指南-第一章 反汇编简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/每日一题1014/">每日一题 1014</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/05/每日一题1011 1012 1013/">每日一题 1011+1012+1013</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/04/Misc shell/">Misc shell</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/每日一题1010/">每日一题 1010</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/20190402/">pwn-栈溢出（1）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/20190401/">每日一题 1009+vector容器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/31/每日一题1008/">每日一题 1008+pwn学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/30/每日一题/">每日一题 1007+Misc Another 01Game</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/每日一题1006/">每日一题 1006</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/Misc Forensics2/">Misc：Forensics2（流量分析题）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/每日一题1005/">每日一题 1005</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/reverse1/">CTF逆向reverse：Reverse sign in</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/每日一题1004/">每日一题 1004</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/26/Web calculate/">Web calculator</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/26/每日一题1003/">每日一题 1003</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/Python数据类型（整数、浮点数、数据类型转换）/">Python笔记——数据类型（整数、浮点数、数据类型转换）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/Python数据类型（字符串）/">Python笔记——数据类型（字符串）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/你好，hexo/">你好，hexo</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2019 HANqd
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
