@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
 <meta property="og:description" content="pwnable.kr-leg涉及知识点：ARM指令 之前接触的都是x86指令，对ARM指令不熟悉，看了链接中的数据处理指令，发现与x86指令集略有不同。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-22T07:49:06.282Z">
+<meta property="og:updated_time" content="2019-07-22T07:59:53.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pwnable.kr-leg">
 <meta name="twitter:description" content="pwnable.kr-leg涉及知识点：ARM指令 之前接触的都是x86指令，对ARM指令不熟悉，看了链接中的数据处理指令，发现与x86指令集略有不同。">
@@ -329,8 +329,8 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(gdb) disass key1</span><br><span class="line">Dump of assembler code <span class="keyword">for</span> function key1:</span><br><span class="line">   <span class="number">0x00008cd4</span> &lt;+<span class="number">0</span>&gt;:	push	&#123;r11&#125;		; (str r11, [sp, #<span class="number">-4</span>]!)</span><br><span class="line">   <span class="number">0x00008cd8</span> &lt;+<span class="number">4</span>&gt;:	add	r11, sp, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008cdc</span> &lt;+<span class="number">8</span>&gt;:	mov	r3, pc</span><br><span class="line">   <span class="number">0x00008ce0</span> &lt;+<span class="number">12</span>&gt;:	mov	r0, r3</span><br><span class="line">   <span class="number">0x00008ce4</span> &lt;+<span class="number">16</span>&gt;:	sub	sp, r11, #<span class="number">0</span></span><br><span class="line">   <span class="number">0x00008ce8</span> &lt;+<span class="number">20</span>&gt;:	pop	&#123;r11&#125;		; (ldr r11, [sp], #<span class="number">4</span>)</span><br><span class="line">   <span class="number">0x00008cec</span> &lt;+<span class="number">24</span>&gt;:	bx	lr</span><br><span class="line">End of assembler dump.</span><br></pre></td></tr></table></figure>
 <p>其中asm()函数是内嵌汇编函数，在c代码中执行汇编指令。</p>
 <blockquote>
-</blockquote>
 <p>PC代表程序计数器，流水线使用三个阶段，因此指令分为三个阶段执行：.取指（从存储器装载一条指令）；.译码（识别将要被执行的指令）；.执行（处理指令并将结果写回寄存器），pc指向第三条指令。每条指令4字节长，那么pc总是指向当前指令+8。</p>
+</blockquote>
 <p>key1()的返回值为r0，根据汇编指令，r0=r3=pc，pc的值是指向正在取值的指令，而不是正在执行或者译码的指令。当前指令是0x00008cdc &lt;+8&gt;:    mov    r3, 那么pc即key1()=0x00008ce4。</p>
 <ol start="6">
 <li>得出key2()的值</li>
@@ -364,7 +364,7 @@
         <p><span>本文标题:</span><a href="/2019/07/22/pwnable leg/">pwnable.kr-leg</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
         <p><span>发布时间:</span>2019-07-22, 15:47:43</p>
-        <p><span>最后更新:</span>2019-07-22, 15:49:06</p>
+        <p><span>最后更新:</span>2019-07-22, 15:59:53</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/07/22/pwnable leg/" title="pwnable.kr-leg">https://hanqd.github.io/2019/07/22/pwnable leg/</a>
             <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/07/22/pwnable leg/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
