@@ -187,7 +187,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/304challenge/">304challenge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/802-11协议/">802.11协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP笔记/">CSAPP笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA-Pro学习/">IDA Pro学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Misc/">Misc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PAT每日一题/">PAT每日一题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/">RSA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSTI/">SSTI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn/">pwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn环境搭建/">pwn环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/《软件安全分析与应用》学习笔记/">《软件安全分析与应用》学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/恶意软件样本/">恶意软件样本</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/304challenge/">304challenge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/802-11协议/">802.11协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP笔记/">CSAPP笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA-Pro学习/">IDA Pro学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Misc/">Misc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PAT每日一题/">PAT每日一题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/">RSA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSTI/">SSTI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn/">pwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn-ret2syscall/">pwn,ret2syscall</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn环境搭建/">pwn环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/《软件安全分析与应用》学习笔记/">《软件安全分析与应用》学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/恶意软件样本/">恶意软件样本</a></li></ul>
                     </div>
                 </section>
                 
@@ -265,6 +265,81 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-pwnable input" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/26/pwnable input/" class="article-date">
+      <time datetime="2019-05-26T02:16:43.231Z" itemprop="datePublished">2019-05-26</time>
+</a>
+
+ 
+    <a href="/2019/05/26/pwnable input/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count" data-thread-key="2019/05/26/pwnable input/"></span>
+        
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/26/pwnable input/">pwnable.kr-input</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="pwnable-input"><a href="#pwnable-input" class="headerlink" title="pwnable-input"></a>pwnable-input</h2><p>涉及知识点：条件输入</p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mom? how can I pass my input to a computer program?</span><br><span class="line"></span><br><span class="line">ssh input2@pwnable.kr -p2222 (pw:guest)</span><br></pre></td></tr></table></figure>
+<p>根据题目知道，这是一道关于输入的题目，同样，需要SSH远程登录。<br>
+          
+      
+    </p></div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/05/26/pwnable input/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-pwnable random" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -930,79 +1005,6 @@
 
 
   
-    <article id="post-misc realwifi" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/04/28/misc realwifi/" class="article-date">
-      <time datetime="2019-04-28T13:55:05.433Z" itemprop="datePublished">2019-04-28</time>
-</a>
-
- 
-    <a href="/2019/04/28/misc realwifi/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-            <span class="ds-thread-count" data-thread-key="2019/04/28/misc realwifi/"></span>
-        
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/28/misc realwifi/">Misc Realwifi</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="Realwifi"><a href="#Realwifi" class="headerlink" title="Realwifi"></a>Realwifi</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/802-11协议/">802.11协议</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/">Misc</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/04/28/misc realwifi/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1042,6 +1044,7 @@
     </div>
 	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
+
 </footer>
 
     </div>
